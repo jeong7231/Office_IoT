@@ -1,0 +1,13 @@
+/*
+ * mfrc522.h
+ *
+ *  Created on: May 31, 2025
+ *      Author: aiot24_
+ */
+
+#ifndef INC_MFRC522_H_
+#define INC_MFRC522_H_
+
+
+
+#endif /* INC_MFRC522_H_ */

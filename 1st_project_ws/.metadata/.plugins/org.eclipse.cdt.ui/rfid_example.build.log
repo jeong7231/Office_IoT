@@ -1,0 +1,11 @@
+17:30:17 **** Incremental Build of configuration Debug for project rfid_example ****
+make -j8 all 
+arm-none-eabi-gcc -o "rfid_example.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\aiot24_\STM32CubeIDE\1st_project_ws\rfid_example\STM32F411RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="rfid_example.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+C:/ST/STM32CubeIDE_1.18.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: ./Core/Src/main.o: in function `main':
+C:/Users/aiot24_/STM32CubeIDE/1st_project_ws/rfid_example/Debug/../Core/Src/main.c:115:(.text.main+0x26): undefined reference to `MFRC522_Check'
+collect2.exe: error: ld returned 1 exit status
+make: *** [makefile:64: rfid_example.elf] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+
+17:30:17 Build Failed. 2 errors, 0 warnings. (took 349ms)
+
