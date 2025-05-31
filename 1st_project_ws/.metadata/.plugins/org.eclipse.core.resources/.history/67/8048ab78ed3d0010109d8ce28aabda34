@@ -1,0 +1,141 @@
+/*
+ * mfrc522.c
+ *
+ *  Created on: May 31, 2025
+ *      Author: aiot24_
+ */
+
+#include "mfrc522.h"
+#include <string.h>
+
+static void CS_Enable(void) {
+    HAL_GPIO_WritePin(MFRC522_CS_PORT, MFRC522_CS_PIN, GPIO_PIN_RESET);
+}
+
+static void CS_Disable(void) {
+    HAL_GPIO_WritePin(MFRC522_CS_PORT, MFRC522_CS_PIN, GPIO_PIN_SET);
+}
+
+static void MFRC522_WriteReg(uint8_t addr, uint8_t val) {
+    uint8_t data[2] = { (addr << 1) & 0x7E, val };
+    CS_Enable();
+    HAL_SPI_Transmit(&hspi1, data, 2, HAL_MAX_DELAY);
+    CS_Disable();
+}
+
+static uint8_t MFRC522_ReadReg(uint8_t addr) {
+    uint8_t data[2] = { ((addr << 1) & 0x7E) | 0x80, 0x00 };
+    uint8_t recv;
+    CS_Enable();
+    HAL_SPI_Transmit(&hspi1, data, 1, HAL_MAX_DELAY);
+    HAL_SPI_Receive(&hspi1, &recv, 1, HAL_MAX_DELAY);
+    CS_Disable();
+    return recv;
+}
+
+static void MFRC522_AntennaOn(void) {
+    uint8_t temp = MFRC522_ReadReg(TxControlReg);
+    if (!(temp & 0x03))
+        MFRC522_WriteReg(TxControlReg, temp | 0x03);
+}
+
+void MFRC522_Init(void) {
+    HAL_GPIO_WritePin(MFRC522_RST_PORT, MFRC522_RST_PIN, GPIO_PIN_RESET);
+    HAL_Delay(50);
+    HAL_GPIO_WritePin(MFRC522_RST_PORT, MFRC522_RST_PIN, GPIO_PIN_SET);
+    HAL_Delay(50);
+
+    MFRC522_WriteReg(CommandReg, PCD_RESETPHASE);
+    HAL_Delay(10);
+
+    MFRC522_WriteReg(TModeReg, 0x8D);
+    MFRC522_WriteReg(TPrescalerReg, 0x3E);
+    MFRC522_WriteReg(TReloadRegL, 30);
+    MFRC522_WriteReg(TReloadRegH, 0);
+    MFRC522_WriteReg(TxASKReg, 0x40);
+    MFRC522_WriteReg(ModeReg, 0x3D);
+
+    MFRC522_AntennaOn();
+}
+
+bool MFRC522_Request(uint8_t reqMode, uint8_t *TagType) {
+    uint8_t status;
+    uint8_t backBits;
+
+    MFRC522_WriteReg(BitFramingReg, 0x07);
+    uint8_t buf[2] = { reqMode };
+    status = MFRC522_ToCard(PCD_TRANSCEIVE, buf, 1, TagType, &backBits);
+
+    return (status && backBits == 0x10);
+}
+
+bool MFRC522_Anticoll(uint8_t *serNum) {
+    uint8_t status;
+    uint8_t serNumCheck = 0;
+
+    MFRC522_WriteReg(BitFramingReg, 0x00);
+    uint8_t buf[2] = { PICC_ANTICOLL, 0x20 };
+    uint8_t backLen;
+    status = MFRC522_ToCard(PCD_TRANSCEIVE, buf, 2, serNum, &backLen);
+
+    if (!status || backLen != 40) return false;
+
+    for (uint8_t i = 0; i < 4; i++) serNumCheck ^= serNum[i];
+    if (serNumCheck != serNum[4]) return false;
+
+    return true;
+}
+
+uint8_t MFRC522_ToCard(uint8_t command, uint8_t *sendData, uint8_t sendLen, uint8_t *backData, uint8_t *backLen) {
+    uint8_t status = 0;
+    uint8_t irqEn = 0x77;
+    uint8_t waitIRq = 0x30;
+    uint8_t lastBits, n;
+    uint16_t i;
+
+    MFRC522_WriteReg(CommIEnReg, irqEn | 0x80);
+    MFRC522_WriteReg(CommIrqReg, 0x7F);
+    MFRC522_WriteReg(CommandReg, PCD_IDLE);
+
+    for (i = 0; i < sendLen; i++)
+        MFRC522_WriteReg(FIFODataReg, sendData[i]);
+    MFRC522_WriteReg(CommandReg, command);
+
+    if (command == PCD_TRANSCEIVE)
+        MFRC522_WriteReg(BitFramingReg, 0x80);
+
+    i = 2000;
+    do {
+        n = MFRC522_ReadReg(CommIrqReg);
+        i--;
+    } while (i && !(n & 0x01) && !(n & waitIRq));
+
+    if (i != 0) {
+        if (!(MFRC522_ReadReg(ErrorReg) & 0x1B)) {
+            status = 1;
+            if (n & irqEn & 0x01)
+                status = 0;
+
+            if (command == PCD_TRANSCEIVE) {
+                n = MFRC522_ReadReg(FIFOLevelReg);
+                lastBits = MFRC522_ReadReg(ControlReg) & 0x07;
+                *backLen = (lastBits) ? (n - 1) * 8 + lastBits : n * 8;
+
+                for (i = 0; i < n; i++)
+                    backData[i] = MFRC522_ReadReg(FIFODataReg);
+            }
+        }
+    }
+
+    return status;
+}
+
+bool MFRC522_IsCard(void) {
+    uint8_t tagType[2];
+    return MFRC522_Request(PICC_REQIDL, tagType);
+}
+
+bool MFRC522_ReadCardSerial(uint8_t *uid) {
+    return MFRC522_Anticoll(uid);
+}
+
