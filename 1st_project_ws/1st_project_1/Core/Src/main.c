@@ -9,6 +9,8 @@
 #include <string.h>
 #include "clcd.h"
 #include "mfrc522.h"
+#include "esp.h"
+#include "dht.h"
 
 /* USER CODE END Includes */
 
@@ -20,6 +22,7 @@
 /* USER CODE BEGIN PD */
 
 #define ROOM_NUMBER 101
+#define USER_ID "JTY"
 #define USER_NAME "JEONG"
 #define USER_CODE "8315D829"
 
@@ -28,8 +31,8 @@
  set to 'Yes') calls __io_putchar() */
 #define PUTCHAR_PROTOTYPE int __io_putchar(int ch)
 #else
-#define PUTCHAR_PROTOTYPE int fputc(int ch, FILE *f)
-#endif /* __GNUC__ */
+	#define PUTCHAR_PROTOTYPE int fputc(int ch, FILE *f)
+	#endif /* __GNUC__ */
 #define ARR_CNT 5
 #define CMD_SIZE 50
 /* USER CODE END PD */
@@ -47,11 +50,22 @@ SPI_HandleTypeDef hspi1;
 
 TIM_HandleTypeDef htim1;
 TIM_HandleTypeDef htim3;
+TIM_HandleTypeDef htim4;
 
 UART_HandleTypeDef huart2;
 UART_HandleTypeDef huart6;
 
 /* USER CODE BEGIN PV */
+
+// esp
+uint8_t rx2char;
+extern cb_data_t cb_data;
+extern volatile unsigned char rx2Flag;
+extern volatile char rx2Data[50];
+
+int ret = 0;
+DHT11_TypeDef dht11Data;
+char buff[30];
 
 // room_info 구조체
 typedef struct {
@@ -88,6 +102,12 @@ char uid_str[16];
 int authentication_flag = 0;
 volatile int auth_start_time = -1;  // 인증 시작 시점의 tim3Sec 저장
 
+//esp
+int i = 0;
+char *pToken;
+char *pArray[ARR_CNT] = { 0 };
+char sendBuf[MAX_UART_COMMAND_LEN] = { 0 };
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -100,10 +120,19 @@ static void MX_TIM3_Init(void);
 static void MX_USART6_UART_Init(void);
 static void MX_I2C1_Init(void);
 static void MX_SPI1_Init(void);
+static void MX_TIM4_Init(void);
 /* USER CODE BEGIN PFP */
+
+// ESP
+void esp_init();
+
+char strBuff[MAX_ESP_COMMAND_LEN];
+
 void room_status_set();
 void room_status_display();
 void user_authentication();
+
+void esp_event(char*);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -117,6 +146,7 @@ void user_authentication();
 int main(void) {
 
 	/* USER CODE BEGIN 1 */
+
 	/* USER CODE END 1 */
 
 	/* MCU Configuration--------------------------------------------------------*/
@@ -142,7 +172,20 @@ int main(void) {
 	MX_USART6_UART_Init();
 	MX_I2C1_Init();
 	MX_SPI1_Init();
+	MX_TIM4_Init();
 	/* USER CODE BEGIN 2 */
+	// ESP
+	printf("Start main() - wifi\r\n");
+	ret |= drv_uart_init();
+	ret |= drv_esp_init();
+	if (ret != 0) {
+		printf("Esp response error\r\n");
+		Error_Handler();
+	}
+
+	AiotClient_Init();
+	//DHT
+	DHT11_Init();
 
 	if (HAL_TIM_Base_Start_IT(&htim3) != HAL_OK)
 		Error_Handler();
@@ -162,6 +205,20 @@ int main(void) {
 	/* USER CODE BEGIN WHILE */
 	while (1) {
 
+		if (strstr((char*) cb_data.buf, "+IPD")
+				&& cb_data.buf[cb_data.length - 1] == '\n') {
+			//?��?��?���??  \r\n+IPD,15:[KSH_LIN]HELLO\n
+			strcpy(strBuff, strchr((char*) cb_data.buf, '['));
+			memset(cb_data.buf, 0x0, sizeof(cb_data.buf));
+			cb_data.length = 0;
+			esp_event(strBuff);
+		}
+		if (rx2Flag) {
+			printf("recv2 : %s\r\n", rx2Data);
+			rx2Flag = 0;
+		}
+
+
 		room_status_display();
 		user_authentication();
 
@@ -169,7 +226,7 @@ int main(void) {
 		if (authentication_flag == 1 && (tim3Sec - auth_start_time >= 10)) {
 			authentication_flag = 0;
 			auth_start_time = -1;
-			printf("인증시간 초과, 인증 해제됨\r\n");
+			printf("인증시간 초과\r\n");
 			sprintf(line2, "%s", "Time Over");
 			LCD_writeStringXY(1, 0, line2);
 		}
@@ -437,6 +494,53 @@ static void MX_TIM3_Init(void) {
 }
 
 /**
+ * @brief TIM4 Initialization Function
+ * @param None
+ * @retval None
+ */
+static void MX_TIM4_Init(void) {
+
+	/* USER CODE BEGIN TIM4_Init 0 */
+
+	/* USER CODE END TIM4_Init 0 */
+
+	TIM_MasterConfigTypeDef sMasterConfig = { 0 };
+	TIM_OC_InitTypeDef sConfigOC = { 0 };
+
+	/* USER CODE BEGIN TIM4_Init 1 */
+
+	/* USER CODE END TIM4_Init 1 */
+	htim4.Instance = TIM4;
+	htim4.Init.Prescaler = 84 - 1;
+	htim4.Init.CounterMode = TIM_COUNTERMODE_UP;
+	htim4.Init.Period = 20000 - 1;
+	htim4.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+	htim4.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
+	if (HAL_TIM_PWM_Init(&htim4) != HAL_OK) {
+		Error_Handler();
+	}
+	sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
+	sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
+	if (HAL_TIMEx_MasterConfigSynchronization(&htim4, &sMasterConfig)
+			!= HAL_OK) {
+		Error_Handler();
+	}
+	sConfigOC.OCMode = TIM_OCMODE_PWM1;
+	sConfigOC.Pulse = 500;
+	sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
+	sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
+	if (HAL_TIM_PWM_ConfigChannel(&htim4, &sConfigOC, TIM_CHANNEL_1)
+			!= HAL_OK) {
+		Error_Handler();
+	}
+	/* USER CODE BEGIN TIM4_Init 2 */
+
+	/* USER CODE END TIM4_Init 2 */
+	HAL_TIM_MspPostInit(&htim4);
+
+}
+
+/**
  * @brief USART2 Initialization Function
  * @param None
  * @retval None
@@ -477,7 +581,7 @@ static void MX_USART6_UART_Init(void) {
 	/* USER CODE BEGIN USART6_Init 1 */
 	/* USER CODE END USART6_Init 1 */
 	huart6.Instance = USART6;
-	huart6.Init.BaudRate = 115200;
+	huart6.Init.BaudRate = 38400;
 	huart6.Init.WordLength = UART_WORDLENGTH_8B;
 	huart6.Init.StopBits = UART_STOPBITS_1;
 	huart6.Init.Parity = UART_PARITY_NONE;
@@ -597,26 +701,38 @@ void room_status_set() {
 			case 0:
 				printf("button : %d\r\n", i);
 				sprintf(current_room_status.room_status, "%s", "IN        ");
+				sprintf(sendBuf, "[JTY_SQL]SETROOM@%s@IN\n",USER_ID);
+				esp_send_data(sendBuf);
 				break;
 			case 1:
 				printf("button : %d\r\n", i);
 				sprintf(current_room_status.room_status, "%s", "LEC       ");
+				sprintf(sendBuf, "[JTY_SQL]SETROOM@%s@LEC\n",USER_ID);
+				esp_send_data(sendBuf);
 				break;
 			case 2:
 				printf("button : %d\r\n", i);
 				sprintf(current_room_status.room_status, "%s", "VAC       ");
+				sprintf(sendBuf, "[JTY_SQL]SETROOM@%s@VAC\n",USER_ID);
+				esp_send_data(sendBuf);
 				break;
 			case 3:
 				printf("button : %d\r\n", i);
 				sprintf(current_room_status.room_status, "%s", "MTG       ");
+				sprintf(sendBuf, "[JTY_SQL]SETROOM@%s@MTG\n",USER_ID);
+				esp_send_data(sendBuf);
 				break;
 			case 4:
 				printf("button : %d\r\n", i);
 				sprintf(current_room_status.room_status, "%s", "BRK       ");
+				sprintf(sendBuf, "[JTY_SQL]SETROOM@%s@BRK\n",USER_ID);
+				esp_send_data(sendBuf);
 				break;
 			case 5:
 				printf("button : %d\r\n", i);
 				sprintf(current_room_status.room_status, "%s", "OUT       ");
+				sprintf(sendBuf, "[JTY_SQL]SETROOM@%s@OUT\n",USER_ID);
+				esp_send_data(sendBuf);
 				break;
 			}
 
@@ -638,7 +754,8 @@ void room_status_display() {
 
 void user_authentication() {
 	if (MFRC522_Check(cardID) == MI_OK) {
-		sprintf(uid_str, "%02X%02X%02X%02X", cardID[0], cardID[1], cardID[2], cardID[3]);
+		sprintf(uid_str, "%02X%02X%02X%02X", cardID[0], cardID[1], cardID[2],
+				cardID[3]);
 		printf("Card UID: %s\r\n", uid_str);
 
 		if (strcmp(uid_str, USER_CODE) == 0) {
@@ -654,9 +771,81 @@ void user_authentication() {
 			sprintf(line2, "%s", "Failed!!");
 			LCD_writeStringXY(1, 0, line2);
 		}
+
 	}
 }
 
+void esp_event(char *recvBuf) {
+//	int i = 0;
+//	char *pToken;
+//	char *pArray[ARR_CNT] = { 0 };
+//	char sendBuf[MAX_UART_COMMAND_LEN] = { 0 };
+
+	strBuff[strlen(recvBuf) - 1] = '\0';	//'\n' cut
+	printf("\r\nDebug recv : %s\r\n", recvBuf);
+
+	pToken = strtok(recvBuf, "[@]");
+	while (pToken != NULL) {
+		pArray[i] = pToken;
+		if (++i >= ARR_CNT)
+			break;
+		pToken = strtok(NULL, "[@]");
+	}
+
+	if (!strncmp(pArray[1], " New conn", 8)) {
+		//	   printf("Debug : %s, %s\r\n",pArray[0],pArray[1]);
+		return;
+	} else if (!strncmp(pArray[1], " Already log", 8)) {
+		// 	    printf("Debug : %s, %s\r\n",pArray[0],pArray[1]);
+		esp_client_conn();
+		return;
+	} else
+		return;
+
+	esp_send_data(sendBuf);
+	printf("Debug send : %s\r\n", sendBuf);
+}
+
+void esp_init() {
+	// ESP
+	if (strstr((char*) cb_data.buf, "+IPD")
+			&& cb_data.buf[cb_data.length - 1] == '\n') {
+		//?��?��?���??  \r\n+IPD,15:[KSH_LIN]HELLO\n
+		strcpy(strBuff, strchr((char*) cb_data.buf, '['));
+		memset(cb_data.buf, 0x0, sizeof(cb_data.buf));
+		cb_data.length = 0;
+		esp_event(strBuff);
+	}
+	if (rx2Flag) {
+		printf("recv2 : %s\r\n", rx2Data);
+		rx2Flag = 0;
+	}
+
+	if (tim3Flag1Sec)	//1초에 한번
+	{
+		tim3Flag1Sec = 0;
+		if (!(tim3Sec % 10)) //10초에 한번
+		{
+			if (esp_get_status() != 0) {
+				printf("server connecting ...\r\n");
+				esp_client_conn();
+			}
+		}
+		//			printf("tim3Sec : %d\r\n",tim3Sec);
+		if (!(tim3Sec % 5)) //5초에 한번
+		{
+			dht11Data = DHT11_readData();
+			if (dht11Data.rh_byte1 != 255) {
+				sprintf(buff, "h: %d%% t: %d.%d'C", dht11Data.rh_byte1,
+						dht11Data.temp_byte1, dht11Data.temp_byte2);
+				printf("%s\r\n", buff);
+				LCD_writeStringXY(1, 0, buff);
+			} else
+				printf("DHT11 response error\r\n");
+		}
+
+	}
+}
 
 /* USER CODE END 4 */
 

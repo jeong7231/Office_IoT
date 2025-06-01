@@ -914,3 +914,1294 @@ Finished building: default.size.stdout
  
 Finished building: 1st_project_1.list
  
+13:47:22 **** Incremental Build of configuration Debug for project 1st_project_1 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "1st_project_1.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\aiot24_\STM32CubeIDE\1st_project_ws\1st_project_1\STM32F411RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="1st_project_1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: 1st_project_1.elf
+ 
+arm-none-eabi-size  1st_project_1.elf 
+arm-none-eabi-objdump -h -S 1st_project_1.elf  > "1st_project_1.list"
+   text	   data	    bss	    dec	    hex	filename
+  32604	    128	   3664	  36396	   8e2c	1st_project_1.elf
+Finished building: default.size.stdout
+ 
+Finished building: 1st_project_1.list
+ 
+13:53:06 **** Incremental Build of configuration Debug for project 1st_project_1 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c:91:14: error: 'MAX_ESP_COMMAND_LEN' undeclared here (not in a function)
+   91 | char strBuff[MAX_ESP_COMMAND_LEN];
+      |              ^~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:125:9: error: unknown type name 'DHT11_TypeDef'; did you mean 'TIM_TypeDef'?
+  125 |         DHT11_TypeDef dht11Data;
+      |         ^~~~~~~~~~~~~
+      |         TIM_TypeDef
+../Core/Src/main.c:155:16: warning: implicit declaration of function 'drv_uart_init' [-Wimplicit-function-declaration]
+  155 |         ret |= drv_uart_init();
+      |                ^~~~~~~~~~~~~
+../Core/Src/main.c:156:16: warning: implicit declaration of function 'drv_esp_init' [-Wimplicit-function-declaration]
+  156 |         ret |= drv_esp_init();
+      |                ^~~~~~~~~~~~
+../Core/Src/main.c:162:9: warning: implicit declaration of function 'AiotClient_Init' [-Wimplicit-function-declaration]
+  162 |         AiotClient_Init();
+      |         ^~~~~~~~~~~~~~~
+../Core/Src/main.c:164:9: warning: implicit declaration of function 'DHT11_Init'; did you mean 'HAL_Init'? [-Wimplicit-function-declaration]
+  164 |         DHT11_Init();
+      |         ^~~~~~~~~~
+      |         HAL_Init
+../Core/Src/main.c:184:36: error: 'cb_data' undeclared (first use in this function)
+  184 |                 if (strstr((char*) cb_data.buf, "+IPD")
+      |                                    ^~~~~~~
+../Core/Src/main.c:184:36: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/main.c:192:21: error: 'rx2Flag' undeclared (first use in this function)
+  192 |                 if (rx2Flag) {
+      |                     ^~~~~~~
+../Core/Src/main.c:193:50: error: 'rx2Data' undeclared (first use in this function)
+  193 |                         printf("recv2 : %s\r\n", rx2Data);
+      |                                                  ^~~~~~~
+../Core/Src/main.c:196:21: error: 'keyNo' undeclared (first use in this function)
+  196 |                 if (keyNo != 0) {
+      |                     ^~~~~
+../Core/Src/main.c:197:46: error: 'pluse' undeclared (first use in this function); did you mean 'pclose'?
+  197 |                         if ((keyNo == 1) && (pluse > 500))      //down
+      |                                              ^~~~~
+      |                                              pclose
+In file included from ../Core/Inc/stm32f4xx_hal_conf.h:407,
+                 from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/main.c:4:
+../Core/Src/main.c:205:47: error: 'htim4' undeclared (first use in this function); did you mean 'htim3'?
+  205 |                         __HAL_TIM_SetCompare(&htim4,TIM_CHANNEL_1,(pluse-1)<0?0:pluse-1);
+      |                                               ^~~~~
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h:1395:41: note: in definition of macro '__HAL_TIM_SET_COMPARE'
+ 1395 |   (((__CHANNEL__) == TIM_CHANNEL_1) ? ((__HANDLE__)->Instance->CCR1 = (__COMPARE__)) :\
+      |                                         ^~~~~~~~~~
+../Core/Src/main.c:205:25: note: in expansion of macro '__HAL_TIM_SetCompare'
+  205 |                         __HAL_TIM_SetCompare(&htim4,TIM_CHANNEL_1,(pluse-1)<0?0:pluse-1);
+      |                         ^~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:214:37: warning: implicit declaration of function 'esp_get_status' [-Wimplicit-function-declaration]
+  214 |                                 if (esp_get_status() != 0) {
+      |                                     ^~~~~~~~~~~~~~
+../Core/Src/main.c:216:41: warning: implicit declaration of function 'esp_client_conn' [-Wimplicit-function-declaration]
+  216 |                                         esp_client_conn();
+      |                                         ^~~~~~~~~~~~~~~
+../Core/Src/main.c:222:45: warning: implicit declaration of function 'DHT11_readData' [-Wimplicit-function-declaration]
+  222 |                                 dht11Data = DHT11_readData();
+      |                                             ^~~~~~~~~~~~~~
+../Core/Src/main.c:223:46: error: request for member 'rh_byte1' in something not a structure or union
+  223 |                                 if (dht11Data.rh_byte1 != 255) {
+      |                                              ^
+../Core/Src/main.c:224:86: error: request for member 'rh_byte1' in something not a structure or union
+  224 |                                         sprintf(buff, "h: %d%% t: %d.%d'C", dht11Data.rh_byte1,
+      |                                                                                      ^
+../Core/Src/main.c:225:66: error: request for member 'temp_byte1' in something not a structure or union
+  225 |                                                         dht11Data.temp_byte1, dht11Data.temp_byte2);
+      |                                                                  ^
+../Core/Src/main.c:225:88: error: request for member 'temp_byte2' in something not a structure or union
+  225 |                                                         dht11Data.temp_byte1, dht11Data.temp_byte2);
+      |                                                                                        ^
+../Core/Src/main.c:231:29: error: 'rgbFlag' undeclared (first use in this function)
+  231 |                         if (rgbFlag == 0) {
+      |                             ^~~~~~~
+../Core/Src/main.c:233:41: error: 'red' undeclared (first use in this function); did you mean 'ret'?
+  233 |                                         red = 1000;
+      |                                         ^~~
+      |                                         ret
+../Core/Src/main.c:234:41: error: 'green' undeclared (first use in this function); did you mean '_reent'?
+  234 |                                         green = 0;
+      |                                         ^~~~~
+      |                                         _reent
+../Core/Src/main.c:235:41: error: 'blue' undeclared (first use in this function)
+  235 |                                         blue = 0;
+      |                                         ^~~~
+../Core/Src/main.c:245:33: warning: implicit declaration of function 'set_rgb_led' [-Wimplicit-function-declaration]
+  245 |                                 set_rgb_led(red, green, blue);
+      |                                 ^~~~~~~~~~~
+../Core/Src/main.c:125:23: warning: variable 'dht11Data' set but not used [-Wunused-but-set-variable]
+  125 |         DHT11_TypeDef dht11Data;
+      |                       ^~~~~~~~~
+../Core/Src/main.c: In function 'esp_event':
+../Core/Src/main.c:749:22: error: 'MAX_UART_COMMAND_LEN' undeclared (first use in this function)
+  749 |         char sendBuf[MAX_UART_COMMAND_LEN] = { 0 };
+      |                      ^~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:764:25: warning: implicit declaration of function 'MX_GPIO_LED_ON' [-Wimplicit-function-declaration]
+  764 |                         MX_GPIO_LED_ON(LD2_Pin);
+      |                         ^~~~~~~~~~~~~~
+../Core/Src/main.c:764:40: error: 'LD2_Pin' undeclared (first use in this function); did you mean 'LED_Pin'?
+  764 |                         MX_GPIO_LED_ON(LD2_Pin);
+      |                                        ^~~~~~~
+      |                                        LED_Pin
+../Core/Src/main.c:766:25: warning: implicit declaration of function 'MX_GPIO_LED_OFF' [-Wimplicit-function-declaration]
+  766 |                         MX_GPIO_LED_OFF(LD2_Pin);
+      |                         ^~~~~~~~~~~~~~~
+../Core/Src/main.c:770:29: warning: implicit declaration of function 'atoi' [-Wimplicit-function-declaration]
+  770 |                 int value = atoi(pArray[2]);
+      |                             ^~~~
+../Core/Src/main.c:771:25: warning: implicit declaration of function 'map' [-Wimplicit-function-declaration]
+  771 |                 value = map(value, 0, 180, 500, 2500);
+      |                         ^~~
+../Core/Src/main.c:772:39: error: 'htim4' undeclared (first use in this function); did you mean 'htim3'?
+  772 |                 __HAL_TIM_SetCompare(&htim4,TIM_CHANNEL_1,(value-1)<0?0:value-1);
+      |                                       ^~~~~
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h:1395:41: note: in definition of macro '__HAL_TIM_SET_COMPARE'
+ 1395 |   (((__CHANNEL__) == TIM_CHANNEL_1) ? ((__HANDLE__)->Instance->CCR1 = (__COMPARE__)) :\
+      |                                         ^~~~~~~~~~
+../Core/Src/main.c:772:17: note: in expansion of macro '__HAL_TIM_SetCompare'
+  772 |                 __HAL_TIM_SetCompare(&htim4,TIM_CHANNEL_1,(value-1)<0?0:value-1);
+      |                 ^~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:777:25: error: 'rgbFlag' undeclared (first use in this function)
+  777 |                         rgbFlag = 0;
+      |                         ^~~~~~~
+../Core/Src/main.c:798:9: warning: implicit declaration of function 'esp_send_data' [-Wimplicit-function-declaration]
+  798 |         esp_send_data(sendBuf);
+      |         ^~~~~~~~~~~~~
+../Core/Src/main.c:749:14: warning: unused variable 'sendBuf' [-Wunused-variable]
+  749 |         char sendBuf[MAX_UART_COMMAND_LEN] = { 0 };
+      |              ^~~~~~~
+make: *** [Core/Src/subdir.mk:46: Core/Src/main.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+13:53:43 **** Incremental Build of configuration Debug for project 1st_project_1 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c:91:14: error: 'MAX_ESP_COMMAND_LEN' undeclared here (not in a function)
+   91 | char strBuff[MAX_ESP_COMMAND_LEN];
+      |              ^~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:125:9: error: unknown type name 'DHT11_TypeDef'; did you mean 'TIM_TypeDef'?
+  125 |         DHT11_TypeDef dht11Data;
+      |         ^~~~~~~~~~~~~
+      |         TIM_TypeDef
+../Core/Src/main.c:155:16: warning: implicit declaration of function 'drv_uart_init' [-Wimplicit-function-declaration]
+  155 |         ret |= drv_uart_init();
+      |                ^~~~~~~~~~~~~
+../Core/Src/main.c:156:16: warning: implicit declaration of function 'drv_esp_init' [-Wimplicit-function-declaration]
+  156 |         ret |= drv_esp_init();
+      |                ^~~~~~~~~~~~
+../Core/Src/main.c:162:9: warning: implicit declaration of function 'AiotClient_Init' [-Wimplicit-function-declaration]
+  162 |         AiotClient_Init();
+      |         ^~~~~~~~~~~~~~~
+../Core/Src/main.c:164:9: warning: implicit declaration of function 'DHT11_Init'; did you mean 'HAL_Init'? [-Wimplicit-function-declaration]
+  164 |         DHT11_Init();
+      |         ^~~~~~~~~~
+      |         HAL_Init
+../Core/Src/main.c:184:36: error: 'cb_data' undeclared (first use in this function)
+  184 |                 if (strstr((char*) cb_data.buf, "+IPD")
+      |                                    ^~~~~~~
+../Core/Src/main.c:184:36: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/main.c:192:21: error: 'rx2Flag' undeclared (first use in this function)
+  192 |                 if (rx2Flag) {
+      |                     ^~~~~~~
+../Core/Src/main.c:193:50: error: 'rx2Data' undeclared (first use in this function)
+  193 |                         printf("recv2 : %s\r\n", rx2Data);
+      |                                                  ^~~~~~~
+../Core/Src/main.c:196:21: error: 'keyNo' undeclared (first use in this function)
+  196 |                 if (keyNo != 0) {
+      |                     ^~~~~
+../Core/Src/main.c:197:46: error: 'pluse' undeclared (first use in this function); did you mean 'pclose'?
+  197 |                         if ((keyNo == 1) && (pluse > 500))      //down
+      |                                              ^~~~~
+      |                                              pclose
+In file included from ../Core/Inc/stm32f4xx_hal_conf.h:407,
+                 from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/main.c:4:
+../Core/Src/main.c:205:47: error: 'htim4' undeclared (first use in this function); did you mean 'htim3'?
+  205 |                         __HAL_TIM_SetCompare(&htim4,TIM_CHANNEL_1,(pluse-1)<0?0:pluse-1);
+      |                                               ^~~~~
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h:1395:41: note: in definition of macro '__HAL_TIM_SET_COMPARE'
+ 1395 |   (((__CHANNEL__) == TIM_CHANNEL_1) ? ((__HANDLE__)->Instance->CCR1 = (__COMPARE__)) :\
+      |                                         ^~~~~~~~~~
+../Core/Src/main.c:205:25: note: in expansion of macro '__HAL_TIM_SetCompare'
+  205 |                         __HAL_TIM_SetCompare(&htim4,TIM_CHANNEL_1,(pluse-1)<0?0:pluse-1);
+      |                         ^~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:214:37: warning: implicit declaration of function 'esp_get_status' [-Wimplicit-function-declaration]
+  214 |                                 if (esp_get_status() != 0) {
+      |                                     ^~~~~~~~~~~~~~
+../Core/Src/main.c:216:41: warning: implicit declaration of function 'esp_client_conn' [-Wimplicit-function-declaration]
+  216 |                                         esp_client_conn();
+      |                                         ^~~~~~~~~~~~~~~
+../Core/Src/main.c:222:45: warning: implicit declaration of function 'DHT11_readData' [-Wimplicit-function-declaration]
+  222 |                                 dht11Data = DHT11_readData();
+      |                                             ^~~~~~~~~~~~~~
+../Core/Src/main.c:223:46: error: request for member 'rh_byte1' in something not a structure or union
+  223 |                                 if (dht11Data.rh_byte1 != 255) {
+      |                                              ^
+../Core/Src/main.c:224:86: error: request for member 'rh_byte1' in something not a structure or union
+  224 |                                         sprintf(buff, "h: %d%% t: %d.%d'C", dht11Data.rh_byte1,
+      |                                                                                      ^
+../Core/Src/main.c:225:66: error: request for member 'temp_byte1' in something not a structure or union
+  225 |                                                         dht11Data.temp_byte1, dht11Data.temp_byte2);
+      |                                                                  ^
+../Core/Src/main.c:225:88: error: request for member 'temp_byte2' in something not a structure or union
+  225 |                                                         dht11Data.temp_byte1, dht11Data.temp_byte2);
+      |                                                                                        ^
+../Core/Src/main.c:125:23: warning: variable 'dht11Data' set but not used [-Wunused-but-set-variable]
+  125 |         DHT11_TypeDef dht11Data;
+      |                       ^~~~~~~~~
+../Core/Src/main.c: In function 'esp_event':
+../Core/Src/main.c:734:22: error: 'MAX_UART_COMMAND_LEN' undeclared (first use in this function)
+  734 |         char sendBuf[MAX_UART_COMMAND_LEN] = { 0 };
+      |                      ^~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:749:25: warning: implicit declaration of function 'MX_GPIO_LED_ON' [-Wimplicit-function-declaration]
+  749 |                         MX_GPIO_LED_ON(LD2_Pin);
+      |                         ^~~~~~~~~~~~~~
+../Core/Src/main.c:749:40: error: 'LD2_Pin' undeclared (first use in this function); did you mean 'LED_Pin'?
+  749 |                         MX_GPIO_LED_ON(LD2_Pin);
+      |                                        ^~~~~~~
+      |                                        LED_Pin
+../Core/Src/main.c:751:25: warning: implicit declaration of function 'MX_GPIO_LED_OFF' [-Wimplicit-function-declaration]
+  751 |                         MX_GPIO_LED_OFF(LD2_Pin);
+      |                         ^~~~~~~~~~~~~~~
+../Core/Src/main.c:755:29: warning: implicit declaration of function 'atoi' [-Wimplicit-function-declaration]
+  755 |                 int value = atoi(pArray[2]);
+      |                             ^~~~
+../Core/Src/main.c:756:25: warning: implicit declaration of function 'map' [-Wimplicit-function-declaration]
+  756 |                 value = map(value, 0, 180, 500, 2500);
+      |                         ^~~
+../Core/Src/main.c:757:39: error: 'htim4' undeclared (first use in this function); did you mean 'htim3'?
+  757 |                 __HAL_TIM_SetCompare(&htim4,TIM_CHANNEL_1,(value-1)<0?0:value-1);
+      |                                       ^~~~~
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h:1395:41: note: in definition of macro '__HAL_TIM_SET_COMPARE'
+ 1395 |   (((__CHANNEL__) == TIM_CHANNEL_1) ? ((__HANDLE__)->Instance->CCR1 = (__COMPARE__)) :\
+      |                                         ^~~~~~~~~~
+../Core/Src/main.c:757:17: note: in expansion of macro '__HAL_TIM_SetCompare'
+  757 |                 __HAL_TIM_SetCompare(&htim4,TIM_CHANNEL_1,(value-1)<0?0:value-1);
+      |                 ^~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:762:25: error: 'rgbFlag' undeclared (first use in this function)
+  762 |                         rgbFlag = 0;
+      |                         ^~~~~~~
+../Core/Src/main.c:769:25: warning: implicit declaration of function 'set_rgb_led' [-Wimplicit-function-declaration]
+  769 |                         set_rgb_led(red, green, blue);
+      |                         ^~~~~~~~~~~
+../Core/Src/main.c:783:9: warning: implicit declaration of function 'esp_send_data' [-Wimplicit-function-declaration]
+  783 |         esp_send_data(sendBuf);
+      |         ^~~~~~~~~~~~~
+../Core/Src/main.c:734:14: warning: unused variable 'sendBuf' [-Wunused-variable]
+  734 |         char sendBuf[MAX_UART_COMMAND_LEN] = { 0 };
+      |              ^~~~~~~
+make: *** [Core/Src/subdir.mk:46: Core/Src/main.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+13:54:19 **** Incremental Build of configuration Debug for project 1st_project_1 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c:91:14: error: 'MAX_ESP_COMMAND_LEN' undeclared here (not in a function)
+   91 | char strBuff[MAX_ESP_COMMAND_LEN];
+      |              ^~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:125:9: error: unknown type name 'DHT11_TypeDef'; did you mean 'TIM_TypeDef'?
+  125 |         DHT11_TypeDef dht11Data;
+      |         ^~~~~~~~~~~~~
+      |         TIM_TypeDef
+../Core/Src/main.c:155:16: warning: implicit declaration of function 'drv_uart_init' [-Wimplicit-function-declaration]
+  155 |         ret |= drv_uart_init();
+      |                ^~~~~~~~~~~~~
+../Core/Src/main.c:156:16: warning: implicit declaration of function 'drv_esp_init' [-Wimplicit-function-declaration]
+  156 |         ret |= drv_esp_init();
+      |                ^~~~~~~~~~~~
+../Core/Src/main.c:162:9: warning: implicit declaration of function 'AiotClient_Init' [-Wimplicit-function-declaration]
+  162 |         AiotClient_Init();
+      |         ^~~~~~~~~~~~~~~
+../Core/Src/main.c:164:9: warning: implicit declaration of function 'DHT11_Init'; did you mean 'HAL_Init'? [-Wimplicit-function-declaration]
+  164 |         DHT11_Init();
+      |         ^~~~~~~~~~
+      |         HAL_Init
+../Core/Src/main.c:184:36: error: 'cb_data' undeclared (first use in this function)
+  184 |                 if (strstr((char*) cb_data.buf, "+IPD")
+      |                                    ^~~~~~~
+../Core/Src/main.c:184:36: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/main.c:192:21: error: 'rx2Flag' undeclared (first use in this function)
+  192 |                 if (rx2Flag) {
+      |                     ^~~~~~~
+../Core/Src/main.c:193:50: error: 'rx2Data' undeclared (first use in this function)
+  193 |                         printf("recv2 : %s\r\n", rx2Data);
+      |                                                  ^~~~~~~
+../Core/Src/main.c:196:21: error: 'keyNo' undeclared (first use in this function)
+  196 |                 if (keyNo != 0) {
+      |                     ^~~~~
+../Core/Src/main.c:197:46: error: 'pluse' undeclared (first use in this function); did you mean 'pclose'?
+  197 |                         if ((keyNo == 1) && (pluse > 500))      //down
+      |                                              ^~~~~
+      |                                              pclose
+In file included from ../Core/Inc/stm32f4xx_hal_conf.h:407,
+                 from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/main.c:4:
+../Core/Src/main.c:205:47: error: 'htim4' undeclared (first use in this function); did you mean 'htim3'?
+  205 |                         __HAL_TIM_SetCompare(&htim4,TIM_CHANNEL_1,(pluse-1)<0?0:pluse-1);
+      |                                               ^~~~~
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h:1395:41: note: in definition of macro '__HAL_TIM_SET_COMPARE'
+ 1395 |   (((__CHANNEL__) == TIM_CHANNEL_1) ? ((__HANDLE__)->Instance->CCR1 = (__COMPARE__)) :\
+      |                                         ^~~~~~~~~~
+../Core/Src/main.c:205:25: note: in expansion of macro '__HAL_TIM_SetCompare'
+  205 |                         __HAL_TIM_SetCompare(&htim4,TIM_CHANNEL_1,(pluse-1)<0?0:pluse-1);
+      |                         ^~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:214:37: warning: implicit declaration of function 'esp_get_status' [-Wimplicit-function-declaration]
+  214 |                                 if (esp_get_status() != 0) {
+      |                                     ^~~~~~~~~~~~~~
+../Core/Src/main.c:216:41: warning: implicit declaration of function 'esp_client_conn' [-Wimplicit-function-declaration]
+  216 |                                         esp_client_conn();
+      |                                         ^~~~~~~~~~~~~~~
+../Core/Src/main.c:222:45: warning: implicit declaration of function 'DHT11_readData' [-Wimplicit-function-declaration]
+  222 |                                 dht11Data = DHT11_readData();
+      |                                             ^~~~~~~~~~~~~~
+../Core/Src/main.c:223:46: error: request for member 'rh_byte1' in something not a structure or union
+  223 |                                 if (dht11Data.rh_byte1 != 255) {
+      |                                              ^
+../Core/Src/main.c:224:86: error: request for member 'rh_byte1' in something not a structure or union
+  224 |                                         sprintf(buff, "h: %d%% t: %d.%d'C", dht11Data.rh_byte1,
+      |                                                                                      ^
+../Core/Src/main.c:225:66: error: request for member 'temp_byte1' in something not a structure or union
+  225 |                                                         dht11Data.temp_byte1, dht11Data.temp_byte2);
+      |                                                                  ^
+../Core/Src/main.c:225:88: error: request for member 'temp_byte2' in something not a structure or union
+  225 |                                                         dht11Data.temp_byte1, dht11Data.temp_byte2);
+      |                                                                                        ^
+../Core/Src/main.c:125:23: warning: variable 'dht11Data' set but not used [-Wunused-but-set-variable]
+  125 |         DHT11_TypeDef dht11Data;
+      |                       ^~~~~~~~~
+../Core/Src/main.c: In function 'esp_event':
+../Core/Src/main.c:734:22: error: 'MAX_UART_COMMAND_LEN' undeclared (first use in this function)
+  734 |         char sendBuf[MAX_UART_COMMAND_LEN] = { 0 };
+      |                      ^~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:748:29: warning: implicit declaration of function 'atoi' [-Wimplicit-function-declaration]
+  748 |                 int value = atoi(pArray[2]);
+      |                             ^~~~
+../Core/Src/main.c:749:25: warning: implicit declaration of function 'map' [-Wimplicit-function-declaration]
+  749 |                 value = map(value, 0, 180, 500, 2500);
+      |                         ^~~
+../Core/Src/main.c:750:39: error: 'htim4' undeclared (first use in this function); did you mean 'htim3'?
+  750 |                 __HAL_TIM_SetCompare(&htim4,TIM_CHANNEL_1,(value-1)<0?0:value-1);
+      |                                       ^~~~~
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h:1395:41: note: in definition of macro '__HAL_TIM_SET_COMPARE'
+ 1395 |   (((__CHANNEL__) == TIM_CHANNEL_1) ? ((__HANDLE__)->Instance->CCR1 = (__COMPARE__)) :\
+      |                                         ^~~~~~~~~~
+../Core/Src/main.c:750:17: note: in expansion of macro '__HAL_TIM_SetCompare'
+  750 |                 __HAL_TIM_SetCompare(&htim4,TIM_CHANNEL_1,(value-1)<0?0:value-1);
+      |                 ^~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:762:9: warning: implicit declaration of function 'esp_send_data' [-Wimplicit-function-declaration]
+  762 |         esp_send_data(sendBuf);
+      |         ^~~~~~~~~~~~~
+../Core/Src/main.c:734:14: warning: unused variable 'sendBuf' [-Wunused-variable]
+  734 |         char sendBuf[MAX_UART_COMMAND_LEN] = { 0 };
+      |              ^~~~~~~
+make: *** [Core/Src/subdir.mk:46: Core/Src/main.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+13:55:10 **** Incremental Build of configuration Debug for project 1st_project_1 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c:106:14: error: 'MAX_ESP_COMMAND_LEN' undeclared here (not in a function)
+  106 | char strBuff[MAX_ESP_COMMAND_LEN];
+      |              ^~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:127:9: error: unknown type name 'DHT11_TypeDef'; did you mean 'TIM_TypeDef'?
+  127 |         DHT11_TypeDef dht11Data;
+      |         ^~~~~~~~~~~~~
+      |         TIM_TypeDef
+../Core/Src/main.c:157:16: warning: implicit declaration of function 'drv_uart_init' [-Wimplicit-function-declaration]
+  157 |         ret |= drv_uart_init();
+      |                ^~~~~~~~~~~~~
+../Core/Src/main.c:158:16: warning: implicit declaration of function 'drv_esp_init' [-Wimplicit-function-declaration]
+  158 |         ret |= drv_esp_init();
+      |                ^~~~~~~~~~~~
+../Core/Src/main.c:164:9: warning: implicit declaration of function 'AiotClient_Init' [-Wimplicit-function-declaration]
+  164 |         AiotClient_Init();
+      |         ^~~~~~~~~~~~~~~
+../Core/Src/main.c:166:9: warning: implicit declaration of function 'DHT11_Init'; did you mean 'HAL_Init'? [-Wimplicit-function-declaration]
+  166 |         DHT11_Init();
+      |         ^~~~~~~~~~
+      |         HAL_Init
+../Core/Src/main.c:186:36: error: 'cb_data' undeclared (first use in this function)
+  186 |                 if (strstr((char*) cb_data.buf, "+IPD")
+      |                                    ^~~~~~~
+../Core/Src/main.c:186:36: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/main.c:194:21: error: 'rx2Flag' undeclared (first use in this function)
+  194 |                 if (rx2Flag) {
+      |                     ^~~~~~~
+../Core/Src/main.c:195:50: error: 'rx2Data' undeclared (first use in this function)
+  195 |                         printf("recv2 : %s\r\n", rx2Data);
+      |                                                  ^~~~~~~
+../Core/Src/main.c:198:21: error: 'keyNo' undeclared (first use in this function)
+  198 |                 if (keyNo != 0) {
+      |                     ^~~~~
+../Core/Src/main.c:199:46: error: 'pluse' undeclared (first use in this function); did you mean 'pclose'?
+  199 |                         if ((keyNo == 1) && (pluse > 500))      //down
+      |                                              ^~~~~
+      |                                              pclose
+In file included from ../Core/Inc/stm32f4xx_hal_conf.h:407,
+                 from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/main.c:4:
+../Core/Src/main.c:207:47: error: 'htim4' undeclared (first use in this function); did you mean 'htim3'?
+  207 |                         __HAL_TIM_SetCompare(&htim4,TIM_CHANNEL_1,(pluse-1)<0?0:pluse-1);
+      |                                               ^~~~~
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h:1395:41: note: in definition of macro '__HAL_TIM_SET_COMPARE'
+ 1395 |   (((__CHANNEL__) == TIM_CHANNEL_1) ? ((__HANDLE__)->Instance->CCR1 = (__COMPARE__)) :\
+      |                                         ^~~~~~~~~~
+../Core/Src/main.c:207:25: note: in expansion of macro '__HAL_TIM_SetCompare'
+  207 |                         __HAL_TIM_SetCompare(&htim4,TIM_CHANNEL_1,(pluse-1)<0?0:pluse-1);
+      |                         ^~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:216:37: warning: implicit declaration of function 'esp_get_status' [-Wimplicit-function-declaration]
+  216 |                                 if (esp_get_status() != 0) {
+      |                                     ^~~~~~~~~~~~~~
+../Core/Src/main.c:218:41: warning: implicit declaration of function 'esp_client_conn' [-Wimplicit-function-declaration]
+  218 |                                         esp_client_conn();
+      |                                         ^~~~~~~~~~~~~~~
+../Core/Src/main.c:224:45: warning: implicit declaration of function 'DHT11_readData' [-Wimplicit-function-declaration]
+  224 |                                 dht11Data = DHT11_readData();
+      |                                             ^~~~~~~~~~~~~~
+../Core/Src/main.c:225:46: error: request for member 'rh_byte1' in something not a structure or union
+  225 |                                 if (dht11Data.rh_byte1 != 255) {
+      |                                              ^
+../Core/Src/main.c:226:86: error: request for member 'rh_byte1' in something not a structure or union
+  226 |                                         sprintf(buff, "h: %d%% t: %d.%d'C", dht11Data.rh_byte1,
+      |                                                                                      ^
+../Core/Src/main.c:227:66: error: request for member 'temp_byte1' in something not a structure or union
+  227 |                                                         dht11Data.temp_byte1, dht11Data.temp_byte2);
+      |                                                                  ^
+../Core/Src/main.c:227:88: error: request for member 'temp_byte2' in something not a structure or union
+  227 |                                                         dht11Data.temp_byte1, dht11Data.temp_byte2);
+      |                                                                                        ^
+../Core/Src/main.c:127:23: warning: variable 'dht11Data' set but not used [-Wunused-but-set-variable]
+  127 |         DHT11_TypeDef dht11Data;
+      |                       ^~~~~~~~~
+../Core/Src/main.c: In function 'esp_event':
+../Core/Src/main.c:736:22: error: 'MAX_UART_COMMAND_LEN' undeclared (first use in this function)
+  736 |         char sendBuf[MAX_UART_COMMAND_LEN] = { 0 };
+      |                      ^~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:750:29: warning: implicit declaration of function 'atoi' [-Wimplicit-function-declaration]
+  750 |                 int value = atoi(pArray[2]);
+      |                             ^~~~
+../Core/Src/main.c:751:25: warning: implicit declaration of function 'map' [-Wimplicit-function-declaration]
+  751 |                 value = map(value, 0, 180, 500, 2500);
+      |                         ^~~
+../Core/Src/main.c:752:39: error: 'htim4' undeclared (first use in this function); did you mean 'htim3'?
+  752 |                 __HAL_TIM_SetCompare(&htim4,TIM_CHANNEL_1,(value-1)<0?0:value-1);
+      |                                       ^~~~~
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h:1395:41: note: in definition of macro '__HAL_TIM_SET_COMPARE'
+ 1395 |   (((__CHANNEL__) == TIM_CHANNEL_1) ? ((__HANDLE__)->Instance->CCR1 = (__COMPARE__)) :\
+      |                                         ^~~~~~~~~~
+../Core/Src/main.c:752:17: note: in expansion of macro '__HAL_TIM_SetCompare'
+  752 |                 __HAL_TIM_SetCompare(&htim4,TIM_CHANNEL_1,(value-1)<0?0:value-1);
+      |                 ^~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:764:9: warning: implicit declaration of function 'esp_send_data' [-Wimplicit-function-declaration]
+  764 |         esp_send_data(sendBuf);
+      |         ^~~~~~~~~~~~~
+../Core/Src/main.c:736:14: warning: unused variable 'sendBuf' [-Wunused-variable]
+  736 |         char sendBuf[MAX_UART_COMMAND_LEN] = { 0 };
+      |              ^~~~~~~
+make: *** [Core/Src/subdir.mk:46: Core/Src/main.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+13:55:39 **** Incremental Build of configuration Debug for project 1st_project_1 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:128:9: error: unknown type name 'DHT11_TypeDef'; did you mean 'TIM_TypeDef'?
+  128 |         DHT11_TypeDef dht11Data;
+      |         ^~~~~~~~~~~~~
+      |         TIM_TypeDef
+../Core/Src/main.c:167:9: warning: implicit declaration of function 'DHT11_Init'; did you mean 'HAL_Init'? [-Wimplicit-function-declaration]
+  167 |         DHT11_Init();
+      |         ^~~~~~~~~~
+      |         HAL_Init
+../Core/Src/main.c:199:21: error: 'keyNo' undeclared (first use in this function)
+  199 |                 if (keyNo != 0) {
+      |                     ^~~~~
+../Core/Src/main.c:199:21: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/main.c:200:46: error: 'pluse' undeclared (first use in this function); did you mean 'pclose'?
+  200 |                         if ((keyNo == 1) && (pluse > 500))      //down
+      |                                              ^~~~~
+      |                                              pclose
+In file included from ../Core/Inc/stm32f4xx_hal_conf.h:407,
+                 from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/main.c:4:
+../Core/Src/main.c:208:47: error: 'htim4' undeclared (first use in this function); did you mean 'htim3'?
+  208 |                         __HAL_TIM_SetCompare(&htim4,TIM_CHANNEL_1,(pluse-1)<0?0:pluse-1);
+      |                                               ^~~~~
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h:1395:41: note: in definition of macro '__HAL_TIM_SET_COMPARE'
+ 1395 |   (((__CHANNEL__) == TIM_CHANNEL_1) ? ((__HANDLE__)->Instance->CCR1 = (__COMPARE__)) :\
+      |                                         ^~~~~~~~~~
+../Core/Src/main.c:208:25: note: in expansion of macro '__HAL_TIM_SetCompare'
+  208 |                         __HAL_TIM_SetCompare(&htim4,TIM_CHANNEL_1,(pluse-1)<0?0:pluse-1);
+      |                         ^~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:225:45: warning: implicit declaration of function 'DHT11_readData' [-Wimplicit-function-declaration]
+  225 |                                 dht11Data = DHT11_readData();
+      |                                             ^~~~~~~~~~~~~~
+../Core/Src/main.c:226:46: error: request for member 'rh_byte1' in something not a structure or union
+  226 |                                 if (dht11Data.rh_byte1 != 255) {
+      |                                              ^
+../Core/Src/main.c:227:86: error: request for member 'rh_byte1' in something not a structure or union
+  227 |                                         sprintf(buff, "h: %d%% t: %d.%d'C", dht11Data.rh_byte1,
+      |                                                                                      ^
+../Core/Src/main.c:228:66: error: request for member 'temp_byte1' in something not a structure or union
+  228 |                                                         dht11Data.temp_byte1, dht11Data.temp_byte2);
+      |                                                                  ^
+../Core/Src/main.c:228:88: error: request for member 'temp_byte2' in something not a structure or union
+  228 |                                                         dht11Data.temp_byte1, dht11Data.temp_byte2);
+      |                                                                                        ^
+../Core/Src/main.c:128:23: warning: variable 'dht11Data' set but not used [-Wunused-but-set-variable]
+  128 |         DHT11_TypeDef dht11Data;
+      |                       ^~~~~~~~~
+../Core/Src/main.c: In function 'esp_event':
+../Core/Src/main.c:752:25: warning: implicit declaration of function 'map' [-Wimplicit-function-declaration]
+  752 |                 value = map(value, 0, 180, 500, 2500);
+      |                         ^~~
+../Core/Src/main.c:753:39: error: 'htim4' undeclared (first use in this function); did you mean 'htim3'?
+  753 |                 __HAL_TIM_SetCompare(&htim4,TIM_CHANNEL_1,(value-1)<0?0:value-1);
+      |                                       ^~~~~
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h:1395:41: note: in definition of macro '__HAL_TIM_SET_COMPARE'
+ 1395 |   (((__CHANNEL__) == TIM_CHANNEL_1) ? ((__HANDLE__)->Instance->CCR1 = (__COMPARE__)) :\
+      |                                         ^~~~~~~~~~
+../Core/Src/main.c:753:17: note: in expansion of macro '__HAL_TIM_SetCompare'
+  753 |                 __HAL_TIM_SetCompare(&htim4,TIM_CHANNEL_1,(value-1)<0?0:value-1);
+      |                 ^~~~~~~~~~~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:46: Core/Src/main.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+13:56:51 **** Incremental Build of configuration Debug for project 1st_project_1 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:128:9: error: unknown type name 'DHT11_TypeDef'; did you mean 'TIM_TypeDef'?
+  128 |         DHT11_TypeDef dht11Data;
+      |         ^~~~~~~~~~~~~
+      |         TIM_TypeDef
+../Core/Src/main.c:167:9: warning: implicit declaration of function 'DHT11_Init'; did you mean 'HAL_Init'? [-Wimplicit-function-declaration]
+  167 |         DHT11_Init();
+      |         ^~~~~~~~~~
+      |         HAL_Init
+../Core/Src/main.c:213:45: warning: implicit declaration of function 'DHT11_readData' [-Wimplicit-function-declaration]
+  213 |                                 dht11Data = DHT11_readData();
+      |                                             ^~~~~~~~~~~~~~
+../Core/Src/main.c:214:46: error: request for member 'rh_byte1' in something not a structure or union
+  214 |                                 if (dht11Data.rh_byte1 != 255) {
+      |                                              ^
+../Core/Src/main.c:215:86: error: request for member 'rh_byte1' in something not a structure or union
+  215 |                                         sprintf(buff, "h: %d%% t: %d.%d'C", dht11Data.rh_byte1,
+      |                                                                                      ^
+../Core/Src/main.c:216:66: error: request for member 'temp_byte1' in something not a structure or union
+  216 |                                                         dht11Data.temp_byte1, dht11Data.temp_byte2);
+      |                                                                  ^
+../Core/Src/main.c:216:88: error: request for member 'temp_byte2' in something not a structure or union
+  216 |                                                         dht11Data.temp_byte1, dht11Data.temp_byte2);
+      |                                                                                        ^
+../Core/Src/main.c:128:23: warning: variable 'dht11Data' set but not used [-Wunused-but-set-variable]
+  128 |         DHT11_TypeDef dht11Data;
+      |                       ^~~~~~~~~
+../Core/Src/main.c: In function 'esp_event':
+../Core/Src/main.c:740:25: warning: implicit declaration of function 'map' [-Wimplicit-function-declaration]
+  740 |                 value = map(value, 0, 180, 500, 2500);
+      |                         ^~~
+In file included from ../Core/Inc/stm32f4xx_hal_conf.h:407,
+                 from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/main.c:4:
+../Core/Src/main.c:741:39: error: 'htim4' undeclared (first use in this function); did you mean 'htim3'?
+  741 |                 __HAL_TIM_SetCompare(&htim4,TIM_CHANNEL_1,(value-1)<0?0:value-1);
+      |                                       ^~~~~
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h:1395:41: note: in definition of macro '__HAL_TIM_SET_COMPARE'
+ 1395 |   (((__CHANNEL__) == TIM_CHANNEL_1) ? ((__HANDLE__)->Instance->CCR1 = (__COMPARE__)) :\
+      |                                         ^~~~~~~~~~
+../Core/Src/main.c:741:17: note: in expansion of macro '__HAL_TIM_SetCompare'
+  741 |                 __HAL_TIM_SetCompare(&htim4,TIM_CHANNEL_1,(value-1)<0?0:value-1);
+      |                 ^~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:741:39: note: each undeclared identifier is reported only once for each function it appears in
+  741 |                 __HAL_TIM_SetCompare(&htim4,TIM_CHANNEL_1,(value-1)<0?0:value-1);
+      |                                       ^~~~~
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h:1395:41: note: in definition of macro '__HAL_TIM_SET_COMPARE'
+ 1395 |   (((__CHANNEL__) == TIM_CHANNEL_1) ? ((__HANDLE__)->Instance->CCR1 = (__COMPARE__)) :\
+      |                                         ^~~~~~~~~~
+../Core/Src/main.c:741:17: note: in expansion of macro '__HAL_TIM_SetCompare'
+  741 |                 __HAL_TIM_SetCompare(&htim4,TIM_CHANNEL_1,(value-1)<0?0:value-1);
+      |                 ^~~~~~~~~~~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:46: Core/Src/main.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+13:58:27 **** Incremental Build of configuration Debug for project 1st_project_1 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/stm32f4xx_hal_msp.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32f4xx_hal_msp.d" -MT"Core/Src/stm32f4xx_hal_msp.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32f4xx_hal_msp.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:131:9: error: unknown type name 'DHT11_TypeDef'; did you mean 'TIM_TypeDef'?
+  131 |         DHT11_TypeDef dht11Data;
+      |         ^~~~~~~~~~~~~
+      |         TIM_TypeDef
+../Core/Src/main.c:171:9: warning: implicit declaration of function 'DHT11_Init'; did you mean 'HAL_Init'? [-Wimplicit-function-declaration]
+  171 |         DHT11_Init();
+      |         ^~~~~~~~~~
+      |         HAL_Init
+../Core/Src/main.c:217:45: warning: implicit declaration of function 'DHT11_readData' [-Wimplicit-function-declaration]
+  217 |                                 dht11Data = DHT11_readData();
+      |                                             ^~~~~~~~~~~~~~
+../Core/Src/main.c:218:46: error: request for member 'rh_byte1' in something not a structure or union
+  218 |                                 if (dht11Data.rh_byte1 != 255) {
+      |                                              ^
+../Core/Src/main.c:219:86: error: request for member 'rh_byte1' in something not a structure or union
+  219 |                                         sprintf(buff, "h: %d%% t: %d.%d'C", dht11Data.rh_byte1,
+      |                                                                                      ^
+../Core/Src/main.c:220:66: error: request for member 'temp_byte1' in something not a structure or union
+  220 |                                                         dht11Data.temp_byte1, dht11Data.temp_byte2);
+      |                                                                  ^
+../Core/Src/main.c:220:88: error: request for member 'temp_byte2' in something not a structure or union
+  220 |                                                         dht11Data.temp_byte1, dht11Data.temp_byte2);
+      |                                                                                        ^
+../Core/Src/main.c:131:23: warning: variable 'dht11Data' set but not used [-Wunused-but-set-variable]
+  131 |         DHT11_TypeDef dht11Data;
+      |                       ^~~~~~~~~
+../Core/Src/main.c: In function 'esp_event':
+../Core/Src/main.c:813:25: warning: implicit declaration of function 'map' [-Wimplicit-function-declaration]
+  813 |                 value = map(value, 0, 180, 500, 2500);
+      |                         ^~~
+make: *** [Core/Src/subdir.mk:46: Core/Src/main.o] Error 1
+make: *** Waiting for unfinished jobs....
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+13:58:47 **** Incremental Build of configuration Debug for project 1st_project_1 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'esp_event':
+../Core/Src/main.c:814:25: warning: implicit declaration of function 'map' [-Wimplicit-function-declaration]
+  814 |                 value = map(value, 0, 180, 500, 2500);
+      |                         ^~~
+arm-none-eabi-gcc -o "1st_project_1.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\aiot24_\STM32CubeIDE\1st_project_ws\1st_project_1\STM32F411RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="1st_project_1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+C:/ST/STM32CubeIDE_1.18.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: ./Core/Src/main.o:C:/Users/aiot24_/STM32CubeIDE/1st_project_ws/1st_project_1/Debug/../Core/Src/esp.c:14: multiple definition of `rx2Flag'; ./Core/Src/esp.o:C:/Users/aiot24_/STM32CubeIDE/1st_project_ws/1st_project_1/Debug/../Core/Src/esp.c:14: first defined here
+C:/ST/STM32CubeIDE_1.18.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: ./Core/Src/main.o:C:/Users/aiot24_/STM32CubeIDE/1st_project_ws/1st_project_1/Debug/../Core/Src/esp.c:15: multiple definition of `rx2Data'; ./Core/Src/esp.o:C:/Users/aiot24_/STM32CubeIDE/1st_project_ws/1st_project_1/Debug/../Core/Src/esp.c:15: first defined here
+C:/ST/STM32CubeIDE_1.18.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: ./Core/Src/main.o:C:/Users/aiot24_/STM32CubeIDE/1st_project_ws/1st_project_1/Debug/../Core/Src/esp.c:16: multiple definition of `cdata'; ./Core/Src/esp.o:C:/Users/aiot24_/STM32CubeIDE/1st_project_ws/1st_project_1/Debug/../Core/Src/esp.c:16: first defined here
+C:/ST/STM32CubeIDE_1.18.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: ./Core/Src/main.o:C:/Users/aiot24_/STM32CubeIDE/1st_project_ws/1st_project_1/Debug/../Core/Src/esp.c:23: multiple definition of `cb_data'; ./Core/Src/esp.o:C:/Users/aiot24_/STM32CubeIDE/1st_project_ws/1st_project_1/Debug/../Core/Src/esp.c:23: first defined here
+C:/ST/STM32CubeIDE_1.18.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: ./Core/Src/main.o: in function `esp_client_conn':
+C:/Users/aiot24_/STM32CubeIDE/1st_project_ws/1st_project_1/Debug/../Core/Src/esp.c:147: multiple definition of `esp_client_conn'; ./Core/Src/esp.o:C:/Users/aiot24_/STM32CubeIDE/1st_project_ws/1st_project_1/Debug/../Core/Src/esp.c:147: first defined here
+C:/ST/STM32CubeIDE_1.18.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: ./Core/Src/main.o: in function `esp_send_data':
+C:/Users/aiot24_/STM32CubeIDE/1st_project_ws/1st_project_1/Debug/../Core/Src/esp.c:271: multiple definition of `esp_send_data'; ./Core/Src/esp.o:C:/Users/aiot24_/STM32CubeIDE/1st_project_ws/1st_project_1/Debug/../Core/Src/esp.c:271: first defined here
+C:/ST/STM32CubeIDE_1.18.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: ./Core/Src/main.o: in function `esp_get_status':
+C:/Users/aiot24_/STM32CubeIDE/1st_project_ws/1st_project_1/Debug/../Core/Src/esp.c:157: multiple definition of `esp_get_status'; ./Core/Src/esp.o:C:/Users/aiot24_/STM32CubeIDE/1st_project_ws/1st_project_1/Debug/../Core/Src/esp.c:157: first defined here
+C:/ST/STM32CubeIDE_1.18.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: ./Core/Src/main.o: in function `drv_esp_init':
+C:/Users/aiot24_/STM32CubeIDE/1st_project_ws/1st_project_1/Debug/../Core/Src/esp.c:168: multiple definition of `drv_esp_init'; ./Core/Src/esp.o:C:/Users/aiot24_/STM32CubeIDE/1st_project_ws/1st_project_1/Debug/../Core/Src/esp.c:168: first defined here
+C:/ST/STM32CubeIDE_1.18.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: ./Core/Src/main.o: in function `reset_func':
+C:/Users/aiot24_/STM32CubeIDE/1st_project_ws/1st_project_1/Debug/../Core/Src/esp.c:175: multiple definition of `reset_func'; ./Core/Src/esp.o:C:/Users/aiot24_/STM32CubeIDE/1st_project_ws/1st_project_1/Debug/../Core/Src/esp.c:175: first defined here
+C:/ST/STM32CubeIDE_1.18.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: ./Core/Src/main.o: in function `version_func':
+C:/Users/aiot24_/STM32CubeIDE/1st_project_ws/1st_project_1/Debug/../Core/Src/esp.c:184: multiple definition of `version_func'; ./Core/Src/esp.o:C:/Users/aiot24_/STM32CubeIDE/1st_project_ws/1st_project_1/Debug/../Core/Src/esp.c:184: first defined here
+C:/ST/STM32CubeIDE_1.18.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: ./Core/Src/main.o: in function `ap_conn_func':
+C:/Users/aiot24_/STM32CubeIDE/1st_project_ws/1st_project_1/Debug/../Core/Src/esp.c:197: multiple definition of `ap_conn_func'; ./Core/Src/esp.o:C:/Users/aiot24_/STM32CubeIDE/1st_project_ws/1st_project_1/Debug/../Core/Src/esp.c:197: first defined here
+C:/ST/STM32CubeIDE_1.18.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: ./Core/Src/main.o: in function `ip_state_func':
+C:/Users/aiot24_/STM32CubeIDE/1st_project_ws/1st_project_1/Debug/../Core/Src/esp.c:213: multiple definition of `ip_state_func'; ./Core/Src/esp.o:C:/Users/aiot24_/STM32CubeIDE/1st_project_ws/1st_project_1/Debug/../Core/Src/esp.c:213: first defined here
+C:/ST/STM32CubeIDE_1.18.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: ./Core/Src/main.o: in function `HAL_UART_RxCpltCallback':
+C:/Users/aiot24_/STM32CubeIDE/1st_project_ws/1st_project_1/Debug/../Core/Src/esp.c:229: multiple definition of `HAL_UART_RxCpltCallback'; ./Core/Src/esp.o:C:/Users/aiot24_/STM32CubeIDE/1st_project_ws/1st_project_1/Debug/../Core/Src/esp.c:229: first defined here
+C:/ST/STM32CubeIDE_1.18.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: ./Core/Src/main.o: in function `AiotClient_Init':
+C:/Users/aiot24_/STM32CubeIDE/1st_project_ws/1st_project_1/Debug/../Core/Src/esp.c:260: multiple definition of `AiotClient_Init'; ./Core/Src/esp.o:C:/Users/aiot24_/STM32CubeIDE/1st_project_ws/1st_project_1/Debug/../Core/Src/esp.c:260: first defined here
+C:/ST/STM32CubeIDE_1.18.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: ./Core/Src/main.o: in function `drv_uart_init':
+C:/Users/aiot24_/STM32CubeIDE/1st_project_ws/1st_project_1/Debug/../Core/Src/esp.c:283: multiple definition of `drv_uart_init'; ./Core/Src/esp.o:C:/Users/aiot24_/STM32CubeIDE/1st_project_ws/1st_project_1/Debug/../Core/Src/esp.c:283: first defined here
+C:/ST/STM32CubeIDE_1.18.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: ./Core/Src/main.o: in function `drv_uart_tx_buffer':
+C:/Users/aiot24_/STM32CubeIDE/1st_project_ws/1st_project_1/Debug/../Core/Src/esp.c:289: multiple definition of `drv_uart_tx_buffer'; ./Core/Src/esp.o:C:/Users/aiot24_/STM32CubeIDE/1st_project_ws/1st_project_1/Debug/../Core/Src/esp.c:289: first defined here
+C:/ST/STM32CubeIDE_1.18.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: ./Core/Src/main.o: in function `__io_putchar':
+C:/Users/aiot24_/STM32CubeIDE/1st_project_ws/1st_project_1/Debug/../Core/Src/esp.c:296: multiple definition of `__io_putchar'; ./Core/Src/esp.o:C:/Users/aiot24_/STM32CubeIDE/1st_project_ws/1st_project_1/Debug/../Core/Src/esp.c:296: first defined here
+C:/ST/STM32CubeIDE_1.18.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: ./Core/Src/main.o: in function `DWT_Delay_Init':
+C:/Users/aiot24_/STM32CubeIDE/1st_project_ws/1st_project_1/Debug/../Core/Src/dht.c:10: multiple definition of `DWT_Delay_Init'; ./Core/Src/dht.o:C:/Users/aiot24_/STM32CubeIDE/1st_project_ws/1st_project_1/Debug/../Core/Src/dht.c:10: first defined here
+C:/ST/STM32CubeIDE_1.18.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: ./Core/Src/main.o: in function `DWT_Delay_us':
+C:/Users/aiot24_/STM32CubeIDE/1st_project_ws/1st_project_1/Debug/../Core/Src/dht.c:42: multiple definition of `DWT_Delay_us'; ./Core/Src/dht.o:C:/Users/aiot24_/STM32CubeIDE/1st_project_ws/1st_project_1/Debug/../Core/Src/dht.c:42: first defined here
+C:/ST/STM32CubeIDE_1.18.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: ./Core/Src/main.o: in function `Set_Pin_Output':
+C:/Users/aiot24_/STM32CubeIDE/1st_project_ws/1st_project_1/Debug/../Core/Src/dht.c:53: multiple definition of `Set_Pin_Output'; ./Core/Src/dht.o:C:/Users/aiot24_/STM32CubeIDE/1st_project_ws/1st_project_1/Debug/../Core/Src/dht.c:53: first defined here
+C:/ST/STM32CubeIDE_1.18.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: ./Core/Src/main.o: in function `Set_Pin_Input':
+C:/Users/aiot24_/STM32CubeIDE/1st_project_ws/1st_project_1/Debug/../Core/Src/dht.c:62: multiple definition of `Set_Pin_Input'; ./Core/Src/dht.o:C:/Users/aiot24_/STM32CubeIDE/1st_project_ws/1st_project_1/Debug/../Core/Src/dht.c:62: first defined here
+C:/ST/STM32CubeIDE_1.18.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: ./Core/Src/main.o: in function `DHT11_Init':
+C:/Users/aiot24_/STM32CubeIDE/1st_project_ws/1st_project_1/Debug/../Core/Src/dht.c:73: multiple definition of `DHT11_Init'; ./Core/Src/dht.o:C:/Users/aiot24_/STM32CubeIDE/1st_project_ws/1st_project_1/Debug/../Core/Src/dht.c:73: first defined here
+C:/ST/STM32CubeIDE_1.18.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: ./Core/Src/main.o: in function `DHT11_Start':
+C:/Users/aiot24_/STM32CubeIDE/1st_project_ws/1st_project_1/Debug/../Core/Src/dht.c:81: multiple definition of `DHT11_Start'; ./Core/Src/dht.o:C:/Users/aiot24_/STM32CubeIDE/1st_project_ws/1st_project_1/Debug/../Core/Src/dht.c:81: first defined here
+C:/ST/STM32CubeIDE_1.18.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: ./Core/Src/main.o: in function `DHT11_Stop':
+C:/Users/aiot24_/STM32CubeIDE/1st_project_ws/1st_project_1/Debug/../Core/Src/dht.c:94: multiple definition of `DHT11_Stop'; ./Core/Src/dht.o:C:/Users/aiot24_/STM32CubeIDE/1st_project_ws/1st_project_1/Debug/../Core/Src/dht.c:94: first defined here
+C:/ST/STM32CubeIDE_1.18.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: ./Core/Src/main.o: in function `DHT11_Check_Response':
+C:/Users/aiot24_/STM32CubeIDE/1st_project_ws/1st_project_1/Debug/../Core/Src/dht.c:100: multiple definition of `DHT11_Check_Response'; ./Core/Src/dht.o:C:/Users/aiot24_/STM32CubeIDE/1st_project_ws/1st_project_1/Debug/../Core/Src/dht.c:100: first defined here
+C:/ST/STM32CubeIDE_1.18.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: ./Core/Src/main.o: in function `DHT11_Read':
+C:/Users/aiot24_/STM32CubeIDE/1st_project_ws/1st_project_1/Debug/../Core/Src/dht.c:116: multiple definition of `DHT11_Read'; ./Core/Src/dht.o:C:/Users/aiot24_/STM32CubeIDE/1st_project_ws/1st_project_1/Debug/../Core/Src/dht.c:116: first defined here
+C:/ST/STM32CubeIDE_1.18.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: ./Core/Src/main.o: in function `DHT11_readData':
+C:/Users/aiot24_/STM32CubeIDE/1st_project_ws/1st_project_1/Debug/../Core/Src/dht.c:134: multiple definition of `DHT11_readData'; ./Core/Src/dht.o:C:/Users/aiot24_/STM32CubeIDE/1st_project_ws/1st_project_1/Debug/../Core/Src/dht.c:134: first defined here
+C:/ST/STM32CubeIDE_1.18.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: ./Core/Src/main.o: in function `esp_event':
+C:/Users/aiot24_/STM32CubeIDE/1st_project_ws/1st_project_1/Debug/../Core/Src/main.c:814:(.text.esp_event+0xa6): undefined reference to `map'
+collect2.exe: error: ld returned 1 exit status
+make: *** [makefile:64: 1st_project_1.elf] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+14:01:54 **** Incremental Build of configuration Debug for project 1st_project_1 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:192:44: error: 'cb_data' undeclared (first use in this function); did you mean 'cb_data_t'?
+  192 |                         if (strstr((char*) cb_data.buf, "+IPD")
+      |                                            ^~~~~~~
+      |                                            cb_data_t
+../Core/Src/main.c:192:44: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/main.c:200:29: error: 'rx2Flag' undeclared (first use in this function)
+  200 |                         if (rx2Flag) {
+      |                             ^~~~~~~
+../Core/Src/main.c:201:58: error: 'rx2Data' undeclared (first use in this function)
+  201 |                                 printf("recv2 : %s\r\n", rx2Data);
+      |                                                          ^~~~~~~
+../Core/Src/main.c: In function 'esp_event':
+../Core/Src/main.c:813:37: warning: implicit declaration of function 'atoi' [-Wimplicit-function-declaration]
+  813 |                         int value = atoi(pArray[2]);
+      |                                     ^~~~
+../Core/Src/main.c:814:33: warning: implicit declaration of function 'map' [-Wimplicit-function-declaration]
+  814 |                         value = map(value, 0, 180, 500, 2500);
+      |                                 ^~~
+make: *** [Core/Src/subdir.mk:46: Core/Src/main.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+14:02:40 **** Incremental Build of configuration Debug for project 1st_project_1 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'esp_event':
+../Core/Src/main.c:796:29: warning: implicit declaration of function 'atoi' [-Wimplicit-function-declaration]
+  796 |                 int value = atoi(pArray[2]);
+      |                             ^~~~
+../Core/Src/main.c:797:25: warning: implicit declaration of function 'map' [-Wimplicit-function-declaration]
+  797 |                 value = map(value, 0, 180, 500, 2500);
+      |                         ^~~
+arm-none-eabi-gcc -o "1st_project_1.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\aiot24_\STM32CubeIDE\1st_project_ws\1st_project_1\STM32F411RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="1st_project_1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+C:/ST/STM32CubeIDE_1.18.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: ./Core/Src/main.o: in function `esp_event':
+C:/Users/aiot24_/STM32CubeIDE/1st_project_ws/1st_project_1/Debug/../Core/Src/main.c:797:(.text.esp_event+0xa6): undefined reference to `map'
+collect2.exe: error: ld returned 1 exit status
+make: *** [makefile:64: 1st_project_1.elf] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+14:03:15 **** Incremental Build of configuration Debug for project 1st_project_1 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "1st_project_1.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\aiot24_\STM32CubeIDE\1st_project_ws\1st_project_1\STM32F411RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="1st_project_1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: 1st_project_1.elf
+ 
+arm-none-eabi-size  1st_project_1.elf 
+arm-none-eabi-objdump -h -S 1st_project_1.elf  > "1st_project_1.list"
+   text	   data	    bss	    dec	    hex	filename
+  37016	    128	   4840	  41984	   a400	1st_project_1.elf
+Finished building: default.size.stdout
+ 
+Finished building: 1st_project_1.list
+ 
+14:18:23 **** Incremental Build of configuration Debug for project 1st_project_1 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:197:17: warning: implicit declaration of function 'esp_init' [-Wimplicit-function-declaration]
+  197 |                 esp_init();
+      |                 ^~~~~~~~
+../Core/Src/main.c:138:14: warning: unused variable 'buff' [-Wunused-variable]
+  138 |         char buff[30];
+      |              ^~~~
+../Core/Src/main.c:137:23: warning: unused variable 'dht11Data' [-Wunused-variable]
+  137 |         DHT11_TypeDef dht11Data;
+      |                       ^~~~~~~~~
+../Core/Src/main.c: At top level:
+../Core/Src/main.c:778:6: warning: conflicting types for 'esp_init'; have 'void()'
+  778 | void esp_init(){
+      |      ^~~~~~~~
+../Core/Src/main.c:197:17: note: previous implicit declaration of 'esp_init' with type 'void()'
+  197 |                 esp_init();
+      |                 ^~~~~~~~
+../Core/Src/main.c: In function 'esp_init':
+../Core/Src/main.c:806:41: error: 'dht11Data' undeclared (first use in this function)
+  806 |                                         dht11Data = DHT11_readData();
+      |                                         ^~~~~~~~~
+../Core/Src/main.c:806:41: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/main.c:808:57: error: 'buff' undeclared (first use in this function)
+  808 |                                                 sprintf(buff, "h: %d%% t: %d.%d'C", dht11Data.rh_byte1,
+      |                                                         ^~~~
+make: *** [Core/Src/subdir.mk:46: Core/Src/main.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+14:18:50 **** Incremental Build of configuration Debug for project 1st_project_1 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:140:14: warning: unused variable 'buff' [-Wunused-variable]
+  140 |         char buff[30];
+      |              ^~~~
+../Core/Src/main.c:139:23: warning: unused variable 'dht11Data' [-Wunused-variable]
+  139 |         DHT11_TypeDef dht11Data;
+      |                       ^~~~~~~~~
+../Core/Src/main.c: In function 'esp_init':
+../Core/Src/main.c:808:41: error: 'dht11Data' undeclared (first use in this function)
+  808 |                                         dht11Data = DHT11_readData();
+      |                                         ^~~~~~~~~
+../Core/Src/main.c:808:41: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/main.c:810:57: error: 'buff' undeclared (first use in this function)
+  810 |                                                 sprintf(buff, "h: %d%% t: %d.%d'C", dht11Data.rh_byte1,
+      |                                                         ^~~~
+make: *** [Core/Src/subdir.mk:46: Core/Src/main.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+14:20:08 **** Incremental Build of configuration Debug for project 1st_project_1 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "1st_project_1.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\aiot24_\STM32CubeIDE\1st_project_ws\1st_project_1\STM32F411RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="1st_project_1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: 1st_project_1.elf
+ 
+arm-none-eabi-size  1st_project_1.elf 
+arm-none-eabi-objdump -h -S 1st_project_1.elf  > "1st_project_1.list"
+   text	   data	    bss	    dec	    hex	filename
+  37060	    128	   4880	  42068	   a454	1st_project_1.elf
+Finished building: default.size.stdout
+ 
+Finished building: 1st_project_1.list
+ 
+14:23:34 **** Incremental Build of configuration Debug for project 1st_project_1 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "1st_project_1.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\aiot24_\STM32CubeIDE\1st_project_ws\1st_project_1\STM32F411RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="1st_project_1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: 1st_project_1.elf
+ 
+arm-none-eabi-size  1st_project_1.elf 
+arm-none-eabi-objdump -h -S 1st_project_1.elf  > "1st_project_1.list"
+   text	   data	    bss	    dec	    hex	filename
+  37044	    128	   4880	  42052	   a444	1st_project_1.elf
+Finished building: default.size.stdout
+ 
+Finished building: 1st_project_1.list
+ 
+14:24:20 **** Incremental Build of configuration Debug for project 1st_project_1 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "1st_project_1.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\aiot24_\STM32CubeIDE\1st_project_ws\1st_project_1\STM32F411RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="1st_project_1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: 1st_project_1.elf
+ 
+arm-none-eabi-size  1st_project_1.elf 
+arm-none-eabi-objdump -h -S 1st_project_1.elf  > "1st_project_1.list"
+   text	   data	    bss	    dec	    hex	filename
+  33048	    128	   3736	  36912	   9030	1st_project_1.elf
+Finished building: default.size.stdout
+ 
+Finished building: 1st_project_1.list
+ 
+14:25:02 **** Incremental Build of configuration Debug for project 1st_project_1 ****
+make -j8 all 
+arm-none-eabi-size  1st_project_1.elf 
+   text	   data	    bss	    dec	    hex	filename
+  33048	    128	   3736	  36912	   9030	1st_project_1.elf
+Finished building: default.size.stdout
+ 
+14:26:00 **** Incremental Build of configuration Debug for project 1st_project_1 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c:746:1: error: expected identifier or '(' before '}' token
+  746 | }
+      | ^
+make: *** [Core/Src/subdir.mk:46: Core/Src/main.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+14:26:26 **** Incremental Build of configuration Debug for project 1st_project_1 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "1st_project_1.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\aiot24_\STM32CubeIDE\1st_project_ws\1st_project_1\STM32F411RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="1st_project_1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: 1st_project_1.elf
+ 
+arm-none-eabi-size  1st_project_1.elf 
+arm-none-eabi-objdump -h -S 1st_project_1.elf  > "1st_project_1.list"
+   text	   data	    bss	    dec	    hex	filename
+  33064	    128	   3736	  36928	   9040	1st_project_1.elf
+Finished building: default.size.stdout
+ 
+Finished building: 1st_project_1.list
+ 
+14:34:41 **** Incremental Build of configuration Debug for project 1st_project_1 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'user_authentication':
+../Core/Src/main.c:736:13: error: too few arguments to function 'MFRC522_Check'
+  736 |         if (MFRC522_Check() == MI_OK) {
+      |             ^~~~~~~~~~~~~
+In file included from ../Core/Src/main.c:11:
+../Core/Inc/mfrc522.h:70:6: note: declared here
+   70 | char MFRC522_Check(uint8_t *id);
+      |      ^~~~~~~~~~~~~
+../Core/Src/main.c:737:21: warning: implicit declaration of function 'MFRC522_ReadCardSerial' [-Wimplicit-function-declaration]
+  737 |                 if (MFRC522_ReadCardSerial() == MI_OK) {
+      |                     ^~~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:738:25: warning: implicit declaration of function 'uid_to_string' [-Wimplicit-function-declaration]
+  738 |                         uid_to_string(UID, uid_str);
+      |                         ^~~~~~~~~~~~~
+../Core/Src/main.c:738:39: error: 'UID' undeclared (first use in this function)
+  738 |                         uid_to_string(UID, uid_str);
+      |                                       ^~~
+../Core/Src/main.c:738:39: note: each undeclared identifier is reported only once for each function it appears in
+make: *** [Core/Src/subdir.mk:46: Core/Src/main.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+14:35:56 **** Incremental Build of configuration Debug for project 1st_project_1 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'user_authentication':
+../Core/Src/main.c:736:13: error: too few arguments to function 'MFRC522_Check'
+  736 |         if (MFRC522_Check() == MI_OK) {
+      |             ^~~~~~~~~~~~~
+In file included from ../Core/Src/main.c:11:
+../Core/Inc/mfrc522.h:70:6: note: declared here
+   70 | char MFRC522_Check(uint8_t *id);
+      |      ^~~~~~~~~~~~~
+../Core/Src/main.c:737:21: warning: implicit declaration of function 'MFRC522_ReadCardSerial' [-Wimplicit-function-declaration]
+  737 |                 if (MFRC522_ReadCardSerial() == MI_OK) {
+      |                     ^~~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:738:25: warning: implicit declaration of function 'uid_to_string' [-Wimplicit-function-declaration]
+  738 |                         uid_to_string(cardID, uid_str);
+      |                         ^~~~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:46: Core/Src/main.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+14:36:40 **** Incremental Build of configuration Debug for project 1st_project_1 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'user_authentication':
+../Core/Src/main.c:737:21: warning: implicit declaration of function 'MFRC522_ReadCardSerial' [-Wimplicit-function-declaration]
+  737 |                 if (MFRC522_ReadCardSerial() == MI_OK) {
+      |                     ^~~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:738:25: warning: implicit declaration of function 'uid_to_string' [-Wimplicit-function-declaration]
+  738 |                         uid_to_string(cardID, uid_str);
+      |                         ^~~~~~~~~~~~~
+arm-none-eabi-gcc -o "1st_project_1.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\aiot24_\STM32CubeIDE\1st_project_ws\1st_project_1\STM32F411RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="1st_project_1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+C:/ST/STM32CubeIDE_1.18.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: ./Core/Src/main.o: in function `user_authentication':
+C:/Users/aiot24_/STM32CubeIDE/1st_project_ws/1st_project_1/Debug/../Core/Src/main.c:737:(.text.user_authentication+0x10): undefined reference to `MFRC522_ReadCardSerial'
+C:/ST/STM32CubeIDE_1.18.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: C:/Users/aiot24_/STM32CubeIDE/1st_project_ws/1st_project_1/Debug/../Core/Src/main.c:738:(.text.user_authentication+0x1e): undefined reference to `uid_to_string'
+collect2.exe: error: ld returned 1 exit status
+make: *** [makefile:64: 1st_project_1.elf] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+14:36:55 **** Incremental Build of configuration Debug for project 1st_project_1 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'user_authentication':
+../Core/Src/main.c:736:13: error: too few arguments to function 'MFRC522_Check'
+  736 |         if (MFRC522_Check() == MI_OK) {
+      |             ^~~~~~~~~~~~~
+In file included from ../Core/Src/main.c:11:
+../Core/Inc/mfrc522.h:70:6: note: declared here
+   70 | char MFRC522_Check(uint8_t *id);
+      |      ^~~~~~~~~~~~~
+../Core/Src/main.c:737:21: warning: implicit declaration of function 'MFRC522_ReadCardSerial' [-Wimplicit-function-declaration]
+  737 |                 if (MFRC522_ReadCardSerial() == MI_OK) {
+      |                     ^~~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:738:25: warning: implicit declaration of function 'uid_to_string' [-Wimplicit-function-declaration]
+  738 |                         uid_to_string(UID, uid_str);
+      |                         ^~~~~~~~~~~~~
+../Core/Src/main.c:738:39: error: 'UID' undeclared (first use in this function)
+  738 |                         uid_to_string(UID, uid_str);
+      |                                       ^~~
+../Core/Src/main.c:738:39: note: each undeclared identifier is reported only once for each function it appears in
+make: *** [Core/Src/subdir.mk:46: Core/Src/main.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+14:37:03 **** Incremental Build of configuration Debug for project 1st_project_1 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "1st_project_1.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\aiot24_\STM32CubeIDE\1st_project_ws\1st_project_1\STM32F411RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="1st_project_1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: 1st_project_1.elf
+ 
+arm-none-eabi-size  1st_project_1.elf 
+arm-none-eabi-objdump -h -S 1st_project_1.elf  > "1st_project_1.list"
+   text	   data	    bss	    dec	    hex	filename
+  35856	    128	   4776	  40760	   9f38	1st_project_1.elf
+Finished building: default.size.stdout
+ 
+Finished building: 1st_project_1.list
+ 
+14:49:38 **** Incremental Build of configuration Debug for project 1st_project_1 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "1st_project_1.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\aiot24_\STM32CubeIDE\1st_project_ws\1st_project_1\STM32F411RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="1st_project_1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: 1st_project_1.elf
+ 
+arm-none-eabi-size  1st_project_1.elf 
+arm-none-eabi-objdump -h -S 1st_project_1.elf  > "1st_project_1.list"
+   text	   data	    bss	    dec	    hex	filename
+  36084	    128	   4784	  40996	   a024	1st_project_1.elf
+Finished building: default.size.stdout
+ 
+Finished building: 1st_project_1.list
+ 
+14:51:21 **** Incremental Build of configuration Debug for project 1st_project_1 ****
+make -j8 all 
+arm-none-eabi-size  1st_project_1.elf 
+   text	   data	    bss	    dec	    hex	filename
+  36084	    128	   4784	  40996	   a024	1st_project_1.elf
+Finished building: default.size.stdout
+ 
+14:52:31 **** Incremental Build of configuration Debug for project 1st_project_1 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "1st_project_1.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\aiot24_\STM32CubeIDE\1st_project_ws\1st_project_1\STM32F411RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="1st_project_1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: 1st_project_1.elf
+ 
+arm-none-eabi-size  1st_project_1.elf 
+arm-none-eabi-objdump -h -S 1st_project_1.elf  > "1st_project_1.list"
+   text	   data	    bss	    dec	    hex	filename
+  36084	    128	   4784	  40996	   a024	1st_project_1.elf
+Finished building: default.size.stdout
+ 
+Finished building: 1st_project_1.list
+ 
+15:01:41 **** Incremental Build of configuration Debug for project 1st_project_1 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "1st_project_1.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\aiot24_\STM32CubeIDE\1st_project_ws\1st_project_1\STM32F411RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="1st_project_1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: 1st_project_1.elf
+ 
+arm-none-eabi-size  1st_project_1.elf 
+arm-none-eabi-objdump -h -S 1st_project_1.elf  > "1st_project_1.list"
+   text	   data	    bss	    dec	    hex	filename
+  36712	    128	   4848	  41688	   a2d8	1st_project_1.elf
+Finished building: default.size.stdout
+ 
+Finished building: 1st_project_1.list
+ 
+15:07:07 **** Incremental Build of configuration Debug for project 1st_project_1 ****
+make -j8 all 
+arm-none-eabi-size  1st_project_1.elf 
+   text	   data	    bss	    dec	    hex	filename
+  36712	    128	   4848	  41688	   a2d8	1st_project_1.elf
+Finished building: default.size.stdout
+ 
+15:08:54 **** Incremental Build of configuration Debug for project 1st_project_1 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "1st_project_1.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\aiot24_\STM32CubeIDE\1st_project_ws\1st_project_1\STM32F411RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="1st_project_1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: 1st_project_1.elf
+ 
+arm-none-eabi-size  1st_project_1.elf 
+arm-none-eabi-objdump -h -S 1st_project_1.elf  > "1st_project_1.list"
+   text	   data	    bss	    dec	    hex	filename
+  36760	    128	   4848	  41736	   a308	1st_project_1.elf
+Finished building: default.size.stdout
+ 
+Finished building: 1st_project_1.list
+ 
+15:30:05 **** Incremental Build of configuration Debug for project 1st_project_1 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'room_status_set':
+../Core/Src/main.c:697:41: error: 'sendBuf' undeclared (first use in this function)
+  697 |                                 sprintf(sendBuf, "[JTY_LIN]SETROOM@IN\n");
+      |                                         ^~~~~~~
+../Core/Src/main.c:697:41: note: each undeclared identifier is reported only once for each function it appears in
+make: *** [Core/Src/subdir.mk:46: Core/Src/main.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+15:30:57 **** Incremental Build of configuration Debug for project 1st_project_1 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'room_status_set':
+../Core/Src/main.c:697:41: error: 'sendBuf' undeclared (first use in this function)
+  697 |                                 sprintf(sendBuf, "[JTY_LIN]SETROOM@IN\n");
+      |                                         ^~~~~~~
+../Core/Src/main.c:697:41: note: each undeclared identifier is reported only once for each function it appears in
+make: *** [Core/Src/subdir.mk:46: Core/Src/main.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+15:31:29 **** Incremental Build of configuration Debug for project 1st_project_1 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "1st_project_1.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\aiot24_\STM32CubeIDE\1st_project_ws\1st_project_1\STM32F411RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="1st_project_1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: 1st_project_1.elf
+ 
+arm-none-eabi-size  1st_project_1.elf 
+arm-none-eabi-objdump -h -S 1st_project_1.elf  > "1st_project_1.list"
+   text	   data	    bss	    dec	    hex	filename
+  36516	    128	   4936	  41580	   a26c	1st_project_1.elf
+Finished building: default.size.stdout
+ 
+Finished building: 1st_project_1.list
+ 
+15:34:31 **** Incremental Build of configuration Debug for project 1st_project_1 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "1st_project_1.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\aiot24_\STM32CubeIDE\1st_project_ws\1st_project_1\STM32F411RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="1st_project_1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: 1st_project_1.elf
+ 
+arm-none-eabi-size  1st_project_1.elf 
+arm-none-eabi-objdump -h -S 1st_project_1.elf  > "1st_project_1.list"
+   text	   data	    bss	    dec	    hex	filename
+  36556	    128	   4936	  41620	   a294	1st_project_1.elf
+Finished building: default.size.stdout
+ 
+Finished building: 1st_project_1.list
+ 
+15:43:57 **** Incremental Build of configuration Debug for project 1st_project_1 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'esp_get_status':
+../Core/Src/main.c:148:16: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+  148 | int main(void) {
+      |                ^
+../Core/Src/main.c:137:6: error: declaration for parameter 'esp_event' but no such parameter
+  137 | void esp_event(char*);
+      |      ^~~~~~~~~
+../Core/Src/main.c:135:6: error: declaration for parameter 'user_authentication' but no such parameter
+  135 | void user_authentication();
+      |      ^~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:134:6: error: declaration for parameter 'room_status_display' but no such parameter
+  134 | void room_status_display();
+      |      ^~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:133:6: error: declaration for parameter 'room_status_set' but no such parameter
+  133 | void room_status_set();
+      |      ^~~~~~~~~~~~~~~
+../Core/Src/main.c:131:6: error: declaration for parameter 'strBuff' but no such parameter
+  131 | char strBuff[MAX_ESP_COMMAND_LEN];
+      |      ^~~~~~~
+../Core/Src/main.c:129:6: error: declaration for parameter 'esp_init' but no such parameter
+  129 | void esp_init();
+      |      ^~~~~~~~
+../Core/Src/main.c:881:9: error: number of arguments doesn't match prototype
+  881 |         }
+      |         ^
+In file included from ../Core/Src/main.c:12:
+../Core/Inc/esp.h:32:5: error: prototype declaration
+   32 | int esp_get_status(void);
+      |     ^~~~~~~~~~~~~~
+../Core/Src/main.c: At top level:
+../Core/Src/main.c:115:13: warning: 'MX_GPIO_Init' declared 'static' but never defined [-Wunused-function]
+  115 | static void MX_GPIO_Init(void);
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:116:13: warning: 'MX_USART2_UART_Init' declared 'static' but never defined [-Wunused-function]
+  116 | static void MX_USART2_UART_Init(void);
+      |             ^~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:117:13: warning: 'MX_ADC1_Init' declared 'static' but never defined [-Wunused-function]
+  117 | static void MX_ADC1_Init(void);
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:118:13: warning: 'MX_TIM1_Init' declared 'static' but never defined [-Wunused-function]
+  118 | static void MX_TIM1_Init(void);
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:119:13: warning: 'MX_TIM3_Init' declared 'static' but never defined [-Wunused-function]
+  119 | static void MX_TIM3_Init(void);
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:120:13: warning: 'MX_USART6_UART_Init' declared 'static' but never defined [-Wunused-function]
+  120 | static void MX_USART6_UART_Init(void);
+      |             ^~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:121:13: warning: 'MX_I2C1_Init' declared 'static' but never defined [-Wunused-function]
+  121 | static void MX_I2C1_Init(void);
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:122:13: warning: 'MX_SPI1_Init' declared 'static' but never defined [-Wunused-function]
+  122 | static void MX_SPI1_Init(void);
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:123:13: warning: 'MX_TIM4_Init' declared 'static' but never defined [-Wunused-function]
+  123 | static void MX_TIM4_Init(void);
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c: In function 'esp_get_status':
+../Core/Src/main.c:898: warning: control reaches end of non-void function [-Wreturn-type]
+make: *** [Core/Src/subdir.mk:46: Core/Src/main.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+15:45:19 **** Incremental Build of configuration Debug for project 1st_project_1 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'esp_get_status':
+../Core/Src/main.c:148:16: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+  148 | int main(void) {
+      |                ^
+../Core/Src/main.c:249:31: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+  249 | void SystemClock_Config(void) {
+      |                               ^
+../Core/Src/main.c:293:32: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+  293 | static void MX_ADC1_Init(void) {
+      |                                ^
+../Core/Src/main.c:339:32: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+  339 | static void MX_I2C1_Init(void) {
+      |                                ^
+../Core/Src/main.c:368:32: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+  368 | static void MX_SPI1_Init(void) {
+      |                                ^
+../Core/Src/main.c:404:32: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+  404 | static void MX_TIM1_Init(void) {
+      |                                ^
+../Core/Src/main.c:464:32: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+  464 | static void MX_TIM3_Init(void) {
+      |                                ^
+../Core/Src/main.c:503:32: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+  503 | static void MX_TIM4_Init(void) {
+      |                                ^
+../Core/Src/main.c:550:39: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+  550 | static void MX_USART2_UART_Init(void) {
+      |                                       ^
+../Core/Src/main.c:578:39: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+  578 | static void MX_USART6_UART_Init(void) {
+      |                                       ^
+../Core/Src/main.c:606:32: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+  606 | static void MX_GPIO_Init(void) {
+      |                                ^
+../Core/Src/main.c:686:1: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+  686 | {
+      | ^
+../Core/Src/main.c:696:24: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+  696 | void room_status_set() {
+      |                        ^
+../Core/Src/main.c:747:28: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+  747 | void room_status_display() {
+      |                            ^
+../Core/Src/main.c:757:28: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+  757 | void user_authentication() {
+      |                            ^
+../Core/Src/main.c:780:31: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+  780 | void esp_event(char *recvBuf) {
+      |                               ^
+../Core/Src/main.c:811:17: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+  811 | void esp_init() {
+      |                 ^
+../Core/Src/main.c:852:22: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+  852 | int esp_get_status() {
+      |                      ^
+../Core/Src/main.c:870:26: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+  870 | void Error_Handler(void) {
+      |                          ^
+../Core/Src/main.c:137:6: error: declaration for parameter 'esp_event' but no such parameter
+  137 | void esp_event(char*);
+      |      ^~~~~~~~~
+../Core/Src/main.c:135:6: error: declaration for parameter 'user_authentication' but no such parameter
+  135 | void user_authentication();
+      |      ^~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:134:6: error: declaration for parameter 'room_status_display' but no such parameter
+  134 | void room_status_display();
+      |      ^~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:133:6: error: declaration for parameter 'room_status_set' but no such parameter
+  133 | void room_status_set();
+      |      ^~~~~~~~~~~~~~~
+../Core/Src/main.c:131:6: error: declaration for parameter 'strBuff' but no such parameter
+  131 | char strBuff[MAX_ESP_COMMAND_LEN];
+      |      ^~~~~~~
+../Core/Src/main.c:129:6: error: declaration for parameter 'esp_init' but no such parameter
+  129 | void esp_init();
+      |      ^~~~~~~~
+../Core/Src/main.c:873:1: error: number of arguments doesn't match prototype
+  873 | }
+      | ^
+In file included from ../Core/Src/main.c:12:
+../Core/Inc/esp.h:32:5: error: prototype declaration
+   32 | int esp_get_status(void);
+      |     ^~~~~~~~~~~~~~
+../Core/Src/main.c:890: error: expected '{' at end of input
+../Core/Src/main.c: At top level:
+../Core/Src/main.c:115:13: warning: 'MX_GPIO_Init' declared 'static' but never defined [-Wunused-function]
+  115 | static void MX_GPIO_Init(void);
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:116:13: warning: 'MX_USART2_UART_Init' declared 'static' but never defined [-Wunused-function]
+  116 | static void MX_USART2_UART_Init(void);
+      |             ^~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:117:13: warning: 'MX_ADC1_Init' declared 'static' but never defined [-Wunused-function]
+  117 | static void MX_ADC1_Init(void);
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:118:13: warning: 'MX_TIM1_Init' declared 'static' but never defined [-Wunused-function]
+  118 | static void MX_TIM1_Init(void);
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:119:13: warning: 'MX_TIM3_Init' declared 'static' but never defined [-Wunused-function]
+  119 | static void MX_TIM3_Init(void);
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:120:13: warning: 'MX_USART6_UART_Init' declared 'static' but never defined [-Wunused-function]
+  120 | static void MX_USART6_UART_Init(void);
+      |             ^~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:121:13: warning: 'MX_I2C1_Init' declared 'static' but never defined [-Wunused-function]
+  121 | static void MX_I2C1_Init(void);
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:122:13: warning: 'MX_SPI1_Init' declared 'static' but never defined [-Wunused-function]
+  122 | static void MX_SPI1_Init(void);
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:123:13: warning: 'MX_TIM4_Init' declared 'static' but never defined [-Wunused-function]
+  123 | static void MX_TIM4_Init(void);
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c: In function 'esp_get_status':
+../Core/Src/main.c:890: warning: control reaches end of non-void function [-Wreturn-type]
+make: *** [Core/Src/subdir.mk:46: Core/Src/main.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+15:45:35 **** Incremental Build of configuration Debug for project 1st_project_1 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "1st_project_1.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\aiot24_\STM32CubeIDE\1st_project_ws\1st_project_1\STM32F411RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="1st_project_1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: 1st_project_1.elf
+ 
+arm-none-eabi-size  1st_project_1.elf 
+arm-none-eabi-objdump -h -S 1st_project_1.elf  > "1st_project_1.list"
+   text	   data	    bss	    dec	    hex	filename
+  36556	    128	   4936	  41620	   a294	1st_project_1.elf
+Finished building: default.size.stdout
+ 
+Finished building: 1st_project_1.list
+ 
