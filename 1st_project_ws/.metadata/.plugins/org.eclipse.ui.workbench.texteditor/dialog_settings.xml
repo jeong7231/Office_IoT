@@ -1,13 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<item key="hasShownOverlayPopupBefore" value="true"/>
-	<item key="replaceBarOpen" value="false"/>
+	<item key="replaceBarOpen" value="true"/>
 	<list key="searchhistory">
+		<item value="esp_event"/>
+		<item value="JTY"/>
+		<item value="JTY_SQL"/>
+		<item value="OK"/>
+		<item value="JTY_LIN"/>
+		<item value="putchar"/>
+		<item value="LIN"/>
+		<item value="SQL"/>
+		<item value="SENDBUF"/>
 		<item value="in"/>
 		<item value="rst"/>
 		<item value="GPIO"/>
 		<item value="RST"/>
 		<item value="READING"/>
-		<item value="putchar"/>
+	</list>
+	<list key="replacehistory">
+		<item value="PRJ_SQL"/>
+		<item value="JTY_SQL"/>
+		<item value="SQL"/>
 	</list>
 </section>

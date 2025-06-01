@@ -31,8 +31,8 @@
  set to 'Yes') calls __io_putchar() */
 #define PUTCHAR_PROTOTYPE int __io_putchar(int ch)
 #else
-	#define PUTCHAR_PROTOTYPE int fputc(int ch, FILE *f)
-	#endif /* __GNUC__ */
+#define PUTCHAR_PROTOTYPE int fputc(int ch, FILE *f)
+#endif /* __GNUC__ */
 #define ARR_CNT 5
 #define CMD_SIZE 50
 /* USER CODE END PD */
@@ -100,14 +100,30 @@ uint8_t cardID[5];
 // 비교용
 char uid_str[16];
 int authentication_flag = 0;
-volatile int auth_start_time = -1;  // 인증 시작 시점의 tim3Sec 저장
+volatile int auth_start_time = -1; // 인증 시작 시점의 tim3Sec 저장
 
-//esp
+// esp
 int i = 0;
 char *pToken;
 char *pArray[ARR_CNT] = { 0 };
 char sendBuf[MAX_UART_COMMAND_LEN] = { 0 };
 
+typedef struct {
+	char *client;
+	char *led;
+	char *on_off;
+} BUFFF;
+
+BUFFF ppAArray = { 0 };
+
+typedef struct {
+	char *cclient;
+	char *ssetroom;
+	char *nname;
+	char *sstatus;
+} BBUFFF;
+
+BBUFFF pppAAArray = { 0 };
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -184,7 +200,7 @@ int main(void) {
 	}
 
 	AiotClient_Init();
-	//DHT
+	// DHT
 	DHT11_Init();
 
 	if (HAL_TIM_Base_Start_IT(&htim3) != HAL_OK)
@@ -194,8 +210,8 @@ int main(void) {
 	LCD_writeStringXY(0, 0, "hello lcd");
 
 	// RFID
-	MFRC522_Init(); // RC522 초기화
-	uint8_t version = MFRC522_ReadRegister(0x37);  // VersionReg
+	MFRC522_Init();                               // RC522 초기화
+	uint8_t version = MFRC522_ReadRegister(0x37); // VersionReg
 	printf("RC522 Version: 0x%02X\r\n", version);
 	printf("카드를 인식해주세요\r\n");
 
@@ -204,7 +220,6 @@ int main(void) {
 	/* Infinite loop */
 	/* USER CODE BEGIN WHILE */
 	while (1) {
-
 		if (strstr((char*) cb_data.buf, "+IPD")
 				&& cb_data.buf[cb_data.length - 1] == '\n') {
 			//?��?��?���??  \r\n+IPD,15:[KSH_LIN]HELLO\n
@@ -217,8 +232,6 @@ int main(void) {
 			printf("recv2 : %s\r\n", rx2Data);
 			rx2Flag = 0;
 		}
-
-
 		room_status_display();
 		user_authentication();
 
@@ -232,7 +245,6 @@ int main(void) {
 		}
 
 		room_status_set();
-
 	}
 	/* USER CODE END WHILE */
 
@@ -326,7 +338,6 @@ static void MX_ADC1_Init(void) {
 	}
 	/* USER CODE BEGIN ADC1_Init 2 */
 	/* USER CODE END ADC1_Init 2 */
-
 }
 
 /**
@@ -355,7 +366,6 @@ static void MX_I2C1_Init(void) {
 	}
 	/* USER CODE BEGIN I2C1_Init 2 */
 	/* USER CODE END I2C1_Init 2 */
-
 }
 
 /**
@@ -391,7 +401,6 @@ static void MX_SPI1_Init(void) {
 	/* USER CODE BEGIN SPI1_Init 2 */
 
 	/* USER CODE END SPI1_Init 2 */
-
 }
 
 /**
@@ -451,7 +460,6 @@ static void MX_TIM1_Init(void) {
 	/* USER CODE BEGIN TIM1_Init 2 */
 	/* USER CODE END TIM1_Init 2 */
 	HAL_TIM_MspPostInit(&htim1);
-
 }
 
 /**
@@ -490,7 +498,6 @@ static void MX_TIM3_Init(void) {
 	}
 	/* USER CODE BEGIN TIM3_Init 2 */
 	/* USER CODE END TIM3_Init 2 */
-
 }
 
 /**
@@ -537,7 +544,6 @@ static void MX_TIM4_Init(void) {
 
 	/* USER CODE END TIM4_Init 2 */
 	HAL_TIM_MspPostInit(&htim4);
-
 }
 
 /**
@@ -565,7 +571,6 @@ static void MX_USART2_UART_Init(void) {
 	}
 	/* USER CODE BEGIN USART2_Init 2 */
 	/* USER CODE END USART2_Init 2 */
-
 }
 
 /**
@@ -593,7 +598,6 @@ static void MX_USART6_UART_Init(void) {
 	}
 	/* USER CODE BEGIN USART6_Init 2 */
 	/* USER CODE END USART6_Init 2 */
-
 }
 
 /**
@@ -680,11 +684,11 @@ static void MX_GPIO_Init(void) {
 
 /* USER CODE BEGIN 4 */
 
-void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)		//1ms 마다 호출
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) // 1ms 마다 호출
 {
 	static int tim3Cnt = 0;
 	tim3Cnt++;
-	if (tim3Cnt >= 1000) { //1ms * 1000 = 1Sec
+	if (tim3Cnt >= 1000) { // 1ms * 1000 = 1Sec
 		tim3Flag1Sec = 1;
 		tim3Sec++;
 		tim3Cnt = 0;
@@ -701,41 +705,46 @@ void room_status_set() {
 			case 0:
 				printf("button : %d\r\n", i);
 				sprintf(current_room_status.room_status, "%s", "IN        ");
-				sprintf(sendBuf, "[JTY_SQL]SETROOM@%s@IN\n",USER_ID);
+				sprintf(sendBuf, "[PRJ_SQL]SETROOM@%s@IN\n", USER_ID);
 				esp_send_data(sendBuf);
+				HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_SET);
 				break;
 			case 1:
 				printf("button : %d\r\n", i);
 				sprintf(current_room_status.room_status, "%s", "LEC       ");
-				sprintf(sendBuf, "[JTY_SQL]SETROOM@%s@LEC\n",USER_ID);
+				sprintf(sendBuf, "[PRJ_SQL]SETROOM@%s@LEC\n", USER_ID);
 				esp_send_data(sendBuf);
+				HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_RESET);
 				break;
 			case 2:
 				printf("button : %d\r\n", i);
 				sprintf(current_room_status.room_status, "%s", "VAC       ");
-				sprintf(sendBuf, "[JTY_SQL]SETROOM@%s@VAC\n",USER_ID);
+				sprintf(sendBuf, "[PRJ_SQL]SETROOM@%s@VAC\n", USER_ID);
 				esp_send_data(sendBuf);
+				HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_RESET);
 				break;
 			case 3:
 				printf("button : %d\r\n", i);
 				sprintf(current_room_status.room_status, "%s", "MTG       ");
-				sprintf(sendBuf, "[JTY_SQL]SETROOM@%s@MTG\n",USER_ID);
+				sprintf(sendBuf, "[PRJ_SQL]SETROOM@%s@MTG\n", USER_ID);
 				esp_send_data(sendBuf);
+				HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_RESET);
 				break;
 			case 4:
 				printf("button : %d\r\n", i);
 				sprintf(current_room_status.room_status, "%s", "BRK       ");
-				sprintf(sendBuf, "[JTY_SQL]SETROOM@%s@BRK\n",USER_ID);
+				sprintf(sendBuf, "[PRJ_SQL]SETROOM@%s@BRK\n", USER_ID);
 				esp_send_data(sendBuf);
+				HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_RESET);
 				break;
 			case 5:
 				printf("button : %d\r\n", i);
 				sprintf(current_room_status.room_status, "%s", "OUT       ");
-				sprintf(sendBuf, "[JTY_SQL]SETROOM@%s@OUT\n",USER_ID);
+				sprintf(sendBuf, "[PRJ_SQL]SETROOM@%s@OUT\n", USER_ID);
 				esp_send_data(sendBuf);
+				HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_RESET);
 				break;
 			}
-
 		}
 
 		last_button_state[i] = button_state[i];
@@ -745,7 +754,7 @@ void room_status_set() {
 void room_status_display() {
 
 	sprintf(line1, "%d - %s", ROOM_NUMBER, USER_NAME);
-	//sprintf(line2, "%s", "LEC");
+	// sprintf(line2, "%s", "LEC");
 	sprintf(line2, "%s", current_room_status.room_status);
 
 	LCD_writeStringXY(0, 0, line1);
@@ -760,7 +769,7 @@ void user_authentication() {
 
 		if (strcmp(uid_str, USER_CODE) == 0) {
 			authentication_flag = 1;
-			auth_start_time = tim3Sec;  // 현재 시간을 저장
+			auth_start_time = tim3Sec; // 현재 시간을 저장
 			printf("인증성공!\r\n");
 			sprintf(line2, "%s", "Success!!");
 			LCD_writeStringXY(1, 0, line2);
@@ -771,28 +780,102 @@ void user_authentication() {
 			sprintf(line2, "%s", "Failed!!");
 			LCD_writeStringXY(1, 0, line2);
 		}
-
 	}
 }
 
 void esp_event(char *recvBuf) {
-//	int i = 0;
-//	char *pToken;
-//	char *pArray[ARR_CNT] = { 0 };
-//	char sendBuf[MAX_UART_COMMAND_LEN] = { 0 };
+	int i = 0;
+	char *pToken;
+	char *pArray[ARR_CNT] = { 0 };
+	char sendBuf[MAX_UART_COMMAND_LEN] = { 0 };
 
-	strBuff[strlen(recvBuf) - 1] = '\0';	//'\n' cut
+	strBuff[strlen(recvBuf) - 1] = '\0'; //'\n' cut
 	printf("\r\nDebug recv : %s\r\n", recvBuf);
 
 	pToken = strtok(recvBuf, "[@]");
 	while (pToken != NULL) {
 		pArray[i] = pToken;
+		printf("[%s]", pToken);
 		if (++i >= ARR_CNT)
 			break;
 		pToken = strtok(NULL, "[@]");
 	}
+	printf("\r\n");
 
-	if (!strncmp(pArray[1], " New conn", 8)) {
+	for (int i = 0; i < 3; i++) {
+		printf("[%s]", pArray[i]);
+		printf("\r\n");
+	}
+
+	if (!strcmp(pArray[1], "LED")) {
+		ppAArray.client = pArray[0];
+		ppAArray.led = pArray[1];
+		ppAArray.on_off = pArray[2];
+
+		if (!strcmp(pArray[2], "ON")) {
+			HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_SET);
+			printf("led on!!\r\n");
+		} else if (!strcmp(pArray[2], "OFF")) {
+			HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_RESET);
+			printf("led off!!\r\n");
+		}
+		sprintf(sendBuf, "[%s]%s@%s\n", ppAArray.client, ppAArray.led,
+				ppAArray.on_off);
+	}
+
+	else if (i >= 4) {
+		for(int j=0; j<i; j++)
+		{
+			printf("[%s]", pArray[j]);
+		}
+		printf("\r\n");
+
+		pppAAArray.cclient = pArray[0];
+		pppAAArray.ssetroom = pArray[1];
+		pppAAArray.nname = pArray[2];
+		pppAAArray.sstatus = pArray[3];
+
+
+		if (!strcmp(pppAAArray.ssetroom, "SETROOM") && !strcmp(pppAAArray.nname, "JTY")) {
+
+		    if (!strcmp(pppAAArray.sstatus, "IN")) {
+		        sprintf(current_room_status.room_status, "%s", "IN        ");
+		        HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_SET);
+
+		    } else if (!strcmp(pppAAArray.sstatus, "LEC")) {
+		        sprintf(current_room_status.room_status, "%s", "LEC        ");
+		        HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_RESET);
+
+		    } else if (!strcmp(pppAAArray.sstatus, "VAC")) {
+		        sprintf(current_room_status.room_status, "%s", "VAC        ");
+		        HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_RESET);
+
+		    } else if (!strcmp(pppAAArray.sstatus, "MTG")) {
+		        sprintf(current_room_status.room_status, "%s", "MTG        ");
+		        HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_RESET);
+
+		    } else if (!strcmp(pppAAArray.sstatus, "BRK")) {
+		        sprintf(current_room_status.room_status, "%s", "BRK        ");
+		        HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_RESET);
+
+		    } else if (!strcmp(pppAAArray.sstatus, "OUT")) {
+		        printf("out!!!!!!!\r\n");
+		        sprintf(current_room_status.room_status, "%s", "OUT        ");
+		        HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_RESET);
+		    } else {
+		        // 처리할 수 없는 상태일 경우 무시
+		        return;
+		    }
+
+		    // 공통 동작
+		    sprintf(sendBuf, "[PRJ_SQL]%s@%s@%s\r\n",
+		            pppAAArray.ssetroom, pppAAArray.nname, pppAAArray.sstatus);
+		    esp_send_data(sendBuf);
+		}
+
+	}
+
+	else if (!strncmp(pArray[1], " New conn", 8)) {
 		//	   printf("Debug : %s, %s\r\n",pArray[0],pArray[1]);
 		return;
 	} else if (!strncmp(pArray[1], " Already log", 8)) {
@@ -806,46 +889,45 @@ void esp_event(char *recvBuf) {
 	printf("Debug send : %s\r\n", sendBuf);
 }
 
-void esp_init() {
-	// ESP
-	if (strstr((char*) cb_data.buf, "+IPD")
-			&& cb_data.buf[cb_data.length - 1] == '\n') {
-		//?��?��?���??  \r\n+IPD,15:[KSH_LIN]HELLO\n
-		strcpy(strBuff, strchr((char*) cb_data.buf, '['));
-		memset(cb_data.buf, 0x0, sizeof(cb_data.buf));
-		cb_data.length = 0;
-		esp_event(strBuff);
-	}
-	if (rx2Flag) {
-		printf("recv2 : %s\r\n", rx2Data);
-		rx2Flag = 0;
-	}
-
-	if (tim3Flag1Sec)	//1초에 한번
-	{
-		tim3Flag1Sec = 0;
-		if (!(tim3Sec % 10)) //10초에 한번
-		{
-			if (esp_get_status() != 0) {
-				printf("server connecting ...\r\n");
-				esp_client_conn();
-			}
-		}
-		//			printf("tim3Sec : %d\r\n",tim3Sec);
-		if (!(tim3Sec % 5)) //5초에 한번
-		{
-			dht11Data = DHT11_readData();
-			if (dht11Data.rh_byte1 != 255) {
-				sprintf(buff, "h: %d%% t: %d.%d'C", dht11Data.rh_byte1,
-						dht11Data.temp_byte1, dht11Data.temp_byte2);
-				printf("%s\r\n", buff);
-				LCD_writeStringXY(1, 0, buff);
-			} else
-				printf("DHT11 response error\r\n");
-		}
-
-	}
-}
+//void esp_init() {
+//	// ESP
+//	if (strstr((char*) cb_data.buf, "+IPD")
+//			&& cb_data.buf[cb_data.length - 1] == '\n') {
+//		//?��?��?���??  \r\n+IPD,15:[KSH_LIN]HELLO\n
+//		strcpy(strBuff, strchr((char*) cb_data.buf, '['));
+//		memset(cb_data.buf, 0x0, sizeof(cb_data.buf));
+//		cb_data.length = 0;
+//		esp_event(strBuff);
+//	}
+//	if (rx2Flag) {
+//		printf("recv2 : %s\r\n", rx2Data);
+//		rx2Flag = 0;
+//	}
+//
+//	if (tim3Flag1Sec) // 1초에 한번
+//	{
+//		tim3Flag1Sec = 0;
+//		if (!(tim3Sec % 10)) // 10초에 한번
+//		{
+//			if (esp_get_status() != 0) {
+//				printf("server connecting ...\r\n");
+//				esp_client_conn();
+//			}
+//		}
+//		//			printf("tim3Sec : %d\r\n",tim3Sec);
+//		if (!(tim3Sec % 5)) // 5초에 한번
+//		{
+//			dht11Data = DHT11_readData();
+//			if (dht11Data.rh_byte1 != 255) {
+//				sprintf(buff, "h: %d%% t: %d.%d'C", dht11Data.rh_byte1,
+//						dht11Data.temp_byte1, dht11Data.temp_byte2);
+//				printf("%s\r\n", buff);
+//				LCD_writeStringXY(1, 0, buff);
+//			} else
+//				printf("DHT11 response error\r\n");
+//		}
+//	}
+//}
 
 /* USER CODE END 4 */
 
@@ -858,17 +940,17 @@ void Error_Handler(void) {
 	/* USER CODE END Error_Handler_Debug */
 }
 
-#ifdef  USE_FULL_ASSERT
+#ifdef USE_FULL_ASSERT
 /**
-  * @brief  Reports the name of the source file and the source line number
-  *         where the assert_param error has occurred.
-  * @param  file: pointer to the source file name
-  * @param  line: assert_param error line source number
-  * @retval None
-  */
+ * @brief  Reports the name of the source file and the source line number
+ *         where the assert_param error has occurred.
+ * @param  file: pointer to the source file name
+ * @param  line: assert_param error line source number
+ * @retval None
+ */
 void assert_failed(uint8_t *file, uint32_t line)
 {
-  /* USER CODE BEGIN 6 */
-  /* USER CODE END 6 */
+    /* USER CODE BEGIN 6 */
+    /* USER CODE END 6 */
 }
 #endif /* USE_FULL_ASSERT */

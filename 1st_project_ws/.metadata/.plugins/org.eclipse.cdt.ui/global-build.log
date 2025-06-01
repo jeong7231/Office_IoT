@@ -2205,3 +2205,961 @@ Finished building: default.size.stdout
  
 Finished building: 1st_project_1.list
  
+16:17:31 **** Incremental Build of configuration Debug for project 1st_project_1 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "1st_project_1.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\aiot24_\STM32CubeIDE\1st_project_ws\1st_project_1\STM32F411RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="1st_project_1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: 1st_project_1.elf
+ 
+arm-none-eabi-size  1st_project_1.elf 
+arm-none-eabi-objdump -h -S 1st_project_1.elf  > "1st_project_1.list"
+   text	   data	    bss	    dec	    hex	filename
+  36620	    128	   4936	  41684	   a2d4	1st_project_1.elf
+Finished building: default.size.stdout
+ 
+Finished building: 1st_project_1.list
+ 
+16:23:48 **** Incremental Build of configuration Debug for project 1st_project_1 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "1st_project_1.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\aiot24_\STM32CubeIDE\1st_project_ws\1st_project_1\STM32F411RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="1st_project_1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: 1st_project_1.elf
+ 
+arm-none-eabi-size  1st_project_1.elf 
+arm-none-eabi-objdump -h -S 1st_project_1.elf  > "1st_project_1.list"
+   text	   data	    bss	    dec	    hex	filename
+  36808	    128	   4936	  41872	   a390	1st_project_1.elf
+Finished building: default.size.stdout
+ 
+Finished building: 1st_project_1.list
+ 
+16:28:15 **** Incremental Build of configuration Debug for project 1st_project_1 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "1st_project_1.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\aiot24_\STM32CubeIDE\1st_project_ws\1st_project_1\STM32F411RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="1st_project_1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: 1st_project_1.elf
+ 
+arm-none-eabi-size  1st_project_1.elf 
+arm-none-eabi-objdump -h -S 1st_project_1.elf  > "1st_project_1.list"
+   text	   data	    bss	    dec	    hex	filename
+  36852	    128	   4936	  41916	   a3bc	1st_project_1.elf
+Finished building: default.size.stdout
+ 
+Finished building: 1st_project_1.list
+ 
+16:48:54 **** Incremental Build of configuration Debug for project 1st_project_1 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "1st_project_1.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\aiot24_\STM32CubeIDE\1st_project_ws\1st_project_1\STM32F411RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="1st_project_1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: 1st_project_1.elf
+ 
+arm-none-eabi-size  1st_project_1.elf 
+arm-none-eabi-objdump -h -S 1st_project_1.elf  > "1st_project_1.list"
+   text	   data	    bss	    dec	    hex	filename
+  36268	    128	   4888	  41284	   a144	1st_project_1.elf
+Finished building: default.size.stdout
+ 
+Finished building: 1st_project_1.list
+ 
+16:53:32 **** Incremental Build of configuration Debug for project 1st_project_1 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:215:32: warning: too many arguments for format [-Wformat-extra-args]
+  215 |                         printf("strBuff = &s\r\n",strBuff);
+      |                                ^~~~~~~~~~~~~~~~~~
+arm-none-eabi-gcc -o "1st_project_1.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\aiot24_\STM32CubeIDE\1st_project_ws\1st_project_1\STM32F411RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="1st_project_1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: 1st_project_1.elf
+ 
+arm-none-eabi-size  1st_project_1.elf 
+arm-none-eabi-objdump -h -S 1st_project_1.elf  > "1st_project_1.list"
+   text	   data	    bss	    dec	    hex	filename
+  36880	    128	   4936	  41944	   a3d8	1st_project_1.elf
+Finished building: default.size.stdout
+ 
+Finished building: 1st_project_1.list
+ 
+16:53:44 **** Incremental Build of configuration Debug for project 1st_project_1 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "1st_project_1.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\aiot24_\STM32CubeIDE\1st_project_ws\1st_project_1\STM32F411RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="1st_project_1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: 1st_project_1.elf
+ 
+arm-none-eabi-size  1st_project_1.elf 
+arm-none-eabi-objdump -h -S 1st_project_1.elf  > "1st_project_1.list"
+   text	   data	    bss	    dec	    hex	filename
+  36880	    128	   4936	  41944	   a3d8	1st_project_1.elf
+Finished building: default.size.stdout
+ 
+Finished building: 1st_project_1.list
+ 
+16:59:01 **** Incremental Build of configuration Debug for project 1st_project_1 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "1st_project_1.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\aiot24_\STM32CubeIDE\1st_project_ws\1st_project_1\STM32F411RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="1st_project_1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: 1st_project_1.elf
+ 
+arm-none-eabi-size  1st_project_1.elf 
+arm-none-eabi-objdump -h -S 1st_project_1.elf  > "1st_project_1.list"
+   text	   data	    bss	    dec	    hex	filename
+  37012	    128	   4936	  42076	   a45c	1st_project_1.elf
+Finished building: default.size.stdout
+ 
+Finished building: 1st_project_1.list
+ 
+17:01:50 **** Incremental Build of configuration Debug for project 1st_project_1 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:208:36: error: 'cb_data' undeclared (first use in this function); did you mean 'cb_data_t'?
+  208 |                 if (strstr((char*) cb_data.buf, "+IPD")
+      |                                    ^~~~~~~
+      |                                    cb_data_t
+../Core/Src/main.c:208:36: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/main.c:217:21: error: 'rx2Flag' undeclared (first use in this function)
+  217 |                 if (rx2Flag) {
+      |                     ^~~~~~~
+../Core/Src/main.c:218:50: error: 'rx2Data' undeclared (first use in this function)
+  218 |                         printf("recv2 : %s\r\n", rx2Data);
+      |                                                  ^~~~~~~
+../Core/Src/main.c: In function 'esp_event':
+../Core/Src/main.c:791:34: error: 'cb_data' undeclared (first use in this function); did you mean 'cb_data_t'?
+  791 |         char* p = strchr((char*) cb_data.buf, '[');
+      |                                  ^~~~~~~
+      |                                  cb_data_t
+../Core/Src/main.c: In function 'esp_init':
+../Core/Src/main.c:840:28: error: 'cb_data' undeclared (first use in this function); did you mean 'cb_data_t'?
+  840 |         if (strstr((char*) cb_data.buf, "+IPD")
+      |                            ^~~~~~~
+      |                            cb_data_t
+../Core/Src/main.c:848:13: error: 'rx2Flag' undeclared (first use in this function)
+  848 |         if (rx2Flag) {
+      |             ^~~~~~~
+../Core/Src/main.c:849:42: error: 'rx2Data' undeclared (first use in this function)
+  849 |                 printf("recv2 : %s\r\n", rx2Data);
+      |                                          ^~~~~~~
+make: *** [Core/Src/subdir.mk:46: Core/Src/main.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+17:02:09 **** Incremental Build of configuration Debug for project 1st_project_1 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:208:36: error: 'cb_data' undeclared (first use in this function); did you mean 'cb_data_t'?
+  208 |                 if (strstr((char*) cb_data.buf, "+IPD")
+      |                                    ^~~~~~~
+      |                                    cb_data_t
+../Core/Src/main.c:208:36: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/main.c:217:21: error: 'rx2Flag' undeclared (first use in this function)
+  217 |                 if (rx2Flag) {
+      |                     ^~~~~~~
+../Core/Src/main.c:218:50: error: 'rx2Data' undeclared (first use in this function)
+  218 |                         printf("recv2 : %s\r\n", rx2Data);
+      |                                                  ^~~~~~~
+../Core/Src/main.c: In function 'esp_event':
+../Core/Src/main.c:791:34: error: 'cb_data' undeclared (first use in this function); did you mean 'cb_data_t'?
+  791 |         char* p = strchr((char*) cb_data.buf, '[');
+      |                                  ^~~~~~~
+      |                                  cb_data_t
+../Core/Src/main.c: In function 'esp_init':
+../Core/Src/main.c:840:28: error: 'cb_data' undeclared (first use in this function); did you mean 'cb_data_t'?
+  840 |         if (strstr((char*) cb_data.buf, "+IPD")
+      |                            ^~~~~~~
+      |                            cb_data_t
+../Core/Src/main.c:848:13: error: 'rx2Flag' undeclared (first use in this function)
+  848 |         if (rx2Flag) {
+      |             ^~~~~~~
+../Core/Src/main.c:849:42: error: 'rx2Data' undeclared (first use in this function)
+  849 |                 printf("recv2 : %s\r\n", rx2Data);
+      |                                          ^~~~~~~
+make: *** [Core/Src/subdir.mk:46: Core/Src/main.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+17:02:55 **** Incremental Build of configuration Debug for project 1st_project_1 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "1st_project_1.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\aiot24_\STM32CubeIDE\1st_project_ws\1st_project_1\STM32F411RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="1st_project_1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: 1st_project_1.elf
+ 
+arm-none-eabi-size  1st_project_1.elf 
+arm-none-eabi-objdump -h -S 1st_project_1.elf  > "1st_project_1.list"
+   text	   data	    bss	    dec	    hex	filename
+  37012	    128	   4936	  42076	   a45c	1st_project_1.elf
+Finished building: default.size.stdout
+ 
+Finished building: 1st_project_1.list
+ 
+17:03:36 **** Incremental Build of configuration Debug for project 1st_project_1 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "1st_project_1.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\aiot24_\STM32CubeIDE\1st_project_ws\1st_project_1\STM32F411RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="1st_project_1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: 1st_project_1.elf
+ 
+arm-none-eabi-size  1st_project_1.elf 
+arm-none-eabi-objdump -h -S 1st_project_1.elf  > "1st_project_1.list"
+   text	   data	    bss	    dec	    hex	filename
+  37044	    128	   4936	  42108	   a47c	1st_project_1.elf
+Finished building: default.size.stdout
+ 
+Finished building: 1st_project_1.list
+ 
+17:06:28 **** Incremental Build of configuration Debug for project 1st_project_1 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "1st_project_1.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\aiot24_\STM32CubeIDE\1st_project_ws\1st_project_1\STM32F411RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="1st_project_1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: 1st_project_1.elf
+ 
+arm-none-eabi-size  1st_project_1.elf 
+arm-none-eabi-objdump -h -S 1st_project_1.elf  > "1st_project_1.list"
+   text	   data	    bss	    dec	    hex	filename
+  37120	    128	   4872	  42120	   a488	1st_project_1.elf
+Finished building: default.size.stdout
+ 
+Finished building: 1st_project_1.list
+ 
+17:08:08 **** Incremental Build of configuration Debug for project 1st_project_1 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "1st_project_1.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\aiot24_\STM32CubeIDE\1st_project_ws\1st_project_1\STM32F411RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="1st_project_1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: 1st_project_1.elf
+ 
+arm-none-eabi-size  1st_project_1.elf 
+arm-none-eabi-objdump -h -S 1st_project_1.elf  > "1st_project_1.list"
+   text	   data	    bss	    dec	    hex	filename
+  37044	    128	   4936	  42108	   a47c	1st_project_1.elf
+Finished building: default.size.stdout
+ 
+Finished building: 1st_project_1.list
+ 
+17:09:13 **** Incremental Build of configuration Debug for project 1st_project_1 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "1st_project_1.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\aiot24_\STM32CubeIDE\1st_project_ws\1st_project_1\STM32F411RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="1st_project_1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: 1st_project_1.elf
+ 
+arm-none-eabi-size  1st_project_1.elf 
+arm-none-eabi-objdump -h -S 1st_project_1.elf  > "1st_project_1.list"
+   text	   data	    bss	    dec	    hex	filename
+  36880	    128	   4936	  41944	   a3d8	1st_project_1.elf
+Finished building: default.size.stdout
+ 
+Finished building: 1st_project_1.list
+ 
+17:12:00 **** Incremental Build of configuration Debug for project 1st_project_1 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "1st_project_1.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\aiot24_\STM32CubeIDE\1st_project_ws\1st_project_1\STM32F411RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="1st_project_1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: 1st_project_1.elf
+ 
+arm-none-eabi-size  1st_project_1.elf 
+arm-none-eabi-objdump -h -S 1st_project_1.elf  > "1st_project_1.list"
+   text	   data	    bss	    dec	    hex	filename
+  36880	    128	   4936	  41944	   a3d8	1st_project_1.elf
+Finished building: default.size.stdout
+ 
+Finished building: 1st_project_1.list
+ 
+17:13:47 **** Incremental Build of configuration Debug for project 1st_project_1 ****
+make -j8 all 
+arm-none-eabi-size  1st_project_1.elf 
+   text	   data	    bss	    dec	    hex	filename
+  36880	    128	   4936	  41944	   a3d8	1st_project_1.elf
+Finished building: default.size.stdout
+ 
+17:19:51 **** Incremental Build of configuration Debug for project 1st_project_1 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "1st_project_1.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\aiot24_\STM32CubeIDE\1st_project_ws\1st_project_1\STM32F411RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="1st_project_1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: 1st_project_1.elf
+ 
+arm-none-eabi-size  1st_project_1.elf 
+arm-none-eabi-objdump -h -S 1st_project_1.elf  > "1st_project_1.list"
+   text	   data	    bss	    dec	    hex	filename
+  36880	    128	   4936	  41944	   a3d8	1st_project_1.elf
+Finished building: default.size.stdout
+ 
+Finished building: 1st_project_1.list
+ 
+17:23:06 **** Incremental Build of configuration Debug for project 1st_project_1 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "1st_project_1.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\aiot24_\STM32CubeIDE\1st_project_ws\1st_project_1\STM32F411RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="1st_project_1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: 1st_project_1.elf
+ 
+arm-none-eabi-size  1st_project_1.elf 
+arm-none-eabi-objdump -h -S 1st_project_1.elf  > "1st_project_1.list"
+   text	   data	    bss	    dec	    hex	filename
+  36988	    128	   4936	  42052	   a444	1st_project_1.elf
+Finished building: default.size.stdout
+ 
+Finished building: 1st_project_1.list
+ 
+17:24:45 **** Incremental Build of configuration Debug for project 1st_project_1 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "1st_project_1.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\aiot24_\STM32CubeIDE\1st_project_ws\1st_project_1\STM32F411RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="1st_project_1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: 1st_project_1.elf
+ 
+arm-none-eabi-size  1st_project_1.elf 
+arm-none-eabi-objdump -h -S 1st_project_1.elf  > "1st_project_1.list"
+   text	   data	    bss	    dec	    hex	filename
+  36880	    128	   4936	  41944	   a3d8	1st_project_1.elf
+Finished building: default.size.stdout
+ 
+Finished building: 1st_project_1.list
+ 
+17:35:14 **** Incremental Build of configuration Debug for project 1st_project_1 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "1st_project_1.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\aiot24_\STM32CubeIDE\1st_project_ws\1st_project_1\STM32F411RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="1st_project_1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: 1st_project_1.elf
+ 
+arm-none-eabi-size  1st_project_1.elf 
+arm-none-eabi-objdump -h -S 1st_project_1.elf  > "1st_project_1.list"
+   text	   data	    bss	    dec	    hex	filename
+  37016	    128	   4936	  42080	   a460	1st_project_1.elf
+Finished building: default.size.stdout
+ 
+Finished building: 1st_project_1.list
+ 
+17:39:58 **** Incremental Build of configuration Debug for project 1st_project_1 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "1st_project_1.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\aiot24_\STM32CubeIDE\1st_project_ws\1st_project_1\STM32F411RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="1st_project_1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: 1st_project_1.elf
+ 
+arm-none-eabi-size  1st_project_1.elf 
+arm-none-eabi-objdump -h -S 1st_project_1.elf  > "1st_project_1.list"
+   text	   data	    bss	    dec	    hex	filename
+  37612	    128	   4936	  42676	   a6b4	1st_project_1.elf
+Finished building: default.size.stdout
+ 
+Finished building: 1st_project_1.list
+ 
+17:54:14 **** Incremental Build of configuration Debug for project 1st_project_1 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "1st_project_1.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\aiot24_\STM32CubeIDE\1st_project_ws\1st_project_1\STM32F411RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="1st_project_1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: 1st_project_1.elf
+ 
+arm-none-eabi-size  1st_project_1.elf 
+arm-none-eabi-objdump -h -S 1st_project_1.elf  > "1st_project_1.list"
+   text	   data	    bss	    dec	    hex	filename
+  37612	    128	   4936	  42676	   a6b4	1st_project_1.elf
+Finished building: default.size.stdout
+ 
+Finished building: 1st_project_1.list
+ 
+18:05:21 **** Incremental Build of configuration Debug for project 1st_project_1 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/esp.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/esp.d" -MT"Core/Src/esp.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/esp.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "1st_project_1.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\aiot24_\STM32CubeIDE\1st_project_ws\1st_project_1\STM32F411RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="1st_project_1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: 1st_project_1.elf
+ 
+arm-none-eabi-size  1st_project_1.elf 
+arm-none-eabi-objdump -h -S 1st_project_1.elf  > "1st_project_1.list"
+   text	   data	    bss	    dec	    hex	filename
+  37612	    128	   4936	  42676	   a6b4	1st_project_1.elf
+Finished building: default.size.stdout
+ 
+Finished building: 1st_project_1.list
+ 
+18:12:40 **** Incremental Build of configuration Debug for project 1st_project_1 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "1st_project_1.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\aiot24_\STM32CubeIDE\1st_project_ws\1st_project_1\STM32F411RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="1st_project_1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: 1st_project_1.elf
+ 
+arm-none-eabi-size  1st_project_1.elf 
+arm-none-eabi-objdump -h -S 1st_project_1.elf  > "1st_project_1.list"
+   text	   data	    bss	    dec	    hex	filename
+  37580	    128	   4936	  42644	   a694	1st_project_1.elf
+Finished building: default.size.stdout
+ 
+Finished building: 1st_project_1.list
+ 
+18:47:01 **** Incremental Build of configuration Debug for project 1st_project_1 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "1st_project_1.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\aiot24_\STM32CubeIDE\1st_project_ws\1st_project_1\STM32F411RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="1st_project_1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: 1st_project_1.elf
+ 
+arm-none-eabi-size  1st_project_1.elf 
+arm-none-eabi-objdump -h -S 1st_project_1.elf  > "1st_project_1.list"
+   text	   data	    bss	    dec	    hex	filename
+  37612	    128	   4936	  42676	   a6b4	1st_project_1.elf
+Finished building: default.size.stdout
+ 
+Finished building: 1st_project_1.list
+ 
+19:00:45 **** Incremental Build of configuration Debug for project 1st_project_1 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "1st_project_1.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\aiot24_\STM32CubeIDE\1st_project_ws\1st_project_1\STM32F411RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="1st_project_1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: 1st_project_1.elf
+ 
+arm-none-eabi-size  1st_project_1.elf 
+arm-none-eabi-objdump -h -S 1st_project_1.elf  > "1st_project_1.list"
+   text	   data	    bss	    dec	    hex	filename
+  37504	    128	   4936	  42568	   a648	1st_project_1.elf
+Finished building: default.size.stdout
+ 
+Finished building: 1st_project_1.list
+ 
+19:04:09 **** Incremental Build of configuration Debug for project 1st_project_1 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "1st_project_1.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\aiot24_\STM32CubeIDE\1st_project_ws\1st_project_1\STM32F411RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="1st_project_1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: 1st_project_1.elf
+ 
+arm-none-eabi-size  1st_project_1.elf 
+arm-none-eabi-objdump -h -S 1st_project_1.elf  > "1st_project_1.list"
+   text	   data	    bss	    dec	    hex	filename
+  37528	    128	   4936	  42592	   a660	1st_project_1.elf
+Finished building: default.size.stdout
+ 
+Finished building: 1st_project_1.list
+ 
+19:05:37 **** Incremental Build of configuration Debug for project 1st_project_1 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "1st_project_1.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\aiot24_\STM32CubeIDE\1st_project_ws\1st_project_1\STM32F411RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="1st_project_1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: 1st_project_1.elf
+ 
+arm-none-eabi-size  1st_project_1.elf 
+arm-none-eabi-objdump -h -S 1st_project_1.elf  > "1st_project_1.list"
+   text	   data	    bss	    dec	    hex	filename
+  37500	    128	   4936	  42564	   a644	1st_project_1.elf
+Finished building: default.size.stdout
+ 
+Finished building: 1st_project_1.list
+ 
+19:07:39 **** Incremental Build of configuration Debug for project 1st_project_1 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "1st_project_1.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\aiot24_\STM32CubeIDE\1st_project_ws\1st_project_1\STM32F411RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="1st_project_1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: 1st_project_1.elf
+ 
+arm-none-eabi-size  1st_project_1.elf 
+arm-none-eabi-objdump -h -S 1st_project_1.elf  > "1st_project_1.list"
+   text	   data	    bss	    dec	    hex	filename
+  37504	    128	   4936	  42568	   a648	1st_project_1.elf
+Finished building: default.size.stdout
+ 
+Finished building: 1st_project_1.list
+ 
+19:14:25 **** Incremental Build of configuration Debug for project 1st_project_1 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "1st_project_1.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\aiot24_\STM32CubeIDE\1st_project_ws\1st_project_1\STM32F411RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="1st_project_1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: 1st_project_1.elf
+ 
+arm-none-eabi-size  1st_project_1.elf 
+arm-none-eabi-objdump -h -S 1st_project_1.elf  > "1st_project_1.list"
+   text	   data	    bss	    dec	    hex	filename
+  37512	    128	   4936	  42576	   a650	1st_project_1.elf
+Finished building: default.size.stdout
+ 
+Finished building: 1st_project_1.list
+ 
+19:17:37 **** Incremental Build of configuration Debug for project 1st_project_1 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "1st_project_1.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\aiot24_\STM32CubeIDE\1st_project_ws\1st_project_1\STM32F411RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="1st_project_1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: 1st_project_1.elf
+ 
+arm-none-eabi-size  1st_project_1.elf 
+arm-none-eabi-objdump -h -S 1st_project_1.elf  > "1st_project_1.list"
+   text	   data	    bss	    dec	    hex	filename
+  37512	    128	   4936	  42576	   a650	1st_project_1.elf
+Finished building: default.size.stdout
+ 
+Finished building: 1st_project_1.list
+ 
+19:21:17 **** Incremental Build of configuration Debug for project 1st_project_1 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "1st_project_1.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\aiot24_\STM32CubeIDE\1st_project_ws\1st_project_1\STM32F411RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="1st_project_1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: 1st_project_1.elf
+ 
+arm-none-eabi-size  1st_project_1.elf 
+arm-none-eabi-objdump -h -S 1st_project_1.elf  > "1st_project_1.list"
+   text	   data	    bss	    dec	    hex	filename
+  37512	    128	   4936	  42576	   a650	1st_project_1.elf
+Finished building: default.size.stdout
+ 
+Finished building: 1st_project_1.list
+ 
+19:28:08 **** Incremental Build of configuration Debug for project 1st_project_1 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "1st_project_1.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\aiot24_\STM32CubeIDE\1st_project_ws\1st_project_1\STM32F411RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="1st_project_1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: 1st_project_1.elf
+ 
+arm-none-eabi-size  1st_project_1.elf 
+arm-none-eabi-objdump -h -S 1st_project_1.elf  > "1st_project_1.list"
+   text	   data	    bss	    dec	    hex	filename
+  37504	    128	   4936	  42568	   a648	1st_project_1.elf
+Finished building: default.size.stdout
+ 
+Finished building: 1st_project_1.list
+ 
+19:38:34 **** Incremental Build of configuration Debug for project 1st_project_1 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "1st_project_1.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\aiot24_\STM32CubeIDE\1st_project_ws\1st_project_1\STM32F411RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="1st_project_1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: 1st_project_1.elf
+ 
+arm-none-eabi-size  1st_project_1.elf 
+arm-none-eabi-objdump -h -S 1st_project_1.elf  > "1st_project_1.list"
+   text	   data	    bss	    dec	    hex	filename
+  37552	    128	   4936	  42616	   a678	1st_project_1.elf
+Finished building: default.size.stdout
+ 
+Finished building: 1st_project_1.list
+ 
+19:44:07 **** Incremental Build of configuration Debug for project 1st_project_1 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "1st_project_1.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\aiot24_\STM32CubeIDE\1st_project_ws\1st_project_1\STM32F411RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="1st_project_1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: 1st_project_1.elf
+ 
+arm-none-eabi-size  1st_project_1.elf 
+arm-none-eabi-objdump -h -S 1st_project_1.elf  > "1st_project_1.list"
+   text	   data	    bss	    dec	    hex	filename
+  37552	    128	   4912	  42592	   a660	1st_project_1.elf
+Finished building: default.size.stdout
+ 
+Finished building: 1st_project_1.list
+ 
+19:44:18 **** Incremental Build of configuration Debug for project 1st_project_1 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'esp_event':
+../Core/Src/main.c:773:20: error: expected expression before '{' token
+  773 | *pArray[ARR_CNT] = { 0 };
+      |                    ^
+../Core/Src/main.c:774:33: error: expected expression before '{' token
+  774 | sendBuf[MAX_UART_COMMAND_LEN] = { 0 };
+      |                                 ^
+make: *** [Core/Src/subdir.mk:46: Core/Src/main.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+19:44:22 **** Incremental Build of configuration Debug for project 1st_project_1 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'esp_event':
+../Core/Src/main.c:773:20: error: expected expression before '{' token
+  773 | *pArray[ARR_CNT] = { 0 };
+      |                    ^
+../Core/Src/main.c:774:33: error: expected expression before '{' token
+  774 | sendBuf[MAX_UART_COMMAND_LEN] = { 0 };
+      |                                 ^
+make: *** [Core/Src/subdir.mk:46: Core/Src/main.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+19:44:47 **** Incremental Build of configuration Debug for project 1st_project_1 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'esp_event':
+../Core/Src/main.c:773:27: error: expected expression before '{' token
+  773 |         pArray[ARR_CNT] = {0};
+      |                           ^
+../Core/Src/main.c:774:41: error: expected expression before '{' token
+  774 |         sendBuf[MAX_UART_COMMAND_LEN] = {0};
+      |                                         ^
+make: *** [Core/Src/subdir.mk:46: Core/Src/main.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+19:46:15 **** Incremental Build of configuration Debug for project 1st_project_1 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'room_status_set':
+../Core/Src/main.c:692:41: error: 'sendBuf' undeclared (first use in this function)
+  692 |                                 sprintf(sendBuf, "[PRJ_SQL]SETROOM@%s@IN\n", USER_ID);
+      |                                         ^~~~~~~
+../Core/Src/main.c:692:41: note: each undeclared identifier is reported only once for each function it appears in
+make: *** [Core/Src/subdir.mk:46: Core/Src/main.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+19:46:31 **** Incremental Build of configuration Debug for project 1st_project_1 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "1st_project_1.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\aiot24_\STM32CubeIDE\1st_project_ws\1st_project_1\STM32F411RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="1st_project_1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: 1st_project_1.elf
+ 
+arm-none-eabi-size  1st_project_1.elf 
+arm-none-eabi-objdump -h -S 1st_project_1.elf  > "1st_project_1.list"
+   text	   data	    bss	    dec	    hex	filename
+  36920	    128	   4792	  41840	   a370	1st_project_1.elf
+Finished building: default.size.stdout
+ 
+Finished building: 1st_project_1.list
+ 
+20:01:55 **** Incremental Build of configuration Debug for project 1st_project_1 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "1st_project_1.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\aiot24_\STM32CubeIDE\1st_project_ws\1st_project_1\STM32F411RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="1st_project_1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: 1st_project_1.elf
+ 
+arm-none-eabi-size  1st_project_1.elf 
+arm-none-eabi-objdump -h -S 1st_project_1.elf  > "1st_project_1.list"
+   text	   data	    bss	    dec	    hex	filename
+  37560	    128	   4920	  42608	   a670	1st_project_1.elf
+Finished building: default.size.stdout
+ 
+Finished building: 1st_project_1.list
+ 
+20:02:11 **** Incremental Build of configuration Debug for project 1st_project_1 ****
+make -j8 all 
+arm-none-eabi-size  1st_project_1.elf 
+   text	   data	    bss	    dec	    hex	filename
+  37560	    128	   4920	  42608	   a670	1st_project_1.elf
+Finished building: default.size.stdout
+ 
+20:14:38 **** Incremental Build of configuration Debug for project 1st_project_1 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'esp_event':
+../Core/Src/main.c:835:50: warning: too many arguments for format [-Wformat-extra-args]
+  835 |                                 sprintf(sendBuf, "[PRJ_SQL]%s@%s@IN\n", pppAAArray.ssetroom,
+      |                                                  ^~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:846:50: warning: too many arguments for format [-Wformat-extra-args]
+  846 |                                 sprintf(sendBuf, "[PRJ_SQL]%s@%s@IN\n", pppAAArray.ssetroom,
+      |                                                  ^~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:857:50: warning: too many arguments for format [-Wformat-extra-args]
+  857 |                                 sprintf(sendBuf, "[PRJ_SQL]%s@%s@IN\n", pppAAArray.ssetroom,
+      |                                                  ^~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:868:50: warning: too many arguments for format [-Wformat-extra-args]
+  868 |                                 sprintf(sendBuf, "[PRJ_SQL]%s@%s@IN\n", pppAAArray.ssetroom,
+      |                                                  ^~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:879:50: warning: too many arguments for format [-Wformat-extra-args]
+  879 |                                 sprintf(sendBuf, "[PRJ_SQL]%s@%s@IN\n", pppAAArray.ssetroom,
+      |                                                  ^~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:890:50: warning: too many arguments for format [-Wformat-extra-args]
+  890 |                                 sprintf(sendBuf, "[PRJ_SQL]%s@%s@IN\n", pppAAArray.ssetroom,
+      |                                                  ^~~~~~~~~~~~~~~~~~~~~
+arm-none-eabi-gcc -o "1st_project_1.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\aiot24_\STM32CubeIDE\1st_project_ws\1st_project_1\STM32F411RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="1st_project_1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: 1st_project_1.elf
+ 
+arm-none-eabi-size  1st_project_1.elf 
+arm-none-eabi-objdump -h -S 1st_project_1.elf  > "1st_project_1.list"
+   text	   data	    bss	    dec	    hex	filename
+  37532	    128	   4920	  42580	   a654	1st_project_1.elf
+Finished building: default.size.stdout
+ 
+Finished building: 1st_project_1.list
+ 
+20:17:16 **** Incremental Build of configuration Debug for project 1st_project_1 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'esp_event':
+../Core/Src/main.c:835:50: warning: too many arguments for format [-Wformat-extra-args]
+  835 |                                 sprintf(sendBuf, "[PRJ_SQL]%s@%s@IN\n", pppAAArray.ssetroom,
+      |                                                  ^~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:846:50: warning: too many arguments for format [-Wformat-extra-args]
+  846 |                                 sprintf(sendBuf, "[PRJ_SQL]%s@%s@IN\n", pppAAArray.ssetroom,
+      |                                                  ^~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:857:50: warning: too many arguments for format [-Wformat-extra-args]
+  857 |                                 sprintf(sendBuf, "[PRJ_SQL]%s@%s@IN\n", pppAAArray.ssetroom,
+      |                                                  ^~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:868:50: warning: too many arguments for format [-Wformat-extra-args]
+  868 |                                 sprintf(sendBuf, "[PRJ_SQL]%s@%s@IN\n", pppAAArray.ssetroom,
+      |                                                  ^~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:879:50: warning: too many arguments for format [-Wformat-extra-args]
+  879 |                                 sprintf(sendBuf, "[PRJ_SQL]%s@%s@IN\n", pppAAArray.ssetroom,
+      |                                                  ^~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:890:50: warning: too many arguments for format [-Wformat-extra-args]
+  890 |                                 sprintf(sendBuf, "[PRJ_SQL]%s@%s@IN\n", pppAAArray.ssetroom,
+      |                                                  ^~~~~~~~~~~~~~~~~~~~~
+arm-none-eabi-gcc -o "1st_project_1.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\aiot24_\STM32CubeIDE\1st_project_ws\1st_project_1\STM32F411RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="1st_project_1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: 1st_project_1.elf
+ 
+arm-none-eabi-size  1st_project_1.elf 
+arm-none-eabi-objdump -h -S 1st_project_1.elf  > "1st_project_1.list"
+   text	   data	    bss	    dec	    hex	filename
+  37532	    128	   4920	  42580	   a654	1st_project_1.elf
+Finished building: default.size.stdout
+ 
+Finished building: 1st_project_1.list
+ 
+20:20:25 **** Incremental Build of configuration Debug for project 1st_project_1 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'esp_event':
+../Core/Src/main.c:835:50: warning: too many arguments for format [-Wformat-extra-args]
+  835 |                                 sprintf(sendBuf, "[PRJ_SQL]%s@%s@IN\n", pppAAArray.ssetroom,
+      |                                                  ^~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:846:50: warning: too many arguments for format [-Wformat-extra-args]
+  846 |                                 sprintf(sendBuf, "[PRJ_SQL]%s@%s@IN\n", pppAAArray.ssetroom,
+      |                                                  ^~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:857:50: warning: too many arguments for format [-Wformat-extra-args]
+  857 |                                 sprintf(sendBuf, "[PRJ_SQL]%s@%s@IN\n", pppAAArray.ssetroom,
+      |                                                  ^~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:868:50: warning: too many arguments for format [-Wformat-extra-args]
+  868 |                                 sprintf(sendBuf, "[PRJ_SQL]%s@%s@IN\n", pppAAArray.ssetroom,
+      |                                                  ^~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:879:50: warning: too many arguments for format [-Wformat-extra-args]
+  879 |                                 sprintf(sendBuf, "[PRJ_SQL]%s@%s@IN\n", pppAAArray.ssetroom,
+      |                                                  ^~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:890:50: warning: too many arguments for format [-Wformat-extra-args]
+  890 |                                 sprintf(sendBuf, "[PRJ_SQL]%s@%s@IN\n", pppAAArray.ssetroom,
+      |                                                  ^~~~~~~~~~~~~~~~~~~~~
+arm-none-eabi-gcc -o "1st_project_1.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\aiot24_\STM32CubeIDE\1st_project_ws\1st_project_1\STM32F411RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="1st_project_1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: 1st_project_1.elf
+ 
+arm-none-eabi-size  1st_project_1.elf 
+arm-none-eabi-objdump -h -S 1st_project_1.elf  > "1st_project_1.list"
+   text	   data	    bss	    dec	    hex	filename
+  37736	    128	   4936	  42800	   a730	1st_project_1.elf
+Finished building: default.size.stdout
+ 
+Finished building: 1st_project_1.list
+ 
+20:21:38 **** Incremental Build of configuration Debug for project 1st_project_1 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'esp_event':
+../Core/Src/main.c:835:50: warning: too many arguments for format [-Wformat-extra-args]
+  835 |                                 sprintf(sendBuf, "[PRJ_SQL]%s@%s@IN\n", pppAAArray.ssetroom,
+      |                                                  ^~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:846:50: warning: too many arguments for format [-Wformat-extra-args]
+  846 |                                 sprintf(sendBuf, "[PRJ_SQL]%s@%s@IN\n", pppAAArray.ssetroom,
+      |                                                  ^~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:857:50: warning: too many arguments for format [-Wformat-extra-args]
+  857 |                                 sprintf(sendBuf, "[PRJ_SQL]%s@%s@IN\n", pppAAArray.ssetroom,
+      |                                                  ^~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:868:50: warning: too many arguments for format [-Wformat-extra-args]
+  868 |                                 sprintf(sendBuf, "[PRJ_SQL]%s@%s@IN\n", pppAAArray.ssetroom,
+      |                                                  ^~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:879:50: warning: too many arguments for format [-Wformat-extra-args]
+  879 |                                 sprintf(sendBuf, "[PRJ_SQL]%s@%s@IN\n", pppAAArray.ssetroom,
+      |                                                  ^~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:890:50: warning: too many arguments for format [-Wformat-extra-args]
+  890 |                                 sprintf(sendBuf, "[PRJ_SQL]%s@%s@IN\n", pppAAArray.ssetroom,
+      |                                                  ^~~~~~~~~~~~~~~~~~~~~
+arm-none-eabi-gcc -o "1st_project_1.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\aiot24_\STM32CubeIDE\1st_project_ws\1st_project_1\STM32F411RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="1st_project_1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: 1st_project_1.elf
+ 
+arm-none-eabi-size  1st_project_1.elf 
+arm-none-eabi-objdump -h -S 1st_project_1.elf  > "1st_project_1.list"
+   text	   data	    bss	    dec	    hex	filename
+  37736	    128	   4936	  42800	   a730	1st_project_1.elf
+Finished building: default.size.stdout
+ 
+Finished building: 1st_project_1.list
+ 
+20:23:43 **** Incremental Build of configuration Debug for project 1st_project_1 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'esp_event':
+../Core/Src/main.c:838:58: warning: too many arguments for format [-Wformat-extra-args]
+  838 |                                         sprintf(sendBuf, "[PRJ_SQL]%s@%s@IN\n", pppAAArray.ssetroom,
+      |                                                          ^~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:850:58: warning: too many arguments for format [-Wformat-extra-args]
+  850 |                                         sprintf(sendBuf, "[PRJ_SQL]%s@%s@IN\n", pppAAArray.ssetroom,
+      |                                                          ^~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:862:58: warning: too many arguments for format [-Wformat-extra-args]
+  862 |                                         sprintf(sendBuf, "[PRJ_SQL]%s@%s@IN\n", pppAAArray.ssetroom,
+      |                                                          ^~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:874:58: warning: too many arguments for format [-Wformat-extra-args]
+  874 |                                         sprintf(sendBuf, "[PRJ_SQL]%s@%s@IN\n", pppAAArray.ssetroom,
+      |                                                          ^~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:886:58: warning: too many arguments for format [-Wformat-extra-args]
+  886 |                                         sprintf(sendBuf, "[PRJ_SQL]%s@%s@IN\n", pppAAArray.ssetroom,
+      |                                                          ^~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:898:58: warning: too many arguments for format [-Wformat-extra-args]
+  898 |                                         sprintf(sendBuf, "[PRJ_SQL]%s@%s@IN\n", pppAAArray.ssetroom,
+      |                                                          ^~~~~~~~~~~~~~~~~~~~~
+arm-none-eabi-gcc -o "1st_project_1.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\aiot24_\STM32CubeIDE\1st_project_ws\1st_project_1\STM32F411RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="1st_project_1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: 1st_project_1.elf
+ 
+arm-none-eabi-size  1st_project_1.elf 
+arm-none-eabi-objdump -h -S 1st_project_1.elf  > "1st_project_1.list"
+   text	   data	    bss	    dec	    hex	filename
+  37608	    128	   4936	  42672	   a6b0	1st_project_1.elf
+Finished building: default.size.stdout
+ 
+Finished building: 1st_project_1.list
+ 
+20:38:23 **** Incremental Build of configuration Debug for project 1st_project_1 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'esp_event':
+../Core/Src/main.c:838:58: warning: too many arguments for format [-Wformat-extra-args]
+  838 |                                         sprintf(sendBuf, "[PRJ_SQL]%s@%s@IN\n", pppAAArray.ssetroom,
+      |                                                          ^~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:851:58: warning: too many arguments for format [-Wformat-extra-args]
+  851 |                                         sprintf(sendBuf, "[PRJ_SQL]%s@%s@IN\n", pppAAArray.ssetroom,
+      |                                                          ^~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:864:58: warning: too many arguments for format [-Wformat-extra-args]
+  864 |                                         sprintf(sendBuf, "[PRJ_SQL]%s@%s@IN\n", pppAAArray.ssetroom,
+      |                                                          ^~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:877:58: warning: too many arguments for format [-Wformat-extra-args]
+  877 |                                         sprintf(sendBuf, "[PRJ_SQL]%s@%s@IN\n", pppAAArray.ssetroom,
+      |                                                          ^~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:890:58: warning: too many arguments for format [-Wformat-extra-args]
+  890 |                                         sprintf(sendBuf, "[PRJ_SQL]%s@%s@IN\n", pppAAArray.ssetroom,
+      |                                                          ^~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:903:58: warning: too many arguments for format [-Wformat-extra-args]
+  903 |                                         sprintf(sendBuf, "[PRJ_SQL]%s@%s@IN\n", pppAAArray.ssetroom,
+      |                                                          ^~~~~~~~~~~~~~~~~~~~~
+arm-none-eabi-gcc -o "1st_project_1.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\aiot24_\STM32CubeIDE\1st_project_ws\1st_project_1\STM32F411RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="1st_project_1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: 1st_project_1.elf
+ 
+arm-none-eabi-size  1st_project_1.elf 
+arm-none-eabi-objdump -h -S 1st_project_1.elf  > "1st_project_1.list"
+   text	   data	    bss	    dec	    hex	filename
+  37672	    128	   4936	  42736	   a6f0	1st_project_1.elf
+Finished building: default.size.stdout
+ 
+Finished building: 1st_project_1.list
+ 
+20:41:10 **** Incremental Build of configuration Debug for project 1st_project_1 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "1st_project_1.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\aiot24_\STM32CubeIDE\1st_project_ws\1st_project_1\STM32F411RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="1st_project_1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: 1st_project_1.elf
+ 
+arm-none-eabi-size  1st_project_1.elf 
+arm-none-eabi-objdump -h -S 1st_project_1.elf  > "1st_project_1.list"
+   text	   data	    bss	    dec	    hex	filename
+  37672	    128	   4936	  42736	   a6f0	1st_project_1.elf
+Finished building: default.size.stdout
+ 
+Finished building: 1st_project_1.list
+ 
+20:45:09 **** Incremental Build of configuration Debug for project 1st_project_1 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "1st_project_1.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\aiot24_\STM32CubeIDE\1st_project_ws\1st_project_1\STM32F411RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="1st_project_1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: 1st_project_1.elf
+ 
+arm-none-eabi-size  1st_project_1.elf 
+arm-none-eabi-objdump -h -S 1st_project_1.elf  > "1st_project_1.list"
+   text	   data	    bss	    dec	    hex	filename
+  37684	    128	   4936	  42748	   a6fc	1st_project_1.elf
+Finished building: default.size.stdout
+ 
+Finished building: 1st_project_1.list
+ 
+20:49:54 **** Incremental Build of configuration Debug for project 1st_project_1 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "1st_project_1.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\aiot24_\STM32CubeIDE\1st_project_ws\1st_project_1\STM32F411RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="1st_project_1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: 1st_project_1.elf
+ 
+arm-none-eabi-size  1st_project_1.elf 
+arm-none-eabi-objdump -h -S 1st_project_1.elf  > "1st_project_1.list"
+   text	   data	    bss	    dec	    hex	filename
+  37704	    128	   4936	  42768	   a710	1st_project_1.elf
+Finished building: default.size.stdout
+ 
+Finished building: 1st_project_1.list
+ 
+20:53:15 **** Incremental Build of configuration Debug for project 1st_project_1 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "1st_project_1.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\aiot24_\STM32CubeIDE\1st_project_ws\1st_project_1\STM32F411RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="1st_project_1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: 1st_project_1.elf
+ 
+arm-none-eabi-size  1st_project_1.elf 
+arm-none-eabi-objdump -h -S 1st_project_1.elf  > "1st_project_1.list"
+   text	   data	    bss	    dec	    hex	filename
+  37704	    128	   4936	  42768	   a710	1st_project_1.elf
+Finished building: default.size.stdout
+ 
+Finished building: 1st_project_1.list
+ 
+20:57:09 **** Incremental Build of configuration Debug for project 1st_project_1 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'esp_event':
+../Core/Src/main.c:908:1: error: expected declaration or statement at end of input
+  908 | }
+      | ^
+../Core/Src/main.c: At top level:
+../Core/Src/main.c:905:6: warning: 'Error_Handler' defined but not used [-Wunused-function]
+  905 | void Error_Handler(void) {
+      |      ^~~~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:46: Core/Src/main.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+20:57:42 **** Incremental Build of configuration Debug for project 1st_project_1 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "1st_project_1.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\aiot24_\STM32CubeIDE\1st_project_ws\1st_project_1\STM32F411RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="1st_project_1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: 1st_project_1.elf
+ 
+arm-none-eabi-size  1st_project_1.elf 
+arm-none-eabi-objdump -h -S 1st_project_1.elf  > "1st_project_1.list"
+   text	   data	    bss	    dec	    hex	filename
+  37836	    128	   4936	  42900	   a794	1st_project_1.elf
+Finished building: default.size.stdout
+ 
+Finished building: 1st_project_1.list
+ 
+20:59:22 **** Incremental Build of configuration Debug for project 1st_project_1 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "1st_project_1.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\aiot24_\STM32CubeIDE\1st_project_ws\1st_project_1\STM32F411RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="1st_project_1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: 1st_project_1.elf
+ 
+arm-none-eabi-size  1st_project_1.elf 
+arm-none-eabi-objdump -h -S 1st_project_1.elf  > "1st_project_1.list"
+   text	   data	    bss	    dec	    hex	filename
+  37824	    128	   4936	  42888	   a788	1st_project_1.elf
+Finished building: default.size.stdout
+ 
+Finished building: 1st_project_1.list
+ 
+21:02:57 **** Incremental Build of configuration Debug for project 1st_project_1 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "1st_project_1.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\aiot24_\STM32CubeIDE\1st_project_ws\1st_project_1\STM32F411RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="1st_project_1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: 1st_project_1.elf
+ 
+arm-none-eabi-size  1st_project_1.elf 
+arm-none-eabi-objdump -h -S 1st_project_1.elf  > "1st_project_1.list"
+   text	   data	    bss	    dec	    hex	filename
+  37900	    128	   4936	  42964	   a7d4	1st_project_1.elf
+Finished building: default.size.stdout
+ 
+Finished building: 1st_project_1.list
+ 
+21:03:37 **** Incremental Build of configuration Debug for project 1st_project_1 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "1st_project_1.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\aiot24_\STM32CubeIDE\1st_project_ws\1st_project_1\STM32F411RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="1st_project_1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: 1st_project_1.elf
+ 
+arm-none-eabi-size  1st_project_1.elf 
+arm-none-eabi-objdump -h -S 1st_project_1.elf  > "1st_project_1.list"
+   text	   data	    bss	    dec	    hex	filename
+  37900	    128	   4936	  42964	   a7d4	1st_project_1.elf
+Finished building: default.size.stdout
+ 
+Finished building: 1st_project_1.list
+ 
+21:09:22 **** Incremental Build of configuration Debug for project 1st_project_1 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "1st_project_1.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\aiot24_\STM32CubeIDE\1st_project_ws\1st_project_1\STM32F411RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="1st_project_1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: 1st_project_1.elf
+ 
+arm-none-eabi-size  1st_project_1.elf 
+arm-none-eabi-objdump -h -S 1st_project_1.elf  > "1st_project_1.list"
+   text	   data	    bss	    dec	    hex	filename
+  37880	    128	   4936	  42944	   a7c0	1st_project_1.elf
+Finished building: default.size.stdout
+ 
+Finished building: 1st_project_1.list
+ 
+21:11:27 **** Incremental Build of configuration Debug for project 1st_project_1 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "1st_project_1.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\aiot24_\STM32CubeIDE\1st_project_ws\1st_project_1\STM32F411RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="1st_project_1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: 1st_project_1.elf
+ 
+arm-none-eabi-size  1st_project_1.elf 
+arm-none-eabi-objdump -h -S 1st_project_1.elf  > "1st_project_1.list"
+   text	   data	    bss	    dec	    hex	filename
+  37488	    128	   4936	  42552	   a638	1st_project_1.elf
+Finished building: default.size.stdout
+ 
+Finished building: 1st_project_1.list
+ 
