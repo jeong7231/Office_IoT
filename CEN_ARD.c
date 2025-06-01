@@ -1,179 +1,170 @@
-/*
- WiFiEsp test: ClientTest
-http://www.kccistc.net/
-작성일 : 2019.12.17 
-작성자 : IoT 임베디드 KSH
-*/
-#include <SoftwareSerial.h>
-#include <Wire.h>
-#include <LiquidCrystal_I2C.h>
-LiquidCrystal_I2C lcd(0x27, 10, 2);
+#include <SoftwareSerial.h>             // 블루투스 모듈과 통신하기 위한 라이브러리
+#include <Wire.h>                       // I2C 통신을 위한 기본 라이브러리
+#include <LiquidCrystal_I2C.h>          // I2C 방식 LCD 사용을 위한 라이브러리
 
-#define button_pin_2 10 // [CEN_ARD] > [KSH_LAB]로 DOOR@UNLOCK 명령어를 보내 문을 모두 열리게 할 버튼
-#define button_pin_1 9 // 부저 끌 버튼
-#define buzzer_pin 8 // 명령어 인식 시 울릴 부저         
-SoftwareSerial BTSerial(6, 7); // RX ==>BT:TXD, TX ==> BT:RXD
-#include "SoftwareSerial.h"
+LiquidCrystal_I2C lcd(0x27, 16, 2);     // LCD 객체 생성, 주소 0x27, 16x2 사이즈
 
-// 데이터 및 버퍼 설정
-#define CMD_SIZE 50          // 명령어 최대 크기
-#define ARR_CNT 5            // 명령어 구분용 토큰 최대 개수
+// 핀 번호 정의
+#define button_pin_2 10                 // 버튼 2 핀: ALL ROOM UNLOCK 명령 전송용
+#define button_pin_1 9                  // 버튼 1 핀: EXIT 표시 및 BUZZER OFF 용
+#define buzzer_pin 8                    // 부저 출력 핀
 
-#define DEBUG
-char lcdLine1[17] = "";
-char lcdLine2[17] = "";
-char sendBuf[CMD_SIZE];
-char recvId[10] = "KSH_CEN";  // 데이터를 보낼 때 ID 
+SoftwareSerial BTSerial(6, 7);          // 블루투스 시리얼 통신: D6(RX), D7(TX)
 
+#define CMD_SIZE 50                     // 전송/수신 명령어 최대 크기
+#define ARR_CNT 5                       // 명령어 파싱 시 최대 토큰 수
 
+char recvBuf[50];
+int idx = 0;
+char sendBuf[CMD_SIZE];                 // 전송할 문자열 버퍼
+char recvId[10] = "PRJ_CEN";            // 이 장치의 ID (송수신 구분용)
+
+// 상태 변수: LCD 토글 상태 기억용
+bool isExitMode = false;                // EXIT 모드 여부
+bool isUnlockMode = false;             // UNLOCK 모드 여부
+
+// 버튼 상태 추적 변수 (이전 상태 저장용)
+bool button1Prev = HIGH;
+bool button2Prev = HIGH;
+
+// 디바운싱을 위한 시간 변수
+unsigned long lastDebounceTime1 = 0;
+unsigned long lastDebounceTime2 = 0;
+const unsigned long debounceDelay = 50; // 50ms 이상 눌림 유지되어야 유효
+
+// 버튼 누른 횟수 카운터
+int button1Count = 0;
+int button2Count = 0;
 
 void setup() {
-  #ifdef DEBUG
-  Serial.begin(115200);  // PC 시리얼 통신 초기화
-#endif
-  lcd.init();            // LCD 초기화
-  lcd.backlight();       // LCD 백라이트 켜기
-  lcdDisplay(0, 0, lcdLine1); // 1번째 줄 표시
-  lcdDisplay(0, 1, lcdLine2); // 2번째 줄 비우기
-    
-    pinMode(button_pin_1, INPUT); // 버튼 1(부저 OFF)
-    pinMode(button_pin_2, INPUT); // 버튼 2(LAB DOOR UNLOCK)
-    pinMode(buzzer_pin, OUTPUT); // LAB에서 침입 명령어 받을 시 울리는 부저
+  Serial.begin(115200);                // 시리얼 모니터 통신 속도 설정
+  lcd.init();                          // LCD 초기화
+  lcd.backlight();                     // LCD 백라이트 켜기
+  lcd.clear();                         // LCD 초기화 (화면 지우기)
 
-    lcd.init();                      // LCD 초기화
-    lcd.backlight();                 // 백라이트 조명 활성화
-    BTSerial.begin(9600); // 블루투스 시리얼 통신 시작
-    
+  pinMode(button_pin_1, INPUT_PULLUP); // 버튼 1: 내부 풀업 저항 사용
+  pinMode(button_pin_2, INPUT_PULLUP); // 버튼 2: 내부 풀업 저항 사용
+  pinMode(buzzer_pin, OUTPUT);         // 부저 핀 출력으로 설정
+
+  BTSerial.begin(9600);                // 블루투스 시리얼 시작 (9600 baud rate)
+
+  Serial.println("System Initialized"); // 초기화 메시지 출력
 }
 
 void loop() {
-  if (BTSerial.available())
-    bluetoothEvent();
+  if (BTSerial.available()) bluetoothEvent(); // 블루투스 수신 데이터 처리
+
+  // 현재 버튼 상태 읽기
+  bool button1Current = digitalRead(button_pin_1);
+  bool button2Current = digitalRead(button_pin_2);
+
+  // 버튼 1(9번 핀) 눌림 감지 + 디바운싱 + 토글 처리
+  if (button1Prev == HIGH && button1Current == LOW && (millis() - lastDebounceTime1) > debounceDelay) {
+    lastDebounceTime1 = millis();             // 마지막 눌림 시간 갱신
+    isExitMode = !isExitMode;                 // 상태 토글
+    button1Count++;                           // 눌린 횟수 증가
+    handleExitToggle(isExitMode);             // 동작 처리 함수 호출
+  }
+
+  // 버튼 2(10번 핀) 눌림 감지 + 디바운싱 + 토글 처리
+  if (button2Prev == HIGH && button2Current == LOW && (millis() - lastDebounceTime2) > debounceDelay) {
+    lastDebounceTime2 = millis();
+    isUnlockMode = !isUnlockMode;
+    button2Count++;
+    handleUnlockToggle(isUnlockMode);
+  }
+
+  // 버튼 이전 상태 업데이트 (다음 루프에서 비교용)
+  button1Prev = button1Current;
+  button2Prev = button2Current;
+
+  // PC → 블루투스로 문자 전달 (디버깅용)
+  if (Serial.available()) {
+    BTSerial.write(Serial.read());
+  }
 }
 
-// 서버에서 수신한 데이터 처리
-void bluetoothEvent()
-{
+// 버튼 1 토글 시 LCD 및 부저 제어
+void handleExitToggle(bool state) {
+  lcd.clear(); // LCD 초기화
+
+  if (state) {
+    digitalWrite(buzzer_pin, LOW);         // 부저 끄기
+    lcd.setCursor(0, 0); lcd.print("EXIT");// LCD 표시
+
+    Serial.println("[TOGGLE] EXIT ON");
+    Serial.print("EXIT Button Count: "); Serial.println(button1Count);
+    Serial.println("LCD State: EXIT");
+
+    sprintf(sendBuf, "[%s]BUZZER@OFF\n", recvId); // 명령 구성
+    BTSerial.write(sendBuf);                     // 블루투스로 전송
+  } else {
+    lcd.setCursor(0, 0); lcd.print("                "); // LCD 지우기
+    Serial.println("[TOGGLE] EXIT OFF");
+    Serial.print("EXIT Button Count: "); Serial.println(button1Count);
+    Serial.println("LCD State: CLEARED");
+  }
+}
+
+// 버튼 2 토글 시 LCD 및 블루투스 명령 전송
+void handleUnlockToggle(bool state) {
+  lcd.clear();
+
+  if (state) {
+    lcd.setCursor(0, 0); lcd.print("ALL ROOM UNLOCK");
+
+    Serial.println("[TOGGLE] ALL ROOM UNLOCK ON");
+    Serial.print("UNLOCK Button Count: "); Serial.println(button2Count);
+    Serial.println("LCD State: ALL ROOM UNLOCK");
+
+    sprintf(sendBuf, "[PRJ_LAB]ALL@ALL@UNLOCK\n");
+    BTSerial.write(sendBuf);
+    Serial.print("Send to SQL : "); Serial.println(sendBuf);
+  } else {
+    lcd.setCursor(0, 0); lcd.print("                ");
+    Serial.println("[TOGGLE] ALL ROOM UNLOCK OFF");
+    Serial.print("UNLOCK Button Count: "); Serial.println(button2Count);
+    Serial.println("LCD State: CLEARED");
+  }
+}
+
+// 블루투스로 수신된 데이터 처리 함수
+void bluetoothEvent() {
+  char* pToken;
+  char* pArray[ARR_CNT] = { 0 };       // 명령 파싱 결과 저장 배열
+  char recvBuf[CMD_SIZE] = { 0 };      // 수신된 원본 명령
   int i = 0;
-  char * pToken;
-  char * pArray[ARR_CNT] = {0};
-  char recvBuf[CMD_SIZE] = {0};
+
+  // 개행(\n)까지 수신 데이터를 recvBuf에 저장
   int len = BTSerial.readBytesUntil('\n', recvBuf, sizeof(recvBuf) - 1);
 
-#ifdef DEBUG
-  Serial.print("Recv : ");
-  Serial.println(recvBuf);
-#endif
+  Serial.print("Recv : "); Serial.println(recvBuf); // 수신 확인 출력
 
+  // 명령어를 "[@]" 기준으로 파싱
   pToken = strtok(recvBuf, "[@]");
-  while (pToken != NULL)
-  {
-    pArray[i] =  pToken;
-    if (++i >= ARR_CNT)
-      break;
+  while (pToken != NULL) {
+    pArray[i] = pToken;
+    if (++i >= ARR_CNT) break;
     pToken = strtok(NULL, "[@]");
   }
-  //recvBuf : [XXX_BTM]LED@ON
-  //pArray[0] = "XXX_LIN"   : 송신자 ID
-  //pArray[1] = "LED"
-  //pArray[2] = "ON"
-  //pArray[3] = 0x0
 
-  // [KSH_SQL] > [KSH_CEN] > [CEN_ARD]으로 부터 받은 [KSH_SQL]NAME@ROOM@UNLOCK or LOCK 데이터를 받아 LCD 출력
-  if(!strcmp(pArray[1], "101"))
-  {
-  lcd.clear();
-  lcd.setCursor(0,0);
-  lcd.print(pArray[1]); // ROOM1 번호
-  lcd.setCursor(5,0);
-  lcd.print(pArray[2]); // 이름
-  lcd.setCursor(10,0);
-  lcd.print(pArray[3]); // ROOM1 LOCK or UNLOCK
-  } else if(!strcmp(pArray[1], "102"))
-  {
-  lcd.setCursor(0,1);
-  lcd.print(pArray[1]); // ROOM2 번호
-  lcd.setCursor(5,1);
-  lcd.print(pArray[2]); // 이름2
-  lcd.setCursor(10,1);
-  lcd.print(pArray[3]); // ROOM2 LOCK or UNLOCK
-  }
-
-  /*if (!strcmp(pArray[2], "BUZZER")) { // 부저 제어
-    if (!strcmp(pArray[3], "ON")) {
-      digitalWrite(buzzer_pin, HIGH);
-      lcd.setCursor(0, 0);
-      lcd.print("DETECTED!!      ");  // 명령어를 받고 부저가 울릴 시 LCD 화면 내 "DETECTED!!" 표시(1열)
-      lcd.setCursor(0, 1);
-      lcd.print("DETECTED!!      ");  // 명령어를 받고 부저가 울릴 시 LCD 화면 내 "DETECTED!!" 표시(1열)
-      }
-    sprintf(sendBuf, "[%s]%s@%s@%s\n", pArray[0], pArray[1], pArray[2], pArray[3]);
-    // ex) [CEN_ARD(0)]NAME(1)@BUZZER(2)@ON(3) 명령어 인식 후 서버로 전달
-    BTSerial.write(sendBuf);                // 블루투스 송신
-  }*/
-
-  if ((strlen(pArray[1]) + strlen(pArray[2])) < 17)
-  {
-    sprintf(lcdLine2, "%s %s", pArray[1], pArray[2]);
-    lcdDisplay(0, 1, lcdLine2);
-  }
-   if (!strcmp(pArray[0], "CEN_ARD")) {
-    return ;
-   }
-  else if (!strncmp(pArray[1], " New", 4)) // New Connected
-  {
-    return ;
-  }
-  else if (!strncmp(pArray[1], " Alr", 4)) //Already logged
-  {
-    return ;
-  }
-  // [KSH_LAB] > [KSH_CEN] > [CEN_ARD]으로 부터 받은 [KSH_LAB]NAME@BUZZER@ON 명령어로 buzzer 제어
-  else if (!strcmp(pArray[2], "BUZZER")) { // 부저 제어
-    if (!strcmp(pArray[3], "ON")) {
-      digitalWrite(buzzer_pin, HIGH);
-      lcd.setCursor(0, 0);
-      lcd.print("DETECTED!!      ");  // 명령어를 받고 부저가 울릴 시 LCD 화면 내 "DETECTED!!" 표시(1열)
-      lcd.setCursor(0, 1);
-      lcd.print("DETECTED!!      ");  // 명령어를 받고 부저가 울릴 시 LCD 화면 내 "DETECTED!!" 표시(1열)
-      }
-    sprintf(sendBuf, "[%s]%s@%s@%s\n", pArray[0], pArray[1], pArray[2], pArray[3]);
-    // ex) [CEN_ARD(0)]NAME(1)@BUZZER(2)@ON(3) 명령어 인식 후 서버로 전달
-    BTSerial.write(sendBuf);                // 블루투스 송신
-  }
-}
-
-  int button_state = 0;
-  button_state = digitalRead(button_pin_1); // 부저 OFF를 작동할 button
-
-  if(button_state == 1)
-  {
-    digitalWrite(buzzer_pin, LOW);
-    lcd.print("EXIT             ");  // 버튼으로 부저가 종료 시 LCD 화면 내 "EXIT" 표시(1열) 
+  // 메시지 형식: [ID]ROOM@NAME@DOOR
+  // 예: [PRJ_LAB]101@홍길동@OPEN
+  if (i >= 4 && strlen(pArray[1]) > 0 && strlen(pArray[2]) > 0 && strlen(pArray[3]) > 0) {
+    lcd.clear();
     lcd.setCursor(0, 0);
-    printf("buzzer off");
-    sprintf(sendBuf, "[%s]BUZZER@%s\n", "revID", "OFF");
-    BTSerial.write(sendBuf);                // 블루투스 송신
+    lcd.print("Room: ");
+    lcd.print(pArray[1]);
+    lcd.setCursor(0, 1);
+    lcd.print(pArray[2]);
+    lcd.print(" ");
+    lcd.print(pArray[3]);
   }
 
-#ifdef DEBUG
-  // PC 시리얼 입력값 블루투스로 송신
-  if (Serial.available())
-    BTSerial.write(Serial.read());
-#endif
-
-#ifdef DEBUG
-  Serial.print("Send : ");
-  Serial.print(sendBuf);
-#endif
-  BTSerial.write(sendBuf);
-}
-
-void lcdDisplay(int x, int y, char * str) // LCD 구현
-{
-  int len = 17 - strlen(str);
-  lcd.setCursor(x, y);
-  lcd.print(str);
-  for (int i = len; i > 0; i--)
-    lcd.write(' ');
+  // BUZZER ON 명령 수신 시 처리
+  if (!strcmp(pArray[2], "BUZZER") && !strcmp(pArray[3], "ON")) {
+    digitalWrite(buzzer_pin, HIGH); // 부저 울림
+    lcd.setCursor(0, 0); lcd.print("DETECTED!!      ");
+    lcd.setCursor(0, 1); lcd.print("DETECTED!!      ");
+  }
 }
