@@ -3,9 +3,9 @@
 <250531>
 -bluetooth를 모듈을 통해 연결
 (아두이노 보드 부분)
--[PRJ_LAB]으로 부터 명령어가 들어오면 BUZZER ON, button_1 누르면 BUZZER OFF
+-[PRJ_STM]으로 부터 명령어가 들어오면 BUZZER ON, button_1 누르면 BUZZER OFF
 
--[PRJ_LAB]으로 부터 명령어가 들어오면 LCD 내 "DETECTED" 출력
+-[PRJ_STM]으로 부터 명령어가 들어오면 LCD 내 "DETECTED" 출력
 
 -[PRJ_SQL]에서 받은 ROOM,NAME,UNLOCK 상태를 LCD로 출력(진행중)
 
@@ -13,7 +13,7 @@
 (아두이노 보드 부분)
 -[PRJ_SQL]에서 받은 ROOM,NAME,UNLOCK 상태를 LCD로 출력
 
--button_2 누를 시 [PRJ_LAB]ROOM@NAME@DOOR 명령어 전송 및 LCD 화면 내 출력
+-button_2 누를 시 [PRJ_STM]ROOM@NAME@DOOR 명령어 전송 및 LCD 화면 내 출력
 
 (서버 추가)
 -[PRJ_SQL]에서 받은 방정보인 [ID]ROOM@NAME@DOOR를 SERVER로 보내 SERVER에서 5초 주기로 [PRJ_CEN] 클라이언트로 전송 후 그 정보를 블루투스 모듈을 통해 아두이노 보드에서 받아 LCD 출력
@@ -24,3 +24,6 @@
 
 (내일 두번째로 실행할 목록)
 - LAB에서 부저 신호 보내면 아두이노에서 부저 ON 실행되는거 확인
+
+<250602>
+
