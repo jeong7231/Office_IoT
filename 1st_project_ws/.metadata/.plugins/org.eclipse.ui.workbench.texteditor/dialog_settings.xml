@@ -1,24 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<item key="hasShownOverlayPopupBefore" value="true"/>
-	<item key="replaceBarOpen" value="true"/>
+	<item key="replaceBarOpen" value="false"/>
 	<list key="searchhistory">
-		<item value="esp_event"/>
+		<item value="door_state"/>
+		<item value="DOOR_SATE"/>
+		<item value="setroom@%s"/>
+		<item value="ROOM_NUMBER"/>
+		<item value="USER_ID"/>
+		<item value="nname"/>
+		<item value="int i = 0;"/>
+		<item value="recvBuf"/>
+		<item value="recv_buf"/>
 		<item value="JTY"/>
+		<item value="hal_gpio"/>
+		<item value="hal_gpi"/>
+		<item value="esp_event"/>
 		<item value="JTY_SQL"/>
 		<item value="OK"/>
-		<item value="JTY_LIN"/>
-		<item value="putchar"/>
-		<item value="LIN"/>
-		<item value="SQL"/>
-		<item value="SENDBUF"/>
-		<item value="in"/>
-		<item value="rst"/>
-		<item value="GPIO"/>
-		<item value="RST"/>
-		<item value="READING"/>
 	</list>
 	<list key="replacehistory">
+		<item value="ROOM_NUMBER"/>
+		<item value="rroom"/>
 		<item value="PRJ_SQL"/>
 		<item value="JTY_SQL"/>
 		<item value="SQL"/>

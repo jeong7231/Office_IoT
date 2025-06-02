@@ -21,7 +21,7 @@
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
 
-#define ROOM_NUMBER 101
+#define ROOM_NUMBER "101"
 #define USER_ID "JTY"
 #define USER_NAME "JEONG"
 #define USER_CODE "8315D829"
@@ -110,8 +110,7 @@ char sendBuf[MAX_UART_COMMAND_LEN] = { 0 };
 
 typedef struct {
 	char *client;
-	char *led;
-	char *on_off;
+	char *door;
 } BUFFF;
 
 BUFFF ppAArray = { 0 };
@@ -119,11 +118,18 @@ BUFFF ppAArray = { 0 };
 typedef struct {
 	char *cclient;
 	char *ssetroom;
-	char *nname;
+	char *rroom;
 	char *sstatus;
 } BBUFFF;
 
 BBUFFF pppAAArray = { 0 };
+
+// SERVO(DOOR LOCK)
+int pluse = 0;
+int door_state;  // 1: unlock 0: lock
+
+// pir
+int pir_flag = 0;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -149,6 +155,8 @@ void room_status_display();
 void user_authentication();
 
 void esp_event(char*);
+
+void PIR_Init(void);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -162,7 +170,7 @@ void esp_event(char*);
 int main(void) {
 
 	/* USER CODE BEGIN 1 */
-
+	// SERVO
 	/* USER CODE END 1 */
 
 	/* MCU Configuration--------------------------------------------------------*/
@@ -190,6 +198,15 @@ int main(void) {
 	MX_SPI1_Init();
 	MX_TIM4_Init();
 	/* USER CODE BEGIN 2 */
+
+	// TIMER 4
+	if (HAL_TIM_Base_Start_IT(&htim4) != HAL_OK)
+		Error_Handler();
+	if (HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_1) != HAL_OK)
+		Error_Handler();
+	if (HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_2) != HAL_OK)
+		Error_Handler();
+
 	// ESP
 	printf("Start main() - wifi\r\n");
 	ret |= drv_uart_init();
@@ -214,6 +231,9 @@ int main(void) {
 	uint8_t version = MFRC522_ReadRegister(0x37); // VersionReg
 	printf("RC522 Version: 0x%02X\r\n", version);
 	printf("카드를 인식해주세요\r\n");
+
+	//PIR
+	PIR_Init();
 
 	/* USER CODE END 2 */
 
@@ -244,7 +264,28 @@ int main(void) {
 			LCD_writeStringXY(1, 0, line2);
 		}
 
+		static int last_door_state = -1;  // 초기값은 존재하지 않는 값으로 설정
+
+		if (door_state != last_door_state) {
+			if (door_state == 1) {
+				pluse = 500;
+				printf("UNLOCK!!\r\n");
+			} else {
+				pluse = 1500;
+				printf("LOCK!!\r\n");
+			}
+			last_door_state = door_state;
+		}
+		__HAL_TIM_SetCompare(&htim4, TIM_CHANNEL_2, pluse - 1);
+
 		room_status_set();
+
+		if (pir_flag == 1 && door_state == 0) {
+			pir_flag = 0;
+			printf("움직임 감지됨!\r\n");
+			sprintf(sendBuf, "[PRJ_CEN]DETECTED@101\r\n");
+			esp_send_data(sendBuf);
+		}
 	}
 	/* USER CODE END WHILE */
 
@@ -338,6 +379,7 @@ static void MX_ADC1_Init(void) {
 	}
 	/* USER CODE BEGIN ADC1_Init 2 */
 	/* USER CODE END ADC1_Init 2 */
+
 }
 
 /**
@@ -366,6 +408,7 @@ static void MX_I2C1_Init(void) {
 	}
 	/* USER CODE BEGIN I2C1_Init 2 */
 	/* USER CODE END I2C1_Init 2 */
+
 }
 
 /**
@@ -401,6 +444,7 @@ static void MX_SPI1_Init(void) {
 	/* USER CODE BEGIN SPI1_Init 2 */
 
 	/* USER CODE END SPI1_Init 2 */
+
 }
 
 /**
@@ -460,6 +504,7 @@ static void MX_TIM1_Init(void) {
 	/* USER CODE BEGIN TIM1_Init 2 */
 	/* USER CODE END TIM1_Init 2 */
 	HAL_TIM_MspPostInit(&htim1);
+
 }
 
 /**
@@ -498,6 +543,7 @@ static void MX_TIM3_Init(void) {
 	}
 	/* USER CODE BEGIN TIM3_Init 2 */
 	/* USER CODE END TIM3_Init 2 */
+
 }
 
 /**
@@ -533,10 +579,14 @@ static void MX_TIM4_Init(void) {
 		Error_Handler();
 	}
 	sConfigOC.OCMode = TIM_OCMODE_PWM1;
-	sConfigOC.Pulse = 500;
+	sConfigOC.Pulse = 0;
 	sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
 	sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
 	if (HAL_TIM_PWM_ConfigChannel(&htim4, &sConfigOC, TIM_CHANNEL_1)
+			!= HAL_OK) {
+		Error_Handler();
+	}
+	if (HAL_TIM_PWM_ConfigChannel(&htim4, &sConfigOC, TIM_CHANNEL_2)
 			!= HAL_OK) {
 		Error_Handler();
 	}
@@ -544,6 +594,7 @@ static void MX_TIM4_Init(void) {
 
 	/* USER CODE END TIM4_Init 2 */
 	HAL_TIM_MspPostInit(&htim4);
+
 }
 
 /**
@@ -571,6 +622,7 @@ static void MX_USART2_UART_Init(void) {
 	}
 	/* USER CODE BEGIN USART2_Init 2 */
 	/* USER CODE END USART2_Init 2 */
+
 }
 
 /**
@@ -598,6 +650,7 @@ static void MX_USART6_UART_Init(void) {
 	}
 	/* USER CODE BEGIN USART6_Init 2 */
 	/* USER CODE END USART6_Init 2 */
+
 }
 
 /**
@@ -705,44 +758,50 @@ void room_status_set() {
 			case 0:
 				printf("button : %d\r\n", i);
 				sprintf(current_room_status.room_status, "%s", "IN        ");
-				sprintf(sendBuf, "[PRJ_SQL]SETROOM@%s@IN\n", USER_ID);
+				sprintf(sendBuf, "[PRJ_SQL]SETROOM@%s@IN\n", ROOM_NUMBER);
 				esp_send_data(sendBuf);
 				HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_SET);
+				door_state = 1;
 				break;
 			case 1:
 				printf("button : %d\r\n", i);
 				sprintf(current_room_status.room_status, "%s", "LEC       ");
-				sprintf(sendBuf, "[PRJ_SQL]SETROOM@%s@LEC\n", USER_ID);
+				sprintf(sendBuf, "[PRJ_SQL]SETROOM@%s@LEC\n", ROOM_NUMBER);
 				esp_send_data(sendBuf);
 				HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_RESET);
+				door_state = 0;
 				break;
 			case 2:
 				printf("button : %d\r\n", i);
 				sprintf(current_room_status.room_status, "%s", "VAC       ");
-				sprintf(sendBuf, "[PRJ_SQL]SETROOM@%s@VAC\n", USER_ID);
+				sprintf(sendBuf, "[PRJ_SQL]SETROOM@%s@VAC\n", ROOM_NUMBER);
 				esp_send_data(sendBuf);
 				HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_RESET);
+				door_state = 0;
 				break;
 			case 3:
 				printf("button : %d\r\n", i);
 				sprintf(current_room_status.room_status, "%s", "MTG       ");
-				sprintf(sendBuf, "[PRJ_SQL]SETROOM@%s@MTG\n", USER_ID);
+				sprintf(sendBuf, "[PRJ_SQL]SETROOM@%s@MTG\n", ROOM_NUMBER);
 				esp_send_data(sendBuf);
 				HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_RESET);
+				door_state = 0;
 				break;
 			case 4:
 				printf("button : %d\r\n", i);
 				sprintf(current_room_status.room_status, "%s", "BRK       ");
-				sprintf(sendBuf, "[PRJ_SQL]SETROOM@%s@BRK\n", USER_ID);
+				sprintf(sendBuf, "[PRJ_SQL]SETROOM@%s@BRK\n", ROOM_NUMBER);
 				esp_send_data(sendBuf);
 				HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_RESET);
+				door_state = 0;
 				break;
 			case 5:
 				printf("button : %d\r\n", i);
 				sprintf(current_room_status.room_status, "%s", "OUT       ");
-				sprintf(sendBuf, "[PRJ_SQL]SETROOM@%s@OUT\n", USER_ID);
+				sprintf(sendBuf, "[PRJ_SQL]SETROOM@%s@OUT\n", ROOM_NUMBER);
 				esp_send_data(sendBuf);
 				HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_RESET);
+				door_state = 0;
 				break;
 			}
 		}
@@ -753,7 +812,7 @@ void room_status_set() {
 
 void room_status_display() {
 
-	sprintf(line1, "%d - %s", ROOM_NUMBER, USER_NAME);
+	sprintf(line1, "%s - %s", ROOM_NUMBER, USER_NAME);
 	// sprintf(line2, "%s", "LEC");
 	sprintf(line2, "%s", current_room_status.room_status);
 
@@ -761,25 +820,74 @@ void room_status_display() {
 	LCD_writeStringXY(1, 0, line2);
 }
 
+//void user_authentication() {
+//	if (MFRC522_Check(cardID) == MI_OK) {
+//		sprintf(uid_str, "%02X%02X%02X%02X", cardID[0], cardID[1], cardID[2],
+//				cardID[3]);
+//		printf("Card UID: %s\r\n", uid_str);
+//
+//		if (strcmp(uid_str, USER_CODE) == 0) {
+//			authentication_flag = 1;
+//			auth_start_time = tim3Sec; // 현재 시간을 저장
+//			printf("인증성공!\r\n");
+//			sprintf(line2, "%s", "Success!!");
+//			LCD_writeStringXY(1, 0, line2);
+//		} else {
+//			authentication_flag = 0;
+//			auth_start_time = -1;
+//			printf("인증실패!\r\n");
+//			sprintf(line2, "%s", "Failed!!");
+//			LCD_writeStringXY(1, 0, line2);
+//		}
+//	}
+//}
+
 void user_authentication() {
 	if (MFRC522_Check(cardID) == MI_OK) {
 		sprintf(uid_str, "%02X%02X%02X%02X", cardID[0], cardID[1], cardID[2],
 				cardID[3]);
 		printf("Card UID: %s\r\n", uid_str);
 
-		if (strcmp(uid_str, USER_CODE) == 0) {
-			authentication_flag = 1;
-			auth_start_time = tim3Sec; // 현재 시간을 저장
-			printf("인증성공!\r\n");
-			sprintf(line2, "%s", "Success!!");
-			LCD_writeStringXY(1, 0, line2);
-		} else {
-			authentication_flag = 0;
-			auth_start_time = -1;
-			printf("인증실패!\r\n");
-			sprintf(line2, "%s", "Failed!!");
-			LCD_writeStringXY(1, 0, line2);
+		// SQL 클라이언트로 인증 요청 전송
+		sprintf(sendBuf, "[PRJ_SQL]CERT@%s@%s\n", ROOM_NUMBER, uid_str);
+		esp_send_data(sendBuf);
+		printf("Send to SQL client: %s\r\n", sendBuf);
+
+		// 응답 대기 타이머 시작
+		int wait_start_time = tim3Sec;
+		int timeout_sec = 2;  // 최대 대기 시간 (초)
+
+		while ((tim3Sec - wait_start_time) < timeout_sec) {
+			if (strstr((char*) cb_data.buf, "[PRJ_SQL]CERT@OK")) {
+				authentication_flag = 1;
+				auth_start_time = tim3Sec;
+				printf("인증성공!\r\n");
+				sprintf(line2, "%s", "Success!!");
+				LCD_writeStringXY(1, 0, line2);
+
+				goto auth_done;
+			} else if (strstr((char*) cb_data.buf, "[PRJ_SQL]CERT@NO")) {
+				authentication_flag = 0;
+				auth_start_time = -1;
+				printf("인증실패!\r\n");
+				sprintf(line2, "%s", "Failed!!");
+				LCD_writeStringXY(1, 0, line2);
+
+				goto auth_done;
+			}
 		}
+
+		// 응답 없음 (타임아웃)
+		authentication_flag = 0;
+		auth_start_time = -1;
+		printf("인증응답 없음!\r\n");
+		sprintf(line2, "%s", "No Resp!!");
+		LCD_writeStringXY(1, 0, line2);
+
+		auth_done:
+		// 수신 버퍼 정리
+		memset(cb_data.buf, 0, sizeof(cb_data.buf));
+		cb_data.length = 0;
 	}
 }
 
@@ -795,82 +903,81 @@ void esp_event(char *recvBuf) {
 	pToken = strtok(recvBuf, "[@]");
 	while (pToken != NULL) {
 		pArray[i] = pToken;
-		printf("[%s]", pToken);
 		if (++i >= ARR_CNT)
 			break;
 		pToken = strtok(NULL, "[@]");
 	}
-	printf("\r\n");
 
-	for (int i = 0; i < 3; i++) {
-		printf("[%s]", pArray[i]);
-		printf("\r\n");
+	for (int j = 0; j < i; j++) {
+		if (pArray[j] == NULL) {
+			printf("Warning: NULL in pArray[%d]\r\n", j);
+			return;
+		}
 	}
 
-	if (!strcmp(pArray[1], "LED")) {
+	if (i < 2) {
+		printf("Parsing error: too few tokens (%d)\r\n", i);
+		return;
+	}
+
+	if (i == 2) {
 		ppAArray.client = pArray[0];
-		ppAArray.led = pArray[1];
-		ppAArray.on_off = pArray[2];
+		ppAArray.door = pArray[1];
 
-		if (!strcmp(pArray[2], "ON")) {
-			HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_SET);
-			printf("led on!!\r\n");
-		} else if (!strcmp(pArray[2], "OFF")) {
-			HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_RESET);
-			printf("led off!!\r\n");
+		if (!strcmp(pArray[1], "UNLOCK")) {
+			sprintf(sendBuf, "[%s]%s\r\n", "PRJ_SQL", ppAArray.door);
+			door_state = 1;
 		}
-		sprintf(sendBuf, "[%s]%s@%s\n", ppAArray.client, ppAArray.led,
-				ppAArray.on_off);
 	}
 
-	else if (i >= 4) {
-		for(int j=0; j<i; j++)
-		{
-			printf("[%s]", pArray[j]);
-		}
-		printf("\r\n");
+	else if (i == 4) {
 
 		pppAAArray.cclient = pArray[0];
 		pppAAArray.ssetroom = pArray[1];
-		pppAAArray.nname = pArray[2];
+		pppAAArray.rroom = pArray[2];
 		pppAAArray.sstatus = pArray[3];
 
+		if (!strcmp(pppAAArray.ssetroom, "SETROOM")
+				&& !strcmp(pppAAArray.rroom, ROOM_NUMBER)) {
 
-		if (!strcmp(pppAAArray.ssetroom, "SETROOM") && !strcmp(pppAAArray.nname, "JTY")) {
+			if (!strcmp(pppAAArray.sstatus, "IN")) {
+				sprintf(current_room_status.room_status, "%s", "IN        ");
+				HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_SET);
+				door_state = 1;
 
-		    if (!strcmp(pppAAArray.sstatus, "IN")) {
-		        sprintf(current_room_status.room_status, "%s", "IN        ");
-		        HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_SET);
+			} else if (!strcmp(pppAAArray.sstatus, "LEC")) {
+				sprintf(current_room_status.room_status, "%s", "LEC        ");
+				HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_RESET);
+				door_state = 0;
 
-		    } else if (!strcmp(pppAAArray.sstatus, "LEC")) {
-		        sprintf(current_room_status.room_status, "%s", "LEC        ");
-		        HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_RESET);
+			} else if (!strcmp(pppAAArray.sstatus, "VAC")) {
+				sprintf(current_room_status.room_status, "%s", "VAC        ");
+				HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_RESET);
+				door_state = 0;
 
-		    } else if (!strcmp(pppAAArray.sstatus, "VAC")) {
-		        sprintf(current_room_status.room_status, "%s", "VAC        ");
-		        HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_RESET);
+			} else if (!strcmp(pppAAArray.sstatus, "MTG")) {
+				sprintf(current_room_status.room_status, "%s", "MTG        ");
+				HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_RESET);
+				door_state = 0;
 
-		    } else if (!strcmp(pppAAArray.sstatus, "MTG")) {
-		        sprintf(current_room_status.room_status, "%s", "MTG        ");
-		        HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_RESET);
+			} else if (!strcmp(pppAAArray.sstatus, "BRK")) {
+				sprintf(current_room_status.room_status, "%s", "BRK        ");
+				HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_RESET);
+				door_state = 0;
 
-		    } else if (!strcmp(pppAAArray.sstatus, "BRK")) {
-		        sprintf(current_room_status.room_status, "%s", "BRK        ");
-		        HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_RESET);
+			} else if (!strcmp(pppAAArray.sstatus, "OUT")) {
+				printf("out!!!!!!!\r\n");
+				sprintf(current_room_status.room_status, "%s", "OUT        ");
+				HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_RESET);
+				door_state = 0;
+			} else {
+				// 처리할 수 없는 상태일 경우 무시
+				return;
+			}
 
-		    } else if (!strcmp(pppAAArray.sstatus, "OUT")) {
-		        printf("out!!!!!!!\r\n");
-		        sprintf(current_room_status.room_status, "%s", "OUT        ");
-		        HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_RESET);
-		    } else {
-		        // 처리할 수 없는 상태일 경우 무시
-		        return;
-		    }
-
-		    // 공통 동작
-		    sprintf(sendBuf, "[PRJ_SQL]%s@%s@%s\r\n",
-		            pppAAArray.ssetroom, pppAAArray.nname, pppAAArray.sstatus);
-		    esp_send_data(sendBuf);
+			sprintf(sendBuf, "[PRJ_SQL]%s@%s@%s@%s\r\n", pppAAArray.ssetroom,
+					pppAAArray.rroom, pppAAArray.sstatus, pppAAArray.cclient);
+			printf("client = %s\r\n", pppAAArray.cclient);
 		}
 
 	}
@@ -889,45 +996,28 @@ void esp_event(char *recvBuf) {
 	printf("Debug send : %s\r\n", sendBuf);
 }
 
-//void esp_init() {
-//	// ESP
-//	if (strstr((char*) cb_data.buf, "+IPD")
-//			&& cb_data.buf[cb_data.length - 1] == '\n') {
-//		//?��?��?���??  \r\n+IPD,15:[KSH_LIN]HELLO\n
-//		strcpy(strBuff, strchr((char*) cb_data.buf, '['));
-//		memset(cb_data.buf, 0x0, sizeof(cb_data.buf));
-//		cb_data.length = 0;
-//		esp_event(strBuff);
-//	}
-//	if (rx2Flag) {
-//		printf("recv2 : %s\r\n", rx2Data);
-//		rx2Flag = 0;
-//	}
-//
-//	if (tim3Flag1Sec) // 1초에 한번
-//	{
-//		tim3Flag1Sec = 0;
-//		if (!(tim3Sec % 10)) // 10초에 한번
-//		{
-//			if (esp_get_status() != 0) {
-//				printf("server connecting ...\r\n");
-//				esp_client_conn();
-//			}
-//		}
-//		//			printf("tim3Sec : %d\r\n",tim3Sec);
-//		if (!(tim3Sec % 5)) // 5초에 한번
-//		{
-//			dht11Data = DHT11_readData();
-//			if (dht11Data.rh_byte1 != 255) {
-//				sprintf(buff, "h: %d%% t: %d.%d'C", dht11Data.rh_byte1,
-//						dht11Data.temp_byte1, dht11Data.temp_byte2);
-//				printf("%s\r\n", buff);
-//				LCD_writeStringXY(1, 0, buff);
-//			} else
-//				printf("DHT11 response error\r\n");
-//		}
-//	}
-//}
+// pir
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
+	if (GPIO_Pin == PIR_Pin) {
+
+		pir_flag = 1;
+
+	}
+}
+
+void PIR_Init(void) {
+	GPIO_InitTypeDef GPIO_InitStruct = { 0 };
+
+	__HAL_RCC_GPIOB_CLK_ENABLE();
+
+	GPIO_InitStruct.Pin = PIR_Pin;
+	GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
+	GPIO_InitStruct.Pull = GPIO_NOPULL;
+	HAL_GPIO_Init(PIR_GPIO_Port, &GPIO_InitStruct);
+
+	HAL_NVIC_SetPriority(EXTI1_IRQn, 0, 0);
+	HAL_NVIC_EnableIRQ(EXTI1_IRQn);
+}
 
 /* USER CODE END 4 */
 
@@ -940,17 +1030,17 @@ void Error_Handler(void) {
 	/* USER CODE END Error_Handler_Debug */
 }
 
-#ifdef USE_FULL_ASSERT
+#ifdef  USE_FULL_ASSERT
 /**
- * @brief  Reports the name of the source file and the source line number
- *         where the assert_param error has occurred.
- * @param  file: pointer to the source file name
- * @param  line: assert_param error line source number
- * @retval None
- */
+  * @brief  Reports the name of the source file and the source line number
+  *         where the assert_param error has occurred.
+  * @param  file: pointer to the source file name
+  * @param  line: assert_param error line source number
+  * @retval None
+  */
 void assert_failed(uint8_t *file, uint32_t line)
 {
-    /* USER CODE BEGIN 6 */
-    /* USER CODE END 6 */
+  /* USER CODE BEGIN 6 */
+  /* USER CODE END 6 */
 }
 #endif /* USE_FULL_ASSERT */

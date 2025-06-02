@@ -9,6 +9,7 @@
 			<item value=""/>
 		</list>
 		<list key="WizardProjectsImportPage.STORE_ARCHIVES">
+			<item value="C:\Users\aiot24_\Desktop\1st_project_1\1st_project_1.zip"/>
 			<item value="C:\Users\aiot24_\Desktop\교수님 samba 백업\cortexM4_stm32_nucleo_F411RE\Examples\nucleo_f411re_uart2_printf_uart6_wifi_clcd_dht11_tim4pwm1_servo_tim3rgbLed.zip"/>
 		</list>
 		<section name="ExternalProjectImportWizard.dialogBounds">
