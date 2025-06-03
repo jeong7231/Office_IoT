@@ -77,8 +77,6 @@ void Error_Handler(void);
 #define BUTTON4_GPIO_Port GPIOC
 #define BUTTON5_Pin GPIO_PIN_5
 #define BUTTON5_GPIO_Port GPIOC
-#define ESP_RST_Pin GPIO_PIN_0
-#define ESP_RST_GPIO_Port GPIOB
 #define PIR_Pin GPIO_PIN_1
 #define PIR_GPIO_Port GPIOB
 #define PIR_EXTI_IRQn EXTI1_IRQn
@@ -88,8 +86,6 @@ void Error_Handler(void);
 #define BUTTON6_GPIO_Port GPIOC
 #define LED_Pin GPIO_PIN_7
 #define LED_GPIO_Port GPIOC
-#define SERVO_Pin GPIO_PIN_8
-#define SERVO_GPIO_Port GPIOA
 #define TMS_Pin GPIO_PIN_13
 #define TMS_GPIO_Port GPIOA
 #define TCK_Pin GPIO_PIN_14
@@ -98,8 +94,8 @@ void Error_Handler(void);
 #define DHT_GPIO_Port GPIOC
 #define SWO_Pin GPIO_PIN_3
 #define SWO_GPIO_Port GPIOB
-#define TIM4_PWM1_MOTOR_Pin GPIO_PIN_6
-#define TIM4_PWM1_MOTOR_GPIO_Port GPIOB
+#define TIM4_PWM1_SERVO2_Pin GPIO_PIN_6
+#define TIM4_PWM1_SERVO2_GPIO_Port GPIOB
 #define TIM4_PWM2_SERVO_Pin GPIO_PIN_7
 #define TIM4_PWM2_SERVO_GPIO_Port GPIOB
 

@@ -4,6 +4,7 @@
 	<item key="replaceBarOpen" value="false"/>
 	<list key="searchhistory">
 		<item value="door_state"/>
+		<item value="buff"/>
 		<item value="DOOR_SATE"/>
 		<item value="setroom@%s"/>
 		<item value="ROOM_NUMBER"/>
@@ -17,7 +18,6 @@
 		<item value="hal_gpi"/>
 		<item value="esp_event"/>
 		<item value="JTY_SQL"/>
-		<item value="OK"/>
 	</list>
 	<list key="replacehistory">
 		<item value="ROOM_NUMBER"/>
