@@ -3268,3 +3268,18 @@ java.io.FileNotFoundException: C:\Users\aiot24_\STM32CubeIDE\1st_project_ws\1st_
 	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1054)
 	at org.eclipse.debug.internal.ui.DebugUIPlugin$1.run(DebugUIPlugin.java:1257)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+!SESSION 2025-06-04 11:27:35.284 -----------------------------------------------
+eclipse.buildId=Version 1.18.1
+java.version=21.0.3
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=ko_KR
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2025-06-04 11:27:45.856
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2025-06-04 11:27:45.856
+!MESSAGE Log4j2 initialized with config file C:\Users\aiot24_\STM32CubeIDE\1st_project_ws\.metadata\.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2025-06-04 11:28:05.179
+!MESSAGE Started RMI Server, listening on port 41337
