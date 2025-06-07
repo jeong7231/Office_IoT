@@ -74,7 +74,7 @@
 ### MariaDB 테이블 구조
 - `user_info(room_number, user_name, card_hex)`
 - `room_status(room, status, door, light)`
-- 추후 `access_log(timestamp, room, user, status, event)` 추가 예정
+
 
 ## 시스템 동작 흐름
 
