@@ -55,6 +55,7 @@ UART_HandleTypeDef huart2;
 UART_HandleTypeDef huart6;
 
 /* USER CODE BEGIN PV */
+int last_door_state = -1;  // 초기값은 존재하지 않는 값으로 설정
 
 // esp
 uint8_t rx2char;
@@ -62,9 +63,9 @@ extern cb_data_t cb_data;
 extern volatile unsigned char rx2Flag;
 extern volatile char rx2Data[50];
 
-int ret = 0;
+static int ret = 0;
 DHT11_TypeDef dht11Data;
-char buff[30];
+static char buff[30];
 
 // room_info 구조체
 typedef struct {
@@ -91,29 +92,28 @@ char line1[18] = { '\0' };
 char line2[18] = { '\0' };
 
 // timer3
-volatile int tim3Flag1Sec = 0;
-volatile unsigned int tim3Sec = 0;
-volatile int tim3Flag5Sec = 0;
+static volatile int tim3Flag1Sec = 0;
+static volatile unsigned int tim3Sec = 0;
+static volatile int tim3Flag5Sec = 0;
 
 // RFID
 uint8_t cardID[5];
-// 비교용
 char uid_str[16];
-int authentication_flag = 0;
-volatile int auth_start_time = -1; // 인증 시작 시점의 tim3Sec 저장
+static volatile int authentication_flag = 0;
+static volatile int auth_start_time = -1; // 인증 시작 시점의 tim3Sec 저장
 
 // esp
-int i = 0;
-char *pToken;
-char *pArray[ARR_CNT] = { 0 };
-char sendBuf[MAX_UART_COMMAND_LEN] = { 0 };
+static int i = 0;
+static char *pToken;
+static char *pArray[ARR_CNT] = { 0 };
+static char sendBuf[MAX_UART_COMMAND_LEN] = { 0 };
 
 typedef struct {
 	char *client;
 	char *door;
 } BUFFF;
 
-BUFFF ppAArray = { 0 };
+static BUFFF ppAArray = { 0 };
 
 typedef struct {
 	char *cclient;
@@ -122,31 +122,32 @@ typedef struct {
 	char *sstatus;
 } BBUFFF;
 
-BBUFFF pppAAArray = { 0 };
+static BBUFFF pppAAArray = { 0 };
 
 // SERVO(DOOR LOCK)
 int door_pulse = 0;
 int door_state;  // 1: unlock 0: lock
 
 // pir
-int pir_flag = 0;
+static volatile int pir_flag = 0;
 
-//dht
-int last_fanFlag = 0;
-int fanFlag = 0;
+// dht
+static int last_fanFlag = 0;
+static int fanFlag = 0;
 
 // ADC servo2
 __IO uint16_t ADC1ConvertValue = 0;
 __IO uint16_t adcFlag = 0;
-int curtainFlag = 0;
-int last_curtainFlag = 0;
-int curtain_pulse = 0;
+static int curtainFlag = 0;
+static int last_curtainFlag = 0;
+static int curtain_pulse = 0;
 
 // DHT
-char dhtbuff[30];
-int last_checked_sec = 0;
+static char dhtbuff[30];
+static int last_checked_sec = 0;
 DHT11_TypeDef dht11Data;
 /* USER CODE END PV */
+
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
@@ -159,6 +160,10 @@ static void MX_I2C1_Init(void);
 static void MX_SPI1_Init(void);
 static void MX_TIM4_Init(void);
 /* USER CODE BEGIN PFP */
+// authenicatin timeout
+void authentication_timeout();
+// detect
+void detect();
 
 // ESP
 void esp_init();
@@ -276,19 +281,10 @@ int main(void) {
 			printf("recv2 : %s\r\n", rx2Data);
 			rx2Flag = 0;
 		}
+
 		room_status_display();
 		user_authentication();
-
-		// 10초 경과 확인
-		if (authentication_flag == 1 && (tim3Sec - auth_start_time >= 10)) {
-			authentication_flag = 0;
-			auth_start_time = -1;
-			printf("인증시간 초과\r\n");
-			sprintf(line2, "%s", "Time Over");
-			LCD_writeStringXY(1, 0, line2);
-		}
-
-		static int last_door_state = -1;  // 초기값은 존재하지 않는 값으로 설정
+		authentication_timeout();
 
 		if (door_state != last_door_state) {
 			if (door_state == 1) {
@@ -303,13 +299,7 @@ int main(void) {
 		__HAL_TIM_SetCompare(&htim4, TIM_CHANNEL_2, door_pulse - 1);
 
 		room_status_set();
-
-		if (pir_flag == 1 && door_state == 0) {
-			pir_flag = 0;
-			printf("움직임 감지됨!\r\n");
-			sprintf(sendBuf, "[PRJ_CEN]DETECTED@101\r\n");
-			esp_send_data(sendBuf);
-		}
+		detect();
 
 		// DHT, DC
 		if (door_state == 1) {
@@ -1074,6 +1064,27 @@ void cds_status_servo() {
 		last_curtainFlag = curtainFlag;
 	}
 	__HAL_TIM_SetCompare(&htim4, TIM_CHANNEL_1, curtain_pulse - 1);
+}
+
+void detect() {
+	if (pir_flag == 1 && door_state == 0) {
+		pir_flag = 0;
+		printf("움직임 감지됨!\r\n");
+		sprintf(sendBuf, "[PRJ_CEN]DETECTED@101\r\n");
+		esp_send_data(sendBuf);
+	}
+}
+
+void authentication_timeout() {
+
+	// 10초 경과 확인
+	if (authentication_flag == 1 && (tim3Sec - auth_start_time >= 10)) {
+		authentication_flag = 0;
+		auth_start_time = -1;
+		printf("인증시간 초과\r\n");
+		sprintf(line2, "%s", "Time Over");
+		LCD_writeStringXY(1, 0, line2);
+	}
 }
 /* USER CODE END 4 */
 
