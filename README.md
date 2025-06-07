@@ -18,37 +18,50 @@
 ## 하드웨어 핀 구성
 
 ### Arduino Uno
-| 인터페이스 | 핀 번호 | 방향   | 설명             |
-|------------|---------|--------|------------------|
-| I2C SDA    | A4      | InOut  | LCD 데이터       |
-| I2C SCL    | A5      | InOut  | LCD 클럭         |
-| BLE TX     | D6      | Output | BLE 송신         |
-| BLE RX     | D7      | Input  | BLE 수신         |
-| Buzzer     | D8      | Output | 부저 출력         |
-| Button1    | D9      | Input  | 정지 버튼         |
-| Button2    | D10     | Input  | 전체 해제 버튼     |
+
+| 인터페이스 | 핀 번호 | 방향   | 설명                      |
+|------------|---------|--------|---------------------------|
+| I2C SDA    | A4      | InOut  | LCD 데이터 송수신         |
+| I2C SCL    | A5      | InOut  | LCD 클럭 송수신           |
+| BLE TX     | D6      | Output | BLE 모듈 송신             |
+| BLE RX     | D7      | Input  | BLE 모듈 수신             |
+| BUZZER     | D8      | Output | 경고음 출력               |
+| BUTTON1    | D9      | Input  | 경고 정지 버튼            |
+| BUTTON2    | D10     | Input  | 전체 출입 해제 버튼       |
 
 ### STM32F411RE
-| 인터페이스     | 핀 번호 | 방향   | 설명             |
-|----------------|---------|--------|------------------|
-| DHT11          | PC10    | Input  | 온습도 센서       |
-| BUTTON0~5      | PC0~PC5 | Input  | 상태 선택 버튼     |
-| ESP-RX         | PA12    | Input  | ESP 수신          |
-| ESP-TX         | PA11    | Output | ESP 송신          |
-| RFID-RST       | PB2     | Output | RFID 리셋         |
-| PIR            | PB1     | Input  | 모션 센서         |
-| CDS            | PA0     | Input  | 조도 센서         |
-| RFID-SDA       | PA4     | InOut  | SPI MOSI          |
-| RFID-SCK       | PA5     | Output | SPI 클럭          |
-| RFID-MISO      | PA6     | Input  | SPI 수신          |
-| RFID-MOSI      | PA7     | Output | SPI 송신          |
-| I2C-SCL        | PB8     | InOut  | LCD 클럭          |
-| I2C-SDA        | PB9     | InOut  | LCD 데이터        |
-| SERVO_PWM      | PA8     | Output | 도어 서보 제어     |
-| BUZZER         | PB10    | Output | 부저 제어         |
-| LED            | PC7     | Output | 상태 표시 LED      |
-| MOTOR_A        | PB8     | Output | 커튼 제어 A채널    |
-| MOTOR_B        | PB9     | Output | 커튼 제어 B채널    |
+
+| 인터페이스         | 핀 번호     | 방향   | 설명                                |
+|--------------------|-------------|--------|-------------------------------------|
+| DHT11              | PC10        | Input  | 온습도 센서 입력                     |
+| BUTTON0~5          | PC0~PC5     | Input  | 재실 상태 선택용 버튼                |
+| ESP-RX             | PA12        | Input  | ESP8266에서 STM32로 수신             |
+| ESP-TX             | PA11        | Output | STM32에서 ESP8266으로 송신           |
+| RFID-RST           | PB2         | Output | RC522 리더기 리셋 제어               |
+| PIR                | PB1         | Input  | 동작 감지 센서 입력 (EXTI 인터럽트)  |
+| CDS                | PA0         | Input  | 조도 센서 아날로그 입력              |
+| RFID-SDA (NSS)     | PA4         | Output | SPI1 NSS (Chip Select)              |
+| RFID-SCK           | PA5         | Output | SPI1 클럭                            |
+| RFID-MISO          | PA6         | Input  | SPI1 데이터 입력                     |
+| RFID-MOSI          | PA7         | Output | SPI1 데이터 출력                     |
+| I2C-SCL / MOTOR_A  | PB8         | InOut / Output | LCD 클럭 / 모터 A채널 제어   |
+| I2C-SDA / MOTOR_B  | PB9         | InOut / Output | LCD 데이터 / 모터 B채널 제어 |
+| SERVO_PWM          | PA8         | Output | 도어락 제어용 서보 PWM 출력          |
+| BUZZER             | PB10        | Output | 경고 부저 출력                       |
+| LED                | PC7         | Output | 출입 상태 LED 표시                   |
+
+## 사용 인터페이스 요약
+
+| 인터페이스 종류 | 사용 용도                              |
+|------------------|-----------------------------------------|
+| UART             | ESP8266 (PA11, PA12), BLE (SoftSerial) |
+| SPI              | RC522 RFID (PA4~PA7)                   |
+| I2C              | CLCD (PB8, PB9), 관제 LCD (A4, A5)     |
+| GPIO Input       | 버튼, PIR, DHT                         |
+| GPIO Output      | 부저, LED, RFID-RST                    |
+| PWM              | 도어 서보 (PA8), 커튼 서보 (PB6, PB9) |
+| ADC              | CDS 조도센서 (PA0)                    |
+| EXTI             | PIR 센서 (PB1, EXTI1_IRQn)            |
 
 ## 서버 및 클라이언트 구조
 
