@@ -1,6 +1,4 @@
-# 1st_project
->인텔 아카데미 미니 프로젝트 [ Office IoT ]
-
+# Office IoT
 
 ## 개요
 본 시스템은 STM32F411RE 및 Arduino Uno 기반의 임베디드 시스템으로, 사용자의 재실 현황과 침입 감시를 통합 관리한다. RFID 인증, 상태 버튼 입력, BLE 통신, ESP WiFi 통신, 센서 기반 자동 제어 기능을 포함한다. 상태 정보는 MariaDB에 저장되며, TCP 기반의 서버-클라이언트 구조로 동작한다.
