@@ -3,6 +3,12 @@
 ## 개요
 본 시스템은 STM32F411RE 및 Arduino Uno 기반의 임베디드 시스템으로, 사용자의 재실 현황과 침입 감시를 통합 관리한다. RFID 인증, 상태 버튼 입력, BLE 통신, ESP WiFi 통신, 센서 기반 자동 제어 기능을 포함한다. 상태 정보는 MariaDB에 저장되며, TCP 기반의 서버-클라이언트 구조로 동작한다.
 
+| ![](image/Office_IoT_Office.jpg) | ![](image/Office_IoT_Center.jpg) |
+| -------------------------------- | -------------------------------- |
+
+## 첨부 자료
+https://drive.google.com/drive/folders/14gAR5_BfWPSxsVc7ORA3zlUNE6ZjeE-E?usp=drive_link
+
 ## 주요 기능
 - MFRC522 모듈을 이용한 RFID 사용자 인증
 - 6개의 버튼을 이용한 출입 상태 설정 (IN, LEC, VAC, MTG, BRK, OUT)
@@ -17,49 +23,49 @@
 
 ### Arduino Uno
 
-| 인터페이스 | 핀 번호 | 방향   | 설명                      |
-|------------|---------|--------|---------------------------|
-| I2C SDA    | A4      | InOut  | LCD 데이터 송수신         |
-| I2C SCL    | A5      | InOut  | LCD 클럭 송수신           |
-| BLE TX     | D6      | Output | BLE 모듈 송신             |
-| BLE RX     | D7      | Input  | BLE 모듈 수신             |
-| BUZZER     | D8      | Output | 경고음 출력               |
-| BUTTON1    | D9      | Input  | 경고 정지 버튼            |
-| BUTTON2    | D10     | Input  | 전체 출입 해제 버튼       |
+| 인터페이스 | 핀 번호 | 방향   | 설명                |
+| ---------- | ------- | ------ | ------------------- |
+| I2C SDA    | A4      | InOut  | LCD 데이터 송수신   |
+| I2C SCL    | A5      | InOut  | LCD 클럭 송수신     |
+| BLE TX     | D6      | Output | BLE 모듈 송신       |
+| BLE RX     | D7      | Input  | BLE 모듈 수신       |
+| BUZZER     | D8      | Output | 경고음 출력         |
+| BUTTON1    | D9      | Input  | 경고 정지 버튼      |
+| BUTTON2    | D10     | Input  | 전체 출입 해제 버튼 |
 
 ### STM32F411RE
 
-| 인터페이스         | 핀 번호     | 방향   | 설명                                |
-|--------------------|-------------|--------|-------------------------------------|
-| DHT11              | PC10        | Input  | 온습도 센서 입력                     |
-| BUTTON0~5          | PC0~PC5     | Input  | 재실 상태 선택용 버튼                |
-| ESP-RX             | PA12        | Input  | ESP8266에서 STM32로 수신             |
-| ESP-TX             | PA11        | Output | STM32에서 ESP8266으로 송신           |
-| RFID-RST           | PB2         | Output | RC522 리더기 리셋 제어               |
-| PIR                | PB1         | Input  | 동작 감지 센서 입력 (EXTI 인터럽트)  |
-| CDS                | PA0         | Input  | 조도 센서 아날로그 입력              |
-| RFID-SDA (NSS)     | PA4         | Output | SPI1 NSS (Chip Select)              |
-| RFID-SCK           | PA5         | Output | SPI1 클럭                            |
-| RFID-MISO          | PA6         | Input  | SPI1 데이터 입력                     |
-| RFID-MOSI          | PA7         | Output | SPI1 데이터 출력                     |
-| I2C-SCL / MOTOR_A  | PB8         | InOut / Output | LCD 클럭 / 모터 A채널 제어   |
-| I2C-SDA / MOTOR_B  | PB9         | InOut / Output | LCD 데이터 / 모터 B채널 제어 |
-| SERVO_PWM          | PA8         | Output | 도어락 제어용 서보 PWM 출력          |
-| BUZZER             | PB10        | Output | 경고 부저 출력                       |
-| LED                | PC7         | Output | 출입 상태 LED 표시                   |
+| 인터페이스        | 핀 번호 | 방향           | 설명                                |
+| ----------------- | ------- | -------------- | ----------------------------------- |
+| DHT11             | PC10    | Input          | 온습도 센서 입력                    |
+| BUTTON0~5         | PC0~PC5 | Input          | 재실 상태 선택용 버튼               |
+| ESP-RX            | PA12    | Input          | ESP8266에서 STM32로 수신            |
+| ESP-TX            | PA11    | Output         | STM32에서 ESP8266으로 송신          |
+| RFID-RST          | PB2     | Output         | RC522 리더기 리셋 제어              |
+| PIR               | PB1     | Input          | 동작 감지 센서 입력 (EXTI 인터럽트) |
+| CDS               | PA0     | Input          | 조도 센서 아날로그 입력             |
+| RFID-SDA (NSS)    | PA4     | Output         | SPI1 NSS (Chip Select)              |
+| RFID-SCK          | PA5     | Output         | SPI1 클럭                           |
+| RFID-MISO         | PA6     | Input          | SPI1 데이터 입력                    |
+| RFID-MOSI         | PA7     | Output         | SPI1 데이터 출력                    |
+| I2C-SCL / MOTOR_A | PB8     | InOut / Output | LCD 클럭 / 모터 A채널 제어          |
+| I2C-SDA / MOTOR_B | PB9     | InOut / Output | LCD 데이터 / 모터 B채널 제어        |
+| SERVO_PWM         | PA8     | Output         | 도어락 제어용 서보 PWM 출력         |
+| BUZZER            | PB10    | Output         | 경고 부저 출력                      |
+| LED               | PC7     | Output         | 출입 상태 LED 표시                  |
 
 ## 사용 인터페이스 요약
 
 | 인터페이스 종류 | 사용 용도                              |
-|------------------|-----------------------------------------|
-| UART             | ESP8266 (PA11, PA12), BLE (SoftSerial) |
-| SPI              | RC522 RFID (PA4~PA7)                   |
-| I2C              | CLCD (PB8, PB9), 관제 LCD (A4, A5)     |
-| GPIO Input       | 버튼, PIR, DHT                         |
-| GPIO Output      | 부저, LED, RFID-RST                    |
-| PWM              | 도어 서보 (PA8), 커튼 서보 (PB6, PB9) |
-| ADC              | CDS 조도센서 (PA0)                    |
-| EXTI             | PIR 센서 (PB1, EXTI1_IRQn)            |
+| --------------- | -------------------------------------- |
+| UART            | ESP8266 (PA11, PA12), BLE (SoftSerial) |
+| SPI             | RC522 RFID (PA4~PA7)                   |
+| I2C             | CLCD (PB8, PB9), 관제 LCD (A4, A5)     |
+| GPIO Input      | 버튼, PIR, DHT                         |
+| GPIO Output     | 부저, LED, RFID-RST                    |
+| PWM             | 도어 서보 (PA8), 커튼 서보 (PB6, PB9)  |
+| ADC             | CDS 조도센서 (PA0)                     |
+| EXTI            | PIR 센서 (PB1, EXTI1_IRQn)             |
 
 ## 서버 및 클라이언트 구조
 
@@ -100,14 +106,14 @@
 ### 3. 출입 상태 설정
 - 인증된 사용자는 다음 중 하나의 버튼을 눌러 상태를 선택
 
-| 버튼 번호 | 상태 코드 | 설명         |
-|-----------|------------|--------------|
-| BUTTON0   | IN         | 입실         |
-| BUTTON1   | LEC        | 수업         |
-| BUTTON2   | VAC        | 외출         |
-| BUTTON3   | MTG        | 회의         |
-| BUTTON4   | BRK        | 휴식         |
-| BUTTON5   | OUT        | 퇴실         |
+| 버튼 번호 | 상태 코드 | 설명 |
+| --------- | --------- | ---- |
+| BUTTON0   | IN        | 입실 |
+| BUTTON1   | LEC       | 수업 |
+| BUTTON2   | VAC       | 외출 |
+| BUTTON3   | MTG       | 회의 |
+| BUTTON4   | BRK       | 휴식 |
+| BUTTON5   | OUT       | 퇴실 |
 
 - 선택한 상태는 다음과 같이 반영됨
   - LCD 상단: 방 번호 + 사용자 이름 출력
@@ -164,5 +170,4 @@ gcc -o sql_client iot_client_sql.c -lpthread -lmysqlclient
 gcc -o bt_client iot_client_bluetooth.c -lpthread -lbluetooth
 ```
 
-## 첨부 자료
-https://drive.google.com/drive/folders/14gAR5_BfWPSxsVc7ORA3zlUNE6ZjeE-E?usp=drive_link
+
