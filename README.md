@@ -6,8 +6,8 @@
 | ![](image/Office_IoT_Office.jpg) | ![](image/Office_IoT_Center.jpg) |
 | -------------------------------- | -------------------------------- |
 
-## 첨부 자료
-https://drive.google.com/drive/folders/14gAR5_BfWPSxsVc7ORA3zlUNE6ZjeE-E?usp=drive_link
+> **첨부자료**<br>
+> https://drive.google.com/drive/folders/14gAR5_BfWPSxsVc7ORA3zlUNE6ZjeE-E?usp=drive_link
 
 ## 주요 기능
 - MFRC522 모듈을 이용한 RFID 사용자 인증
